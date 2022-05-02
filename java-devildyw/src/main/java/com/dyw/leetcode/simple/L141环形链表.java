@@ -16,6 +16,7 @@ import java.util.HashSet;
  *
  *
  */
+@SuppressWarnings("all")
 public class L141环形链表 {
     /**
      * 哈希表做法

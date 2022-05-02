@@ -12,6 +12,7 @@ import java.util.HashMap;
  * 如果存在，返回 true ；否则，返回 false 。
  *
  */
+@SuppressWarnings("all")
 public class L219存在重复元素II {
     public static void main(String[] args) {
         boolean b = new L219存在重复元素II().containsNearbyDuplicate(new int[]{1,0,1,1
