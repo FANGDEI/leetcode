@@ -10,6 +10,7 @@ package com.dyw.leetcode.simple;
  *
  * 返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 0 。
  */
+@SuppressWarnings("all")
 public class L121买卖股票的最佳时机 {
     public int maxProfit01(int[] prices) {
         if (prices==null&&prices.length==0){

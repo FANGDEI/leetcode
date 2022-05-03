@@ -11,6 +11,7 @@ import java.util.Arrays;
  * 你可以假设数组是非空的，并且给定的数组总是存在多数元素。
  *
  */
+@SuppressWarnings("all")
 public class L169多数元素 {
     public static void main(String[] args) {
         int i = new L169多数元素().majorityElement(new int[]{2, 2, 1, 1, 1, 2, 2});
