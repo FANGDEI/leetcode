@@ -1,6 +1,6 @@
 package sort
 
-func QuickSort(a []int, l, r, m int) int {
+func KthNumber(a []int, l, r, m int) int {
 	if l >= r {
 		return a[l]
 	}
@@ -24,8 +24,8 @@ func QuickSort(a []int, l, r, m int) int {
 	}
 	s := j - l + 1
 	if m <= s {
-		return QuickSort(a, l, j, m)
+		return KthNumber(a, l, j, m)
 	} else {
-		return QuickSort(a, j+1, r, m-s)
+		return KthNumber(a, j+1, r, m-s)
 	}
 }
