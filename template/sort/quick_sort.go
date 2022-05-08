@@ -4,8 +4,7 @@ func QuickSort(a []int, l, r int) {
 	if l >= r {
 		return
 	}
-	k := a[(l+r)>>1]
-	i, j := l-1, r+1
+	k, i, j := a[(l+r)>>1], l-1, r+1
 	for i < j {
 		for {
 			i++
