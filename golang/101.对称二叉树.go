@@ -1,11 +1,5 @@
 package golang
 
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
-
 // 水题
 func isSymmetric(root *TreeNode) bool {
 	if root == nil {

@@ -2,10 +2,10 @@ package golang
 
 // 水题
 func findKthLargest(nums []int, k int) int {
-	return quick_sort(nums, 0, len(nums)-1, k)
+	return quickSort(nums, 0, len(nums)-1, k)
 }
 
-func quick_sort(a []int, l, r, m int) int {
+func quickSort(a []int, l, r, m int) int {
 	if l == r {
 		return a[l]
 	}
@@ -29,8 +29,8 @@ func quick_sort(a []int, l, r, m int) int {
 	}
 	s := j - l + 1
 	if m <= s {
-		return quick_sort(a, l, j, m)
+		return quickSort(a, l, j, m)
 	} else {
-		return quick_sort(a, j+1, r, m-s)
+		return quickSort(a, j+1, r, m-s)
 	}
 }

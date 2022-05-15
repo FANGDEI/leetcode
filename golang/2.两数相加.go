@@ -1,10 +1,5 @@
 package golang
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 // 模拟题
 // 类似于大整数加法
 // 注意链表均为空时判断进位 carry 的值

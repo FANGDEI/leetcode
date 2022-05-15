@@ -1,11 +1,5 @@
 package golang
 
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
-
 // 全局变量
 var res = [][]int{}
 
@@ -13,12 +7,12 @@ func pathSum(root *TreeNode, targetSum int) [][]int {
 	// leetcode 全局变量只会初始化一次
 	res = [][]int{}
 	nowPath := []int{}
-	dfs(root, nowPath, targetSum, 0)
+	pathSumDfs(root, nowPath, targetSum, 0)
 	return res
 }
 
 // 在路径总和I的代码中加一个记录路径的变量即可
-func dfs(root *TreeNode, nowPath []int, targetSum, sum int) {
+func pathSumDfs(root *TreeNode, nowPath []int, targetSum, sum int) {
 	if root == nil {
 		return
 	}
@@ -36,6 +30,6 @@ func dfs(root *TreeNode, nowPath []int, targetSum, sum int) {
 		// res = append(res, nowPath)
 		return
 	}
-	dfs(root.Left, nowPath, targetSum, sum)
-	dfs(root.Right, nowPath, targetSum, sum)
+	pathSumDfs(root.Left, nowPath, targetSum, sum)
+	pathSumDfs(root.Right, nowPath, targetSum, sum)
 }
