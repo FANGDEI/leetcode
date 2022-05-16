@@ -72,3 +72,26 @@ func (n *Node) Remove(s []string) {
 		n.remove(ss)
 	}
 }
+
+// PrefixMatch Get how many words start with the prefix
+func (n *Node) PrefixMatch(prefix string) int {
+	curr := n
+	for _, char := range prefix {
+		index := char - 'a'
+		if curr.children[index] == nil {
+			return 0
+		}
+		curr = curr.children[index]
+	}
+
+	cnt := 0
+	if curr.isLeaf {
+		cnt++
+	}
+	for i := 0; i < 26; i++ {
+		if curr.children[i] != nil {
+			cnt++
+		}
+	}
+	return cnt
+}

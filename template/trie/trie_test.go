@@ -12,3 +12,10 @@ func TestTrie(t *testing.T) {
 		t.Log("not find")
 	}
 }
+
+func TestNode_PrefixMatch(t *testing.T) {
+	n := NewNode()
+	n.Insert([]string{"hello", "world", "hellofang", "helloworld"})
+	cnt := n.PrefixMatch("hello")
+	t.Log(cnt)
+}
