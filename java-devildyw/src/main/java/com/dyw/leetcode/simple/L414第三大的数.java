@@ -28,6 +28,6 @@ public class L414第三大的数 {
                 treeSet.remove(treeSet.first());
             }
         }
-        return treeSet.size() == 3 ? treeSet.first() : treeSet.last();
+        return treeSet.size()==3 ? treeSet.first() : treeSet.last();
     }
 }
