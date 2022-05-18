@@ -15,6 +15,6 @@ func New(cap int) *heap {
 		cap: cap,
 	}
 	// 哨兵
-	h.val[0] = 0x7fffffff
+	h.val[0] = -0x7fffffff
 	return h
 }

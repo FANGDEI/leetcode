@@ -15,7 +15,7 @@ func (h *heap) insert(val int) {
 
 	i := h.len
 	// 新插入的节点开始上跳
-	for i != 1 && val > h.val[i/2] {
+	for i != 1 && val < h.val[i/2] {
 		h.val[i] = h.val[i/2]
 		i /= 2
 	}
@@ -38,19 +38,19 @@ func (h *heap) Remove() (int, error) {
 	res, last := h.val[1], h.val[h.len]
 	h.len--
 
-	parent, max := 1, 2
-	for max <= h.len {
-		if max < h.len && h.val[max+1] > h.val[max] {
-			max += 1
+	parent, min := 1, 2
+	for min <= h.len {
+		if min < h.len && h.val[min+1] < h.val[min] {
+			min += 1
 		}
 		// 判断 last 是否能够放在此节点
-		if last > h.val[max] {
+		if last < h.val[min] {
 			break
 		}
 		// 将 last 下移
-		h.val[parent] = h.val[max]
-		parent = max
-		max = parent * 2
+		h.val[parent] = h.val[min]
+		parent = min
+		min = parent * 2
 	}
 	h.val[parent] = last
 	return res, nil
