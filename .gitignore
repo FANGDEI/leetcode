@@ -132,3 +132,5 @@ lerna-debug.log
 # System Files
 .DS_Store
 Thumbs.db
+
+main.go
