@@ -17,7 +17,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class L594最长和谐子序列 {
     public static void main(String[] args) {
-
+        new L594最长和谐子序列().findLHS01(new int[]{1,3,2,2,5,2,3,7});
     }
 
     /**
@@ -45,23 +45,35 @@ public class L594最长和谐子序列 {
      * 遍历枚举
      */
     public int findLHS01(int[] nums) {
+        //先排序
         Arrays.sort(nums);
         //从第一个开始查找
         int begin = 0;
         int res = 0;
 
-        //遍历排序后的数组
+
         for (int end = 0; end < nums.length; end++) {
-            //如果nums[end] - nums[begin] > 1 那么begin++ 知道nums[end]-nums[begin] == 1
-            //注意这里end是一直比begin大的
-            while (nums[end]-nums[begin]>1){
+            while(nums[end]-nums[begin]>1){
                 begin++;
             }
-            //取res与end-begin+1之间的最大值
             if (nums[end]-nums[begin]==1){
                 res = Math.max(res,end-begin+1);
             }
+
         }
         return res;
+//        //遍历排序后的数组
+//        for (int end = 0; end < nums.length; end++) {
+//            //如果nums[end] - nums[begin] > 1 那么begin++ 知道nums[end]-nums[begin] == 1
+//            //注意这里end是一直比begin大的
+//            while (nums[end]-nums[begin]>1){
+//                begin++;
+//            }
+//            //取res与end-begin+1之间的最大值
+//            if (nums[end]-nums[begin]==1){
+//                res = Math.max(res,end-begin+1);
+//            }
+//        }
+//        return res;
     }
 }
