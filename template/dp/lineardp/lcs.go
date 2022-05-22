@@ -1,21 +1,14 @@
-package main
+package lineardp
 
 import "fmt"
 
-var (
-	n, m int
-	a, b string
-	f    [1005][1005]int
-)
+func LCS() {
+	var (
+		n, m int
+		a, b string
+		f    [1005][1005]int
+	)
 
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-
-func main() {
 	fmt.Scan(&n, &m)
 	fmt.Scanln(&a)
 	fmt.Scanln(&b)
