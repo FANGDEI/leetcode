@@ -15,13 +15,13 @@ package com.dyw.leetcode.simple;
 @SuppressWarnings("all")
 public class L717_1比特与2比特字符 {
     public static void main(String[] args) {
-
+        new L717_1比特与2比特字符().isOneBitCharacter01(new int[]{1,1,0,0});
     }
 
     /**
      * 方式一
      * 因为1肯定要连着下一个，所以遇见1，走两步，遇见0，走一步
-     *
+     * 1 1 1 0 这种就不是以一比特结尾的  1 1 0 0 这种的才是
      * 然后判断这样的情况i能不能刚好直到最后一个元素 而不是跳过 (如n-2出 bit[n-2]=1 按照我们的算法是会跳两步的就会变成i=n
      * 这样就会跳过n-1 就不能达到 除非n-2处的1已经与前面的1组成两比特 否者最后一位就不可能是一比特)
      */

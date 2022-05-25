@@ -34,7 +34,7 @@ class MyHashSet {
     private LinkedList[] data;
 
     public MyHashSet() {
-        data = new LinkedList<>[BASE];
+        data = new LinkedList[BASE];
         for (int i = 0; i < BASE; i++) {
             data[i] = new LinkedList<Integer>();
         }
