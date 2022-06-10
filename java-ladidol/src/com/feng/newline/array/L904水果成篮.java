@@ -5,7 +5,25 @@ package com.feng.newline.array;
  * @package: com.feng.newline.array
  * @className: L904水果成篮
  * @author: Ladidol
- * @description: 提示
+ * @description:
+ * 示例:
+ * 1.
+ * 输入：fruits = [1,2,1]
+ * 输出：3
+ * 解释：可以采摘全部 3 棵树。
+ * 2.
+ * 输入：fruits = [0,1,2,2]
+ * 输出：3
+ * 解释：可以采摘 [1,2,2] 这三棵树。
+ * 如果从第一棵树开始采摘，则只能采摘 [0,1] 这两棵树。
+ * 3.
+ * 输入：fruits = [1,2,3,2,2]
+ * 输出：4
+ * 解释：可以采摘 [2,3,2,2] 这四棵树。
+ * 如果从第一棵树开始采摘，则只能采摘 [1,2] 这两棵树。
+ *
+ *
+ *提示:
  * 1 <= fruits.length <= 10^5
  * 0 <= fruits[i] < fruits.length
  * @date: 2022/5/22 11:48
@@ -31,7 +49,7 @@ class L904_by_移动窗口 {
         for (right = 0; right < fruits.length; right++) {
             fruitFrequence[fruits[right]]++;//对相应的水果种类, 个数++;// 入篮
             if (fruitFrequence[fruits[right]]==1) typeCount++;//第一次入篮子, type++;// 计算篮中每种水果出现的次数。 因为提示中说明了水果的种类数是有限的 0 <= fruits[i] < fruits.length
-            while(typeCount>2){// 篮中超过两种水果
+            while(typeCount>2){// 篮中超过两种水果, 就开始收缩左边界
                 fruitFrequence[fruits[left]]--;
                 if (fruitFrequence[fruits[left]]==0){// 等于0说明篮中已经没有fruits[left]水果，typeCount减1
                     typeCount--;
