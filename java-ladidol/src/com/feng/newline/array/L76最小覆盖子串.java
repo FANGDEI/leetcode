@@ -25,6 +25,7 @@ public class L76最小覆盖子串 {
 class L76 {
     public String minWindow(String s, String t) {
         //因为对t中的每个字母的个数有限制所以要记录s中和t中的每个字符的个数
+        //不可避免, hashmap写入慢可读性查
         Map<Character,Integer> windowS = new HashMap<>();//记录s中移动窗口字母计数
         Map<Character,Integer> hashT = new HashMap<>();//记录t中
 
