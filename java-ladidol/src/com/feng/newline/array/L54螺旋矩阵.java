@@ -33,7 +33,6 @@ public class L54螺旋矩阵 {
                 {9,10,11,12}};
 
         System.out.println(new L54().spiralOrder(matrix));
-        System.out.println(new Solution().spiralOrder(matrix));
     }
 }
 class L54 {
@@ -96,41 +95,5 @@ class L54 {
         return ans;
     }
 
-}
-
-class Solution {
-    public List<Integer> spiralOrder(int[][] matrix) {
-        List<Integer> ans=new ArrayList<>();
-        int l=0,r=matrix[0].length-1,up=0,down=matrix.length-1;
-        int f=0,num=(r+1)*(down+1);
-        while(ans.size()!=num){
-            if(f==0){
-                for(int x=l;x<=r;x++){//左->右
-                    ans.add(matrix[up][x]);
-                }
-                up++;//上指针++
-                f=1;
-            }else if(f==1){//上->下
-                for(int y=up;y<=down;y++){
-                    ans.add(matrix[y][r]);
-                }
-                r--;//右指针--
-                f=2;
-            }else if(f==2){
-                for(int x=r;x>=l;x--){//右->左
-                    ans.add(matrix[down][x]);
-                }
-                down--;//下指针--
-                f=3;
-            }else{
-                for(int y=down;y>=up;y--){//下->上
-                    ans.add(matrix[y][l]);
-                }
-                f=0;
-                l++;//左指针++
-            }
-        }
-        return ans;
-    }
 }
 
