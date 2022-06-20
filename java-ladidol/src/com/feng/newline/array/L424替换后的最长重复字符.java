@@ -25,11 +25,12 @@ class L424 {
         while (right<len){
             char c = s.charAt(right);
             map[c-'A']++;
-            sameMaxLetter = Math.max(sameMaxLetter,map[c-'A']);
-            if (right - left + 1 - sameMaxLetter > k){
-                map[s.charAt(left)-'A'] --;
+            sameMaxLetter = Math.max(sameMaxLetter,map[c-'A']);//这里面的map[a]的值是 范围是窗口里面的
+            if (right - left + 1 - sameMaxLetter > k){//查看区间大小, 如果区间符合k+最大相同字母数(sameMaxLetter)<len, 就可以收缩左边了
+                map[s.charAt(left)-'A'] --;//将窗口中的map[a]给去掉
                 left++;
             }
+            //每次循环都要无脑右滑动
             //走完这里的时候，其实right会多走一步
             right++;
         }
