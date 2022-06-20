@@ -1,10 +1,10 @@
-节点定义:
-```java
+package com.feng.newline.list;
+
 public class ListNode {
-    // 结点的值
+    // 结点的数据域
     int val;
 
-    // 下一个结点
+    // 下一个结点的地址
     ListNode next;
 
     // 节点的构造函数(无参)
@@ -22,5 +22,3 @@ public class ListNode {
         this.next = next;
     }
 }
-```
-![](https://figurebed-ladidol.oss-cn-chengdu.aliyuncs.com/img/202206201803661.png)
