@@ -61,7 +61,7 @@ class MyLinkedList {
     }
 
     public void addAtHead(int val) {
-        // TODO: 2022/6/21 这里为啥会错误捏, 我现在不太清楚捏
+        // 2022/6/21 这里为啥会错误捏, 我现在不太清楚捏
 //        ListNode currentNode = new ListNode(val);
 //        currentNode.next = dummy.next;
 //        dummy.next = currentNode;
