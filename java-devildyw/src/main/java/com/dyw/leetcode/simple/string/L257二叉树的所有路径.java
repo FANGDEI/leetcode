@@ -1,5 +1,6 @@
 package com.dyw.leetcode.simple.string;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,17 +42,5 @@ public class L257二叉树的所有路径 {
             }
         }
 
-    }
-}
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode() {}
-    TreeNode(int val) { this.val = val; }
-    TreeNode(int val, TreeNode left, TreeNode right) {
-        this.val = val;
-        this.left = left;
-        this.right = right;
     }
 }
