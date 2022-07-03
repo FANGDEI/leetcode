@@ -6,27 +6,27 @@ func searchRange(nums []int, target int) []int {
 		return res
 	}
 	l, r := 0, len(nums)-1
-	for l < r {
+	for l <= r {
 		m := (l + r) >> 1
-		if nums[m] < target {
-			l = m + 1
+		if nums[m] >= target {
+			r = m - 1
 		} else {
-			r = m
+			l = m + 1
 		}
 	}
-	if nums[l] != target {
+	if l >= len(nums) || nums[l] != target {
 		return res
 	}
 	res[0] = l
-	r = len(nums)
-	for l < r {
+	l, r = 0, len(nums)-1
+	for l <= r {
 		m := (l + r) >> 1
-		if nums[m] > target {
-			r = m
-		} else {
+		if nums[m] <= target {
 			l = m + 1
+		} else {
+			r = m - 1
 		}
 	}
-	res[1] = l - 1
+	res[1] = r
 	return res
 }
