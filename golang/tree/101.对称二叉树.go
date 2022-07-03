@@ -1,4 +1,4 @@
-package golang
+package tree
 
 // 水题
 func isSymmetric(root *TreeNode) bool {

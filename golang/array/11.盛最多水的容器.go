@@ -1,4 +1,8 @@
-package golang
+package array
+
+import (
+	"leetcode/tools"
+)
 
 // 双指针
 func maxArea(height []int) int {
@@ -6,9 +10,9 @@ func maxArea(height []int) int {
 	l, r := 0, len(height)-1
 	for l < r {
 		// 选择最短的高
-		h := Min(height[l], height[r])
+		h := tools.Min(height[l], height[r])
 		// 更新最大的容量
-		res = Max(res, h*(r-l))
+		res = tools.Max(res, h*(r-l))
 		// 移动最短的高
 		if height[l] < height[r] {
 			l++

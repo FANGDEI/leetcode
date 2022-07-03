@@ -1,4 +1,4 @@
-package golang
+package tree
 
 // dfs即可
 // 判断当前节点是否是叶子节点并且 sum 为 targetSum 即可返回 true

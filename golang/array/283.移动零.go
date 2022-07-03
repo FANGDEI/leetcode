@@ -1,4 +1,4 @@
-package golang
+package array
 
 func moveZeroes(nums []int) {
 	i, j, size := 0, 0, len(nums)

@@ -1,6 +1,9 @@
-package golang
+package tree
 
-import "math"
+import (
+	"leetcode/tools"
+	"math"
+)
 
 // dfs
 // 本质是二叉树的后续遍历
@@ -19,7 +22,7 @@ func largestValues(root *TreeNode) []int {
 			res = append(res, math.MinInt32)
 		}
 
-		res[depth] = Max(res[depth], cur.Val)
+		res[depth] = tools.Max(res[depth], cur.Val)
 	}
 	dfs(root, 0)
 	return res

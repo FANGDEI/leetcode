@@ -1,4 +1,4 @@
-package golang
+package array
 
 func removeDuplicates(nums []int) int {
 	i, j := 1, 0

@@ -1,4 +1,4 @@
-package golang
+package array
 
 // 一道水题 暴力即可通过
 // map: key -> value, value -> index 遍历切片即可

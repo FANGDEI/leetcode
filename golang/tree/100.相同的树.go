@@ -1,4 +1,4 @@
-package golang
+package tree
 
 // 水题
 func isSameTree(p *TreeNode, q *TreeNode) bool {

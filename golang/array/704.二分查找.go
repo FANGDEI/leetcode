@@ -1,4 +1,4 @@
-package golang
+package array
 
 // 二分搜索
 func search(nums []int, target int) int {

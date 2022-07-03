@@ -1,4 +1,8 @@
-package golang
+package string
+
+import (
+	"leetcode/tools"
+)
 
 // 双指针 + map
 // map用来记录当前序列每个字符出现的次数
@@ -13,7 +17,7 @@ func lengthOfLongestSubstring(s string) int {
 			a[s[j]]--
 			j++
 		}
-		res = Max(res, i-j+1)
+		res = tools.Max(res, i-j+1)
 	}
 	return res
 }

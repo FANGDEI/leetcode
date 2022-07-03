@@ -1,4 +1,4 @@
-package golang
+package list
 
 // 模拟题
 // 类似于大整数加法

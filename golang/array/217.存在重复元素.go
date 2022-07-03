@@ -1,4 +1,4 @@
-package golang
+package array
 
 // hash
 func containsDuplicate(nums []int) bool {

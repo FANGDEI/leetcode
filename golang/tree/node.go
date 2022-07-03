@@ -1,9 +1,4 @@
-package golang
-
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+package tree
 
 type TreeNode struct {
 	Val   int

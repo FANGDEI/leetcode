@@ -1,4 +1,4 @@
-package golang
+package dp
 
 // f[i][j] 表示到达 (i, j) 的最大方案数
 // 因为只能向下或者向右行动 => f[i][j] = f[i-1][j] + f[i][j-1]

@@ -1,4 +1,8 @@
-package golang
+package array
+
+import (
+	"leetcode/tools"
+)
 
 // 滑动窗口
 func minSubArrayLen(target int, nums []int) int {
@@ -8,7 +12,7 @@ func minSubArrayLen(target int, nums []int) int {
 		sum += nums[j]
 		// sum >= target 左指针右移动 更新区间的最小值
 		for sum >= target {
-			res = Min(res, j-i+1)
+			res = tools.Min(res, j-i+1)
 			sum -= nums[i]
 			i++
 		}

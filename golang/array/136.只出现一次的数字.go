@@ -1,4 +1,4 @@
-package golang
+package array
 
 // 位运算
 // a ^ b ^ c = a ^ c ^ b

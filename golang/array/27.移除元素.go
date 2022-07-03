@@ -1,4 +1,4 @@
-package golang
+package array
 
 func removeElement(nums []int, val int) int {
 	slow := 0

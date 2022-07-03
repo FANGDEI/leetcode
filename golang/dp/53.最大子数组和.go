@@ -1,4 +1,8 @@
-package golang
+package dp
+
+import (
+	"leetcode/tools"
+)
 
 // 贪心
 // 当当前 sum < 0 时 就不会存在下一个 nums + sum > 0 + sum
@@ -7,7 +11,7 @@ func maxSubArray(nums []int) int {
 	res, sum := -0x7fffffff, 0
 	for i := 0; i < len(nums); i++ {
 		sum += nums[i]
-		res = Max(res, sum)
+		res = tools.Max(res, sum)
 		if sum < 0 {
 			sum = 0
 		}
