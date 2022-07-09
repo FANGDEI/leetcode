@@ -1,3 +1,11 @@
+/*
+ * @Author: Delta 2586784220@qq.com
+ * @Date: 2022-06-11 20:07:53
+ * @LastEditors: Delta 2586784220@qq.com
+ * @LastEditTime: 2022-07-08 23:05:55
+ * @FilePath: \leetcode\javascript\Easy\1021_删除最外层的括号.js
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 // 有效括号字符串为空 ""、"(" + A + ")" 或 A + B ，其中 A 和 B 都是有效的括号字符串，+ 代表字符串的连接。
 
 // 例如，""，"()"，"(())()" 和 "(()(()))" 都是有效的括号字符串。

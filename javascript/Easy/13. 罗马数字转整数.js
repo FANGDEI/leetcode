@@ -1,3 +1,11 @@
+/*
+ * @Author: Delta 2586784220@qq.com
+ * @Date: 2022-06-12 18:15:47
+ * @LastEditors: Delta 2586784220@qq.com
+ * @LastEditTime: 2022-07-08 23:05:31
+ * @FilePath: \leetcode\javascript\Easy\13. 罗马数字转整数.js
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 // 罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。
 
 // 字符          数值
