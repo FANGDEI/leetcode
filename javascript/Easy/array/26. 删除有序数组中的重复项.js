@@ -2,7 +2,7 @@
  * @Author: Delta 2586784220@qq.com
  * @Date: 2022-07-09 11:45:56
  * @LastEditors: Delta 2586784220@qq.com
- * @LastEditTime: 2022-07-09 13:34:47
+ * @LastEditTime: 2022-07-10 16:26:20
  * @FilePath: \leetcode\javascript\Easy\array\26. 删除有序数组中的重复项.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -16,11 +16,11 @@
  */
 // 双指针
 var removeDuplicates = function (nums) {
-    let p = 0
+    let s = 0
     for (let i = 1; i < nums.length; i++) {
         if (nums[s] != nums[i]){
             s++
-            nums[s]==nums[i]
+            nums[s]=nums[i]
         }
     }
     return s+1
