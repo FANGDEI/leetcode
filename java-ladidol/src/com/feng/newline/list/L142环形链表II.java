@@ -75,7 +75,7 @@ public class L142环形链表II {
             if(head==null)
                 return null;
 
-            Set<ListNode> set=new TreeSet<>();
+            Set<ListNode> set=new HashSet<>();
 
             while(head!=null){
                 if(!set.add(head)){
