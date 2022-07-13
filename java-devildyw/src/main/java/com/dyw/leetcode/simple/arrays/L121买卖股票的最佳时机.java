@@ -47,4 +47,30 @@ public class L121买卖股票的最佳时机 {
         }
         return noHold;
     }
+
+    /**
+     * 动态规划
+     *
+     * @param prices
+     * @return
+     */
+    public int maxProfit03(int[] prices) {
+        //股票原理是 从某一天买入 从某一天卖出  利润就等于卖出那天的价格减去买入那天的价格
+        if (prices.length == 0 || prices == null) {
+            return 0;
+        }
+        //初始化 没有握有股票时的利润
+        int noHold = 0;
+        //握有股票时的利润
+        int hold = -prices[0];
+        for (int price : prices) {
+            //遍历数组 不断更新利润 没有握有的利润就相当于 一开始就没有握有股票的利润 或是卖掉股票后的利润 即握有+现在股票价格卖掉后的价格
+            noHold = Math.max(noHold, hold + price);
+            //更新握有的股票利润 都是取最大值这样卖掉后才有最大的利润
+            hold = Math.max(hold, -price);
+        }
+
+        //返回卖掉后的利润
+        return noHold;
+    }
 }

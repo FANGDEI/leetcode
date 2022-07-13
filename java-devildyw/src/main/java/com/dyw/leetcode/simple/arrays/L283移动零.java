@@ -22,13 +22,27 @@ public class L283移动零 {
         int index = 0;
         //遍历数组 覆盖元素
         for (int num : nums) {
-            if (num!=0){
+            if (num != 0) {
                 nums[index++] = num;
             }
         }
         //将index后的元素填为0
         for (int i = index; i < nums.length; i++) {
             nums[i] = 0;
+        }
+    }
+
+
+    public void moveZeroes01(int[] nums) {
+        int index = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                nums[index++] = nums[i];
+            }
+        }
+        //结尾填零
+        while (index++ < nums.length) {
+            nums[index] = 0;
         }
     }
 }
