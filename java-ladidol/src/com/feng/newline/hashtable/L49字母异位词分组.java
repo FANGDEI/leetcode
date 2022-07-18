@@ -20,9 +20,9 @@ import java.util.*;
 public class L49字母异位词分组 {
     class Solution {
         public List<List<String>> groupAnagrams(String[] strs) {
-            Map<String,ArrayList<String>> map = new HashMap<>();
+            Map<String,ArrayList<String>> map = new HashMap<>();//作为哈希表的map
             for (String str : strs) {
-                char[] c = str.toCharArray();
+                char[] c = str.toCharArray();//转化成数组好操作一下！ O(n)
                 Arrays.sort(c);
                 String s = String.valueOf(c);
                 if (!map.containsKey(s)){//第一次遇到等价字符串就开一个数组.
