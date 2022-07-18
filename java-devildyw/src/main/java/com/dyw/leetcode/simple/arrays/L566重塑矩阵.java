@@ -81,4 +81,27 @@ public class L566重塑矩阵 {
         }
         return result;
     }
+
+
+    /**
+     * 复习
+     * @param mat
+     * @param r
+     * @param c
+     * @return
+     */
+    public int[][] matrixReshape02(int[][] mat, int r, int c) {
+        int n = mat.length;
+        int m = mat[0].length;
+        if (n*m!=r*c){
+            return null;
+        }
+        int[][] res = new int[r][c];
+
+        for (int i = 0; i < n*m; i++) {
+            //通过列的数量来化分行和列 能填满一行的每一列就是一行 填不满一行就是哪一行的某一个列
+            res[i/c][i%c] = mat[i/m][i%m];
+        }
+        return res;
+    }
 }

@@ -19,11 +19,13 @@ import java.util.*;
  * @date: 2022/7/13 9:36
  * @version: 1.0
  */
+//每日一题2022年7月13日10:16:49
 public class L735行星碰撞 {
 
     public static void main(String[] args) {
-        int[] nums = {1, 2, 3, 4, 5, -2, -3};
-        System.out.println("new Solution().asteroidCollision() = " + Arrays.toString(new Solution().asteroidCollision(nums)));
+//        int[] nums = {1, 2, 3, 4, 5, -2, -3};
+        int[] nums = {-2,-2,-1,-2};
+        System.out.println("new Solution().asteroidCollision() = " + Arrays.toString(new Solution2().asteroidCollision(nums)));
     }
 
     //deque = [5, 4, 3, 2, 1] 队列原本的样子.
@@ -31,7 +33,7 @@ public class L735行星碰撞 {
 
 
     //模拟栈, 栈顶就是队列头部,对列是一点一点往后面退.
-    static class Solution {
+    static class Solution1 {
         public int[] asteroidCollision(int[] asteroids) {
 
             Deque<Integer> stack = new ArrayDeque<>();//2022/7/13 LinkedList和这个ArrayDeque的区别是.似乎没有区别
@@ -95,6 +97,51 @@ public class L735行星碰撞 {
         }
         return ans;
     }
+
+    //分界线: 下面是另一种魔力思路, 当然都是用栈来做.
+
+    /**
+     * 撞得上, 进栈待撞.
+     * 撞没了.
+     * 剩下的的都是答案.
+     *
+     * 提示负数就是往左边走.
+     *
+     *[-2,-2,-1,-2]
+     * @param:
+     * @return:
+     * @Author: Ladidol
+     */
+    static class Solution2 {
+        public int[] asteroidCollision(int[] asteroids) {
+//            Stack<Integer> stack = new Stack<>();//什么慢速stack
+            Deque<Integer> stack = new ArrayDeque<>();
+            for (int asteroid : asteroids) {
+                //栈顶会撞没的:当前是负数, 栈顶体积小的正数.新进来开干(提出相等相消的情况.)
+                while(asteroid<0&&!stack.isEmpty()&&(Math.abs(asteroid)>Math.abs(stack.peek())&&stack.peek()>0)){
+                    stack.pop();
+                }
+                //栈为空,方向相同,或者背向而行.
+                if (stack.isEmpty()||stack.peek()*asteroid>0||(stack.peek()<0&&asteroid>0)){
+                    stack.push(asteroid);
+                }else if (Math.abs(asteroid)==Math.abs(stack.peek())){
+                    stack.pop();
+                }
+            }
+
+            int[] ans = new int[stack.size()];
+            int i = ans.length-1;
+            while (!stack.isEmpty()) {
+                ans[i--] = stack.pop();
+            }
+            return ans;
+
+        }
+    }
+
+
+
+
 
 
 }

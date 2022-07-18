@@ -54,6 +54,20 @@ public class L242有效的字母异位词 {
         Arrays.sort(sChars);
         Arrays.sort(tChars);
 
-        return Arrays.equals(sChars,tChars);
+        return Arrays.equals(sChars, tChars);
+    }
+
+    public boolean isAnagram02(String s, String t) {
+        if (s.length()!=t.length()){
+            return false;
+        }
+
+        char[] chars = s.toCharArray();
+        char[] chars1 = t.toCharArray();
+
+        Arrays.sort(chars1);
+        Arrays.sort(chars);
+
+        return new String(chars1).equals(new String(chars));
     }
 }
