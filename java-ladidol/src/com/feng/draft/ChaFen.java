@@ -1,4 +1,4 @@
-package com.feng.newline.array;
+package com.feng.draft;
 
 import java.util.Scanner;
 
