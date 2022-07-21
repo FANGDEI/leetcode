@@ -27,7 +27,7 @@ import java.util.TreeMap;
  * @date: 2022/7/19 10:01
  * @version: 1.0
  */
-public interface L732我的日程安排表III {
+public class L732我的日程安排表III {
 
 
     class MyCalendarThree1 {

@@ -1,9 +1,7 @@
 package com.feng.newline.array;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @projectName: leetcode
@@ -68,18 +66,7 @@ public class L729我的日程安排表I {
         }
     }
 
-    //线段树
-    class MyCalendar3 {
 
-        public MyCalendar3() {
-
-        }
-
-        public boolean book(int start, int end) {
-
-            return true;
-        }
-    }
 
 
 
