@@ -34,18 +34,18 @@ public class L731我的日程安排表II {
     }
 
     class MyCalendarTwo {
-        //    TreeMap<Integer, Integer> cnt;//treemap有顺序,相当于,用treemap来换了一下数组
-        HashMap<Integer, Integer> cnt;//hashmap没有顺序
+            TreeMap<Integer, Integer> cnt;//treemap有顺序,相当于,用treemap来换了一下数组
+//        HashMap<Integer, Integer> cnt;//hashmap没有顺序
 
         public MyCalendarTwo() {
-//        cnt = new TreeMap<Integer, Integer>();
-            cnt = new HashMap<Integer, Integer>();
+        cnt = new TreeMap<Integer, Integer>();
+//            cnt = new HashMap<Integer, Integer>();
         }
 
         public boolean book(int start, int end) {
             int maxBook = 0;
             int ans = 0;
-            //默认是没有日程的,所以默认,cnt差分数组都是0;
+            //默认是没有日程的,所以默认cnt差分数组都是0;
             cnt.put(start, cnt.getOrDefault(start, 0) + 1);//新建日程
             cnt.put(end, cnt.getOrDefault(end, 0) - 1);
 
