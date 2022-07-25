@@ -1,4 +1,4 @@
-package com.feng.draft;
+package com.feng.draft.template.rangesum;
 
 /**
  * @Description: 线段树（动态开点）纯净版 动态用得多。

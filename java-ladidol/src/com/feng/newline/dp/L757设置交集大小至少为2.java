@@ -35,6 +35,7 @@ public class L757设置交集大小至少为2 {
             int next = intervals[n - 1][0] + 1;//取左边界和左边界+1
             int count = 2;//cur和next这两个数字.
 
+            //从后向前遍历
             for (int i = n - 2; i >= 0; i--) {
                 int x = intervals[i][0];
                 int y = intervals[i][1];

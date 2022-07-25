@@ -1,4 +1,4 @@
-package string
+package _map
 
 import "reflect"
 

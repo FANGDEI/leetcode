@@ -1,7 +1,5 @@
 package com.feng.newline.array;
 
-import com.feng.draft.SegmentTreeDynamic;
-
 /**
  * @projectName: leetcode
  * @package: com.feng.newline.array
