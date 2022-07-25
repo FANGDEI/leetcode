@@ -24,4 +24,10 @@ public class L169多数元素 {
     }
 
     //法二: 哈希表
+
+    public int majorityElement01(int[] nums) {
+        Arrays.sort(nums);
+        //只要出现次数超过半数 那么半数索引位置对应的元素一定是那个出现超过半数的元素
+        return nums[nums.length/2];
+    }
 }
