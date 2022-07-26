@@ -1,4 +1,4 @@
-package _map
+package map_set
 
 import "reflect"
 
