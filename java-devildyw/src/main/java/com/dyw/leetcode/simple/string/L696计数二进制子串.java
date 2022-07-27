@@ -5,12 +5,10 @@ import java.util.ArrayList;
 /**
  * @author Devil
  * @since 2022-07-04-12:44
- *
+ * <p>
  * 给定一个字符串s，统计并返回具有相同数量 0 和 1 的非空（连续）子字符串的数量，并且这些子字符串中的所有 0 和所有 1 都是成组连续的。
- *
+ * <p>
  * 重复出现（不同位置）的子串也要统计它们出现的次数。
- *
- *
  */
 @SuppressWarnings("all")
 public class L696计数二进制子串 {
@@ -47,6 +45,7 @@ public class L696计数二进制子串 {
 
     /**
      * 官方题解改良版 其实数组中只用到了前一个数和后一个数 就此我们可以简化空间复杂度 使用一个变量来存储前一个数
+     *
      * @param s
      * @return
      */
@@ -54,15 +53,15 @@ public class L696计数二进制子串 {
         int n = s.length();
         //初始化存储上一次计数结果的变量last 遍历指针ptr 结果计数ans
         int last = 0, ptr = 0, ans = 0;
-        while (ptr<n){
+        while (ptr < n) {
             char c = s.charAt(ptr);
             int count = 0;
-            while (ptr<n&&s.charAt(ptr)==c){
+            while (ptr < n && s.charAt(ptr) == c) {
                 count++;
                 ptr++;
             }
             //这次的连续字段计数与上一次的字段计数去最小值
-            ans += Math.min(last,count);
+            ans += Math.min(last, count);
             //记录上一次的结果
             last = count;
 

@@ -13,10 +13,10 @@ import java.util.Arrays;
 @SuppressWarnings("all")
 public class L324摆动排序II {
     public static void main(String[] args) {
-        int[] ints = {1,3,2,2,3,1};
+        int[] ints = {1, 3, 2, 2, 3, 1};
         new L324摆动排序II().wiggleSort(ints);
         for (int anInt : ints) {
-            System.out.print(anInt+" ");
+            System.out.print(anInt + " ");
         }
     }
 
@@ -38,7 +38,7 @@ public class L324摆动排序II {
         int x = (n + 1) / 2;
 
         //进行替换
-        for (int i = 0, j = x-1, k = n - 1; i < n; i += 2, j--, k--) {
+        for (int i = 0, j = x - 1, k = n - 1; i < n; i += 2, j--, k--) {
             //将前半部分中的最大值 和 后半部分的最大值进行交叉填充
             //这里从元素组的头部开始替换 填入前半部分的较大的值(因为已经排好序了)
             nums[i] = arr[j];

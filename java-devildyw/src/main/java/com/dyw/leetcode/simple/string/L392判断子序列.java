@@ -18,6 +18,7 @@ public class L392判断子序列 {
     /**
      * 使用双指针 如果两个字符中有相等的就将s的指针加一 如此顺序执行就不会出现（例如，"ace"是"abcde"的一个子序列，而"aec"不是）的情况
      * 最后返回 i==n的结果
+     *
      * @param s
      * @param t
      * @return
@@ -28,12 +29,12 @@ public class L392判断子序列 {
 
         int i = 0, j = 0;
 
-        while (i<n&&j<m){
-            if (s.charAt(i)==t.charAt(j)){
+        while (i < n && j < m) {
+            if (s.charAt(i) == t.charAt(j)) {
                 i++;
             }
             j++;
         }
-        return i==n;
+        return i == n;
     }
 }

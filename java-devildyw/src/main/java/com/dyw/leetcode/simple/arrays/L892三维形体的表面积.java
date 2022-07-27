@@ -21,6 +21,7 @@ public class L892三维形体的表面积 {
 
     /**
      * 找出总的立方体数量求出面积 再减去被挡住的面的面积
+     *
      * @param grid
      * @return
      */
@@ -34,17 +35,17 @@ public class L892三维形体的表面积 {
                 //统计因方块堆叠导致覆盖的面数
                 cover += grid[i][j] > 1 ? grid[i][j] - 1 : 0;
                 //统计上一行同一列盖住了多少面
-                if (i>0){
-                    cover+=Math.min(grid[i-1][j],grid[i][j]);
+                if (i > 0) {
+                    cover += Math.min(grid[i - 1][j], grid[i][j]);
                 }
                 //看看同一行前一列盖住了几个面
-                if (j>0){
-                    cover+=Math.min(grid[i][j-1],grid[i][j]);
+                if (j > 0) {
+                    cover += Math.min(grid[i][j - 1], grid[i][j]);
                 }
             }
 
         }
 
-        return blocks*6-2*cover;
+        return blocks * 6 - 2 * cover;
     }
 }

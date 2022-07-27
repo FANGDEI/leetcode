@@ -1,22 +1,19 @@
 package com.dyw.leetcode.simple.arrays;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
  * @author Devil
  * @date 2022-05-25-11:26
- *
+ * <p>
  * 不使用任何内建的哈希表库设计一个哈希集合（HashSet）。
- *
+ * <p>
  * 实现 MyHashSet 类：
- *
+ * <p>
  * void add(key) 向哈希集合中插入值 key 。
  * bool contains(key) 返回哈希集合中是否存在这个值 key 。
  * void remove(key) 将给定值 key 从哈希集合中删除。如果哈希集合中没有这个值，什么也不做。
- *
- *
  */
 @SuppressWarnings("all")
 public class L705设计哈希集合 {
@@ -40,12 +37,16 @@ class MyHashSet {
         }
     }
 
+    private static int hash(int key) {
+        return key % BASE;
+    }
+
     public void add(int key) {
         int h = hash(key);
         Iterator iterator = data[h].iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Integer next = (Integer) iterator.next();
-            if (next==key){
+            if (next == key) {
                 return;
             }
         }
@@ -55,9 +56,9 @@ class MyHashSet {
     public void remove(int key) {
         int h = hash(key);
         Iterator iterator = data[h].iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Integer next = (Integer) iterator.next();
-            if (next==key){
+            if (next == key) {
                 data[h].remove(next);
                 return;
             }
@@ -67,16 +68,12 @@ class MyHashSet {
     public boolean contains(int key) {
         int h = hash(key);
         Iterator iterator = data[h].iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Integer next = (Integer) iterator.next();
-            if (next==key){
+            if (next == key) {
                 return true;
             }
         }
         return false;
-    }
-
-    private static int hash(int key){
-        return key%BASE;
     }
 }

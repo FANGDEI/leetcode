@@ -3,17 +3,16 @@ package com.dyw.leetcode.simple.arrays;
 /**
  * @author Devil
  * @since 2022-06-22-12:29
- *
+ * <p>
  * 在n x n的网格grid中，我们放置了一些与 x，y，z 三轴对齐的1 x 1 x 1立方体。
- *
+ * <p>
  * 每个值v = grid[i][j]表示 v个正方体叠放在单元格(i, j)上。
- *
+ * <p>
  * 现在，我们查看这些立方体在 xy、yz和 zx平面上的投影。
- *
+ * <p>
  * 投影就像影子，将 三维 形体映射到一个 二维 平面上。从顶部、前面和侧面看立方体时，我们会看到“影子”。
- *
+ * <p>
  * 返回 所有三个投影的总面积 。
- *
  */
 @SuppressWarnings("all")
 public class L883三维形体投影面积 {
@@ -23,6 +22,7 @@ public class L883三维形体投影面积 {
 
     /**
      * 思路: 对于xy平面找到不为0的区域相加 即为面积 其他两面都要找到其上的最高块数
+     *
      * @param grid
      * @return
      */
@@ -35,10 +35,10 @@ public class L883三维形体投影面积 {
         for (int i = 0; i < n; i++) {
             int maxi = -1;
             for (int j = 0; j < m; j++) {
-                if (grid[i][j]!=0){
+                if (grid[i][j] != 0) {
                     area++;
                 }
-                if (maxi < grid[i][j]){
+                if (maxi < grid[i][j]) {
                     maxi = grid[i][j];
                 }
             }
@@ -46,7 +46,7 @@ public class L883三维形体投影面积 {
 
             int maxj = -1;
             for (int j = 0; j < m; j++) {
-                if (maxj < grid[j][i]){
+                if (maxj < grid[j][i]) {
                     maxj = grid[j][i];
                 }
             }
@@ -60,6 +60,7 @@ public class L883三维形体投影面积 {
 
     /**
      * leetcode官方题解
+     *
      * @param grid
      * @return
      */
@@ -70,13 +71,13 @@ public class L883三维形体投影面积 {
         for (int i = 0; i < n; i++) {
             int yzHeight = 0, zxHeight = 0;
             for (int j = 0; j < n; j++) {
-                xyArea += grid[i][j]>0?1:0;
-                yzHeight =Math.max(yzHeight,grid[j][i]);
-                zxHeight = Math.max(zxHeight,grid[i][j]);
+                xyArea += grid[i][j] > 0 ? 1 : 0;
+                yzHeight = Math.max(yzHeight, grid[j][i]);
+                zxHeight = Math.max(zxHeight, grid[i][j]);
             }
-            yzArea+=yzHeight;
-            zxArea+=zxHeight;
+            yzArea += yzHeight;
+            zxArea += zxHeight;
         }
-        return xyArea+yzArea+zxArea;
+        return xyArea + yzArea + zxArea;
     }
 }

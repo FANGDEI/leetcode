@@ -9,13 +9,13 @@ import java.util.Queue;
  */
 @SuppressWarnings("all")
 public class L733图像渲染 {
-    public static void main(String[] args) {
-
-    }
-
     //上下左右用的位移数组
     int[] dx = {1, 0, 0, -1};
     int[] dy = {0, 1, -1, 0};
+
+    public static void main(String[] args) {
+
+    }
 
     /**
      * 广度优先遍历

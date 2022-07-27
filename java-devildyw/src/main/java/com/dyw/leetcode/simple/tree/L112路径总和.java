@@ -17,6 +17,7 @@ public class L112路径总和 {
 
     /**
      * 递归
+     *
      * @param root
      * @param targetSum
      * @return
@@ -37,21 +38,21 @@ public class L112路径总和 {
         //如果不为空 sum加上当前节点的值
         sum += root.val;
         //如果该节点左右子树都为空 那么该节点就是叶子节点 返回是否sum等于targetSum
-        if (root.left == null&&root.right == null){
+        if (root.left == null && root.right == null) {
             return sum == targetSum;
         }
         //初始化结果
-        boolean right =false;
+        boolean right = false;
         boolean left = false;
         //如果左子树不为空 在左子树中查找一条路径是否能使得sum == targetSum
         if (root.left != null) {
-             right = pathSum(root.left, sum, targetSum);
+            right = pathSum(root.left, sum, targetSum);
         }
         //如果右子树不为空 在右子树中查找一条路径是否能使得sum == targetSum
         if (root.right != null) {
-             left = pathSum(root.right, sum, targetSum);
+            left = pathSum(root.right, sum, targetSum);
         }
         //只要其中有一种情况满足即可满足题意
-        return right||left;
+        return right || left;
     }
 }

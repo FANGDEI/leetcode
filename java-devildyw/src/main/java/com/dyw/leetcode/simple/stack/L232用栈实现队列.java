@@ -40,14 +40,13 @@ public class L232用栈实现队列 {
         //使用两个链表模拟栈 stack1是真正的队列 儿stack2只是辅助
         LinkedList<Integer> stack1;
         LinkedList<Integer> stack2;
+        //队首元素
+        private int front;
 
         public MyQueue() {
             stack1 = new LinkedList<>();
             stack2 = new LinkedList<>();
         }
-
-        //队首元素
-        private int front;
 
         //push
         public void push(int x) {
@@ -56,13 +55,13 @@ public class L232用栈实现队列 {
                 front = x;
             }
             //如果stack1不为空 将stack1的元素存入stack2 改变原来的顺序 因为需要将新的元素存入队列末尾 而栈只会将元素添加进队首
-            while (!stack1.isEmpty()){
+            while (!stack1.isEmpty()) {
                 stack2.push(stack1.pop());
             }
             //这样之后将x添加进stack2中
             stack2.push(x);
             //再将stack2的元素回填进stack1中 这样新添加的元素就会跑到stack1的底层
-            while (!stack2.isEmpty()){
+            while (!stack2.isEmpty()) {
                 stack1.push(stack2.pop());
             }
         }
@@ -71,7 +70,7 @@ public class L232用栈实现队列 {
         public int pop() {
             //pop后更新front(队首元素)
             Integer pop = stack1.pop();
-            if (!empty()){
+            if (!empty()) {
                 front = stack1.peek();
             }
             return pop;

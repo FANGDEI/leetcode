@@ -1,12 +1,11 @@
 package com.dyw.leetcode.simple.arrays;
 
-import java.util.Arrays;
 import java.util.TreeSet;
 
 /**
  * @author Devil
  * @date 2022-05-16-19:18
- *
+ * <p>
  * 给你一个非空数组，返回此数组中 第三大的数 。如果不存在，则返回数组中最大的数。
  */
 @SuppressWarnings("all")
@@ -24,10 +23,10 @@ public class L414第三大的数 {
 
         for (int num : nums) {
             treeSet.add(num);
-            if (treeSet.size()>3){
+            if (treeSet.size() > 3) {
                 treeSet.remove(treeSet.first());
             }
         }
-        return treeSet.size()==3 ? treeSet.first() : treeSet.last();
+        return treeSet.size() == 3 ? treeSet.first() : treeSet.last();
     }
 }

@@ -23,7 +23,7 @@ public class L657机器人能否返回原点 {
         int lenght = 0;
         char[] chars = moves.toCharArray();
         for (int i = 0; i < chars.length; i++) {
-            switch (chars[i]){
+            switch (chars[i]) {
                 case 'U':
                     height++;
                     break;
@@ -38,6 +38,6 @@ public class L657机器人能否返回原点 {
                     break;
             }
         }
-        return height==0&&lenght==0;
+        return height == 0 && lenght == 0;
     }
 }

@@ -1,7 +1,5 @@
 package com.dyw.leetcode.medium.arrays;
 
-import javax.annotation.Resource;
-
 /**
  * @author Devil
  * @since 2022-07-27-12:00

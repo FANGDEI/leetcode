@@ -34,26 +34,27 @@ public class L515在每个树行中找最大值 {
 
     /**
      * 层序遍历
+     *
      * @param root
      * @return
      */
     public List<Integer> largestValues(TreeNode root) {
         List<Integer> res = new LinkedList<>();
         Deque<TreeNode> deque = new LinkedList<>();
-        if (root!=null){
+        if (root != null) {
             deque.offer(root);
         }
 
         while (!deque.isEmpty()) {
             int max = Integer.MIN_VALUE;
             int size = deque.size();
-            while (size-->0){
+            while (size-- > 0) {
                 TreeNode node = deque.pop();
-                max = Math.max(max,node.val);
-                if (node.left!=null){
+                max = Math.max(max, node.val);
+                if (node.left != null) {
                     deque.offer(node.left);
                 }
-                if (node.right!=null){
+                if (node.right != null) {
                     deque.offer(node.right);
                 }
             }

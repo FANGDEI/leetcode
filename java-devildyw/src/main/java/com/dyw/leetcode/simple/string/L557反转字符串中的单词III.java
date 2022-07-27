@@ -3,7 +3,7 @@ package com.dyw.leetcode.simple.string;
 /**
  * @author Devil
  * @since 2022-07-03-13:38
- *
+ * <p>
  * 给定一个字符串 s ，你需要反转字符串中每个单词的字符顺序，同时仍保留空格和单词的初始顺序。
  */
 @SuppressWarnings("all")
@@ -14,6 +14,7 @@ public class L557反转字符串中的单词III {
 
     /**
      * 简单的JavaSe的 api调用
+     *
      * @param s
      * @return
      */

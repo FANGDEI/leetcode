@@ -7,10 +7,10 @@ package com.dyw.leetcode.simple.arrays;
 @SuppressWarnings("all")
 public class L867转置矩阵 {
     public static void main(String[] args) {
-        int[][] transpose = new L867转置矩阵().transpose(new int[][]{{1,2,3},{4,5,6}});
+        int[][] transpose = new L867转置矩阵().transpose(new int[][]{{1, 2, 3}, {4, 5, 6}});
         for (int[] ints : transpose) {
             for (int i = 0; i < ints.length; i++) {
-                System.out.print(ints[i]+" ");
+                System.out.print(ints[i] + " ");
             }
             System.out.println();
         }

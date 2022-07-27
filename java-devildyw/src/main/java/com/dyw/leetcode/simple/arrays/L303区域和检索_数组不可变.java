@@ -14,9 +14,9 @@ public class L303区域和检索_数组不可变 {
      */
     public L303区域和检索_数组不可变(int[] nums) {
         int length = nums.length;
-        sum = new int[length+1];
+        sum = new int[length + 1];
         for (int i = 0; i < length; i++) {
-            sum[i+1] = sum[i]+nums[i];
+            sum[i + 1] = sum[i] + nums[i];
         }
     }
 

@@ -14,14 +14,14 @@ public class L119杨辉三角II {
         for (int i = 0; i <= rowIndex; i++) {
             ArrayList<Integer> list = new ArrayList<>();
             for (int j = 0; j <= i; j++) {
-                if (j==0||j==i){
+                if (j == 0 || j == i) {
                     list.add(1);
-                }else{
-                    list.add(lists.get(i-1).get(j-1)+lists.get(i-1).get(j));
+                } else {
+                    list.add(lists.get(i - 1).get(j - 1) + lists.get(i - 1).get(j));
                 }
             }
             lists.add(list);
         }
-        return lists.get(rowIndex-1);
+        return lists.get(rowIndex - 1);
     }
 }

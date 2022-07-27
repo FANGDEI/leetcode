@@ -17,28 +17,28 @@ public class L145二叉树的后序遍历 {
         treeNode.right.left = new TreeNode(3);
         List<Integer> integers = new L145二叉树的后序遍历().postorderTraversal(treeNode);
         for (Integer integer : integers) {
-            System.out.print(integer+" ");
+            System.out.print(integer + " ");
         }
     }
 
     public List<Integer> postorderTraversal(TreeNode root) {
         ArrayList<Integer> list = new ArrayList<>();
-        if (root == null){
+        if (root == null) {
             return list;
         }
-        postorder(list,root);
+        postorder(list, root);
         return list;
     }
 
-    private void postorder(List list, TreeNode root){
-        if (root == null){
+    private void postorder(List list, TreeNode root) {
+        if (root == null) {
             return;
         }
-        if (root.left != null){
-            postorder(list,root.left);
+        if (root.left != null) {
+            postorder(list, root.left);
         }
-        if (root.right != null){
-            postorder(list,root.right);
+        if (root.right != null) {
+            postorder(list, root.right);
         }
         list.add(root.val);
     }

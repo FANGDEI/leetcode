@@ -12,7 +12,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class L506相对名次 {
     public static void main(String[] args) {
-        new L506相对名次().findRelativeRanks(new int[]{5,4,3,2,1});
+        new L506相对名次().findRelativeRanks(new int[]{5, 4, 3, 2, 1});
     }
 
     /**
@@ -26,18 +26,18 @@ public class L506相对名次 {
         String[] result = new String[length];
         for (int i = 0; i < length; i++) {
             //记录元素与下标之间的关系
-            map.put(score[i],i);
+            map.put(score[i], i);
         }
         Arrays.sort(score);
         int index = 0;
         //反向遍历数组 因为升序排序
-        for (int i = length-1; i >=0; i--) {
-            if (i>=length-3){
+        for (int i = length - 1; i >= 0; i--) {
+            if (i >= length - 3) {
                 //前三个获取在map中保存的原来的下标 并把desc中对应的元素赋值到其中.
                 result[map.get(score[i])] = desc[index++];
-            }else{
+            } else {
                 //后续的元素获取在map中保存的原来的下标 并把length-i 即为名次
-                result[map.get(score[i])] = Integer.toString(length-i);
+                result[map.get(score[i])] = Integer.toString(length - i);
             }
         }
         return result;
@@ -64,18 +64,16 @@ public class L506相对名次 {
             }
         });
         for (int i = 0; i < length; i++) {
-            if (i>=3) {
+            if (i >= 3) {
                 //根据原下标进行填值
                 result[ints[i][1]] = Integer.toString(i + 1);
-            }
-            else{
+            } else {
                 result[ints[i][1]] = desc[i];
             }
         }
 
         return result;
     }
-
 
 
 }

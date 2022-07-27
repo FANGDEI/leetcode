@@ -23,11 +23,11 @@ public class L455分发饼干 {
         int sLength = s.length;
 
         int count = 0;
-        for (int i = 0, j = 0; i<gLength && j < sLength; i++,j++){
-            while(j < sLength && g[i]>s[j]){
+        for (int i = 0, j = 0; i < gLength && j < sLength; i++, j++) {
+            while (j < sLength && g[i] > s[j]) {
                 j++;
             }
-            if (j<sLength){
+            if (j < sLength) {
                 count++;
             }
         }

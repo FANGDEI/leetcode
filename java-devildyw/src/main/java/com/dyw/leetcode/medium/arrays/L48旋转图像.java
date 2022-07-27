@@ -15,7 +15,7 @@ public class L48旋转图像 {
         new L48旋转图像().rotate(ints);
         for (int i = 0; i < ints.length; i++) {
             for (int i1 : ints[i]) {
-                System.out.print(i1+"\t");
+                System.out.print(i1 + "\t");
             }
             System.out.println();
         }
@@ -23,6 +23,7 @@ public class L48旋转图像 {
 
     /**
      * 先转置 后对称交换就完成了矩阵旋转
+     *
      * @param matrix
      */
     public void rotate(int[][] matrix) {
@@ -39,10 +40,10 @@ public class L48旋转图像 {
         }
 
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m/2; j++) {
+            for (int j = 0; j < m / 2; j++) {
                 int temp = matrix[i][j];
-                matrix[i][j] = matrix[i][m-j-1];
-                matrix[i][m-j-1] = temp;
+                matrix[i][j] = matrix[i][m - j - 1];
+                matrix[i][m - j - 1] = temp;
             }
         }
     }

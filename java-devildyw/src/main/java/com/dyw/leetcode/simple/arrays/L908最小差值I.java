@@ -16,12 +16,13 @@ package com.dyw.leetcode.simple.arrays;
 @SuppressWarnings("all")
 public class L908最小差值I {
     public static void main(String[] args) {
-        System.out.println(new L908最小差值I().smallestRangeI(new int[]{1,3,6}, 3));
+        System.out.println(new L908最小差值I().smallestRangeI(new int[]{1, 3, 6}, 3));
     }
 
     /**
      * 找规律 数学知识  由题目的规律可知找到数组中的最大值和最小值 判断他们的差值如果大于2k 那么直接差值-2k就是答案
      * 如果小于2k那么基本就是可通过这个[-k,k]之间的某个值将最大值和最小值变为同一个数
+     *
      * @param nums
      * @param k
      * @return
@@ -43,9 +44,9 @@ public class L908最小差值I {
 
         int difference = max - min;
 
-        if (difference>2*k){
-            return difference-2*k;
-        }else{
+        if (difference > 2 * k) {
+            return difference - 2 * k;
+        } else {
             return 0;
         }
     }

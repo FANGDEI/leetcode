@@ -14,10 +14,10 @@ public class L83删除排序链表中的重复元素 {
 
     public ListNode deleteDuplicates(ListNode head) {
         ListNode pre = head;
-        while (pre != null&& pre.next != null){
-            if (pre.val==pre.next.val){
+        while (pre != null && pre.next != null) {
+            if (pre.val == pre.next.val) {
                 pre.next = pre.next.next;
-            }else{
+            } else {
                 pre = pre.next;
             }
         }

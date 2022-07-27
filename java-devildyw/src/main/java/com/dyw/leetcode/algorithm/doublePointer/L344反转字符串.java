@@ -14,7 +14,7 @@ public class L344反转字符串 {
         char[] chars = {'h', 'e', 'l', 'l', 'o'};
         new L344反转字符串().reverseString(chars);
         for (char aChar : chars) {
-            System.out.print(aChar+" ");
+            System.out.print(aChar + " ");
         }
     }
 

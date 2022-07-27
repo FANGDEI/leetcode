@@ -16,13 +16,14 @@ public class L415字符串相加 {
 
     /**
      * 有空填零法(对较短的那个字符串进行了补零操作)
-     *
+     * <p>
      * 这类题的一般思路就是
      * 初始两个指针指向末尾 初始化维护进位的变量
      * 初始化StringBuffer
      * 进行遍历相加 如果出现空位进行补零操作
      * 相加记录进位
      * 最后如果进位不为0 在进行一次相加操作.
+     *
      * @param num1
      * @param num2
      * @return
@@ -36,9 +37,9 @@ public class L415字符串相加 {
         while (i >= 0 || j >= 0 || add != 0) {
             int x = i >= 0 ? num1.charAt(i) - '0' : 0;
             int y = j >= 0 ? num2.charAt(j) - '0' : 0;
-            int result = x+y+add;
-            ans.append(result%10);
-            add = result/10;
+            int result = x + y + add;
+            ans.append(result % 10);
+            add = result / 10;
             i--;
             j--;
         }

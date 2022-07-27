@@ -18,10 +18,10 @@ public class L344反转字符串 {
     public void reverseString(char[] s) {
         int n = s.length;
         char ch;
-        for (int i = 0; i < n/2; i++) {
+        for (int i = 0; i < n / 2; i++) {
             ch = s[i];
-            s[i] = s[n-i-1];
-            s[n-i-1] = ch;
+            s[i] = s[n - i - 1];
+            s[n - i - 1] = ch;
         }
     }
 }

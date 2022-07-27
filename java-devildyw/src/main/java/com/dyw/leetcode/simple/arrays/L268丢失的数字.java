@@ -6,7 +6,7 @@ import java.util.HashSet;
 /**
  * @author Devil
  * @date 2022-05-02-14:55
- *
+ * <p>
  * 给定一个包含 [0, n] 中 n 个数的数组 nums ，找出 [0, n] 这个范围内没有出现在数组中的那个数。
  */
 @SuppressWarnings("all")
@@ -23,7 +23,7 @@ public class L268丢失的数字 {
             //如果nums[i] != i 直接返回i即可
             //0 1 2 3 5 6  length = 6
             //0 1 2 3 4 5 没有 4
-            if (nums[i]!=i){
+            if (nums[i] != i) {
                 return i;
             }
         }
@@ -41,7 +41,7 @@ public class L268丢失的数字 {
             integers.add(nums[i]);
         }
         for (int i = 0; i < length; i++) {
-            if (!integers.contains(i)){
+            if (!integers.contains(i)) {
                 return i;
             }
         }

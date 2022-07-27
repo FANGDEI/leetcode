@@ -1,7 +1,5 @@
 package com.dyw.leetcode.medium.arrays;
 
-import java.util.HashSet;
-
 /**
  * @author Devil
  * @since 2022-07-15-10:34
@@ -26,6 +24,7 @@ public class L36有效的数独 {
 
     /**
      * 方法一 暴力搜索 每遍历到一个元素都去与它的每一行每一列以及所在3*3小九宫格中查看是否有相同元素
+     *
      * @param board
      * @return
      */
@@ -34,8 +33,8 @@ public class L36有效的数独 {
         int m = board[0].length;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if (board[i][j] >= '0'&&board[i][j]<='9'){
-                    if (!getEffective(i,j,board)){
+                if (board[i][j] >= '0' && board[i][j] <= '9') {
+                    if (!getEffective(i, j, board)) {
                         return false;
                     }
                 }
@@ -47,25 +46,25 @@ public class L36有效的数独 {
     private boolean getEffective(int i, int j, char[][] board) {
         //验证一行 判断在i这行上是否有重复的元素
         for (int k = 0; k < board[i].length; k++) {
-            if (board[i][k]==board[i][j]&&k!=j){
+            if (board[i][k] == board[i][j] && k != j) {
                 return false;
             }
         }
 
         //验证一列 判断在j这一列是否有重复的元素
         for (int k = 0; k < board.length; k++) {
-            if (board[k][j]==board[i][j]&&k!=i){
+            if (board[k][j] == board[i][j] && k != i) {
                 return false;
             }
         }
 
         //验证3*3方格 (i/3)*3是为了找到该i和j所在位置的3*3方格的起始位置。
-        int heng = (i/3)*3;
-        int zhong = (j/3)*3;
+        int heng = (i / 3) * 3;
+        int zhong = (j / 3) * 3;
 
-        for (int k1 = heng; k1 < heng+3; k1++) {
+        for (int k1 = heng; k1 < heng + 3; k1++) {
             for (int k2 = zhong; k2 < zhong + 3; k2++) {
-                if (board[k1][k2]==board[i][j]&&(k1!=i&&k2!=j)){
+                if (board[k1][k2] == board[i][j] && (k1 != i && k2 != j)) {
                     return false;
                 }
             }
@@ -77,6 +76,7 @@ public class L36有效的数独 {
 
     /**
      * leetcode官方题解 一次遍历
+     *
      * @param board
      * @return
      */
@@ -90,14 +90,14 @@ public class L36有效的数独 {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 char c = board[i][j];
-                if (c!='.'){
+                if (c != '.') {
                     int index = c - '0' - 1;
                     //数字 因为我们建立的数组的下标是可以与0-9的数字一一对应的
                     rows[i][index]++;
                     colums[j][index]++;
-                    subboxes[i/3][j/3][index]++;
+                    subboxes[i / 3][j / 3][index]++;
                     //判断在一定范围内是否出现了多次同样的数字
-                    if (rows[i][index]>1||colums[j][index]>1||subboxes[i/3][j/3][index]>1){
+                    if (rows[i][index] > 1 || colums[j][index] > 1 || subboxes[i / 3][j / 3][index] > 1) {
                         return false;
                     }
                 }

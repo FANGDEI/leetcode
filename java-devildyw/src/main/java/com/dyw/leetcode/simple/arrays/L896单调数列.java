@@ -13,11 +13,11 @@ package com.dyw.leetcode.simple.arrays;
 @SuppressWarnings("all")
 public class L896单调数列 {
     public static void main(String[] args) {
-        System.out.println(new L896单调数列().isMonotonic(new int[]{6,5,4,4}));
+        System.out.println(new L896单调数列().isMonotonic(new int[]{6, 5, 4, 4}));
     }
 
     public boolean isMonotonic(int[] nums) {
-        if (nums.length==1){
+        if (nums.length == 1) {
             return true;
         }
 
@@ -25,21 +25,21 @@ public class L896单调数列 {
 
 
         for (int i = 0; i < nums.length; i++) {
-            if (i+1< nums.length&&nums[i]>nums[i+1]){
+            if (i + 1 < nums.length && nums[i] > nums[i + 1]) {
                 flag = 1;
                 break;
             }
         }
 
-        if (flag==1){
+        if (flag == 1) {
             for (int i = 0; i < nums.length; i++) {
-                if (i+1< nums.length&&nums[i]<nums[i+1]){
+                if (i + 1 < nums.length && nums[i] < nums[i + 1]) {
                     flag = 2;
                     break;
                 }
             }
         }
-        return (flag==0)||(flag==1);
+        return (flag == 0) || (flag == 1);
     }
 
 }

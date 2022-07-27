@@ -18,8 +18,9 @@ public class L409最长回文串 {
      * 思路: 通过给出的字符构建一个最长的回文子串 就是找到出现次数为偶数的字符 将其所有出现都添加如我们要创建的回文串中
      * 然后找到出现次数为奇数的字符串 如果数量大于2 就将偶数的部分加入回文串 多出的哪一个字符 如果没有其他出现次数为奇数的字符 就放到回文串中央
      * 否者就随机从两者中选一个
-     *
+     * <p>
      * 简化:  找到出现次数为奇数的字符的个数
+     *
      * @param s
      * @return
      */
@@ -34,9 +35,9 @@ public class L409最长回文串 {
         int count = 0;
         for (int i : ascii) {
             //找出出现次数为奇数的格式
-            count+=i%2;
+            count += i % 2;
         }
 
-        return count==0?s.length():(s.length()-count+1);
+        return count == 0 ? s.length() : (s.length() - count + 1);
     }
 }

@@ -19,16 +19,16 @@ public class L383赎金信 {
     public boolean canConstruct(String ransomNote, String magazine) {
         int[] res = new int[26];
         for (int i = 0; i < ransomNote.length(); i++) {
-            res[ransomNote.charAt(i)-'a']++;
+            res[ransomNote.charAt(i) - 'a']++;
         }
         for (int i = 0; i < magazine.length(); i++) {
             int index = magazine.charAt(i) - 'a';
-            if (res[index]!=0){
+            if (res[index] != 0) {
                 res[index]--;
             }
         }
         for (int re : res) {
-            if (re>0){
+            if (re > 0) {
                 return false;
             }
         }
@@ -37,25 +37,26 @@ public class L383赎金信 {
 
     /**
      * 官方题解
+     *
      * @param ransomNote
      * @param magazine
      * @return
      */
     public boolean canConstruct01(String ransomNote, String magazine) {
         //如果ransomNote的长度大于magazine那就永远成功构成
-        if (ransomNote.length()!= magazine.length()){
+        if (ransomNote.length() != magazine.length()) {
             return false;
         }
         int[] cnt = new int[26];
         //先将magazine的字符出现次数存入cnt中
         for (int i = 0; i < magazine.length(); i++) {
-            cnt[magazine.charAt(i)-'a']++;
+            cnt[magazine.charAt(i) - 'a']++;
         }
         //再遍历ransomNote 出现过同样的单词就将对应数组中字符出现次数减一
         for (int i = 0; i < ransomNote.length(); i++) {
-            cnt[ransomNote.charAt(i)-'a']--;
+            cnt[ransomNote.charAt(i) - 'a']--;
             //如果出现对应数组位置出现次数小于0了 代表ransomNote该字符出现的次数大于magazine
-            if (cnt[ransomNote.charAt(i)-'a']<0){
+            if (cnt[ransomNote.charAt(i) - 'a'] < 0) {
                 return false;
             }
         }
