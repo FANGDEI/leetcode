@@ -23,11 +23,11 @@ public class L118杨辉三角 {
             ArrayList<Integer> list = new ArrayList<>();
             for (int j = 0; j <= i; j++) {
                 //如果是两边的元素 那么就填1
-                if (j == 0 || j == i){
+                if (j == 0 || j == i) {
                     list.add(1);
-                }else{
+                } else {
                     //如果是中间的元素 那么就按照题目的关系动态规划
-                    list.add(lists.get(i-1).get(j-1)+lists.get(i-1).get(j));
+                    list.add(lists.get(i - 1).get(j - 1) + lists.get(i - 1).get(j));
                 }
             }
             lists.add(list);

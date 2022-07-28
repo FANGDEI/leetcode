@@ -15,12 +15,13 @@ public class L226翻转二叉树 {
 
     /**
      * 递归 从叶子节点开始翻转节点
+     *
      * @param root
      * @return
      */
     public TreeNode invertTree(TreeNode root) {
         //如果节点为空 返回空
-        if (root == null){
+        if (root == null) {
             return null;
         }
         //翻转右子树后得到的新的右子树 该右子树下的所有节点都被反转了

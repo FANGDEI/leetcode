@@ -74,6 +74,7 @@ public class L面试题0207链表相交 {
      * @return:
      * @Author: Ladidol
      */
+    /*提示: 这也太强了吧。 就是把握住一定会有共同的链表，以及相加后长度相等且固定位置末端比相同*/
     public class Solution2 {
         public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
 

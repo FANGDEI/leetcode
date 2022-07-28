@@ -1,4 +1,4 @@
-package com.feng.newline.deque;
+package com.feng.newline.stack_and_queue;
 
 import java.util.*;
 

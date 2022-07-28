@@ -17,7 +17,7 @@ public class L94二叉树的中序遍历 {
         treeNode.right.left = new TreeNode(3);
         List<Integer> integers = new L94二叉树的中序遍历().inorderTraversal(treeNode);
         for (Integer integer : integers) {
-            System.out.print(integer+" ");
+            System.out.print(integer + " ");
         }
     }
 

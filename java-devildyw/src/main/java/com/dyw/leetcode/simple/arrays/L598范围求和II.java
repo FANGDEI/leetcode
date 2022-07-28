@@ -12,7 +12,7 @@ package com.dyw.leetcode.simple.arrays;
 @SuppressWarnings("all")
 public class L598范围求和II {
     public static void main(String[] args) {
-        new L598范围求和II().maxCount(3, 3, new int[][]{{2,2},{3,3}});
+        new L598范围求和II().maxCount(3, 3, new int[][]{{2, 2}, {3, 3}});
     }
 
     /**
@@ -23,8 +23,8 @@ public class L598范围求和II {
         int mina = m, minb = n;
         for (int[] op : ops) {
             //通过遍历 不断更新行列最小值
-            mina = Math.min(mina,op[0]);
-            minb = Math.min(minb,op[1]);
+            mina = Math.min(mina, op[0]);
+            minb = Math.min(minb, op[1]);
         }
 
         //mina * minb 就是最大整数的个数

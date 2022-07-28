@@ -13,7 +13,7 @@ package com.dyw.leetcode.simple.arrays;
 @SuppressWarnings("all")
 public class L643子数组最大平均数I {
     public static void main(String[] args) {
-        new L643子数组最大平均数I().findMaxAverage(new int[]{},2);
+        new L643子数组最大平均数I().findMaxAverage(new int[]{}, 2);
     }
 
 
@@ -27,7 +27,7 @@ public class L643子数组最大平均数I {
         int sumMax = sum;
         //滑动窗口 每次走一步就删除最开始的一个值 加入下一个值达到滑动的效果
         for (int i = k; i < n; i++) {
-            sum = sum - nums[i-k] + nums[i];
+            sum = sum - nums[i - k] + nums[i];
             sumMax = Math.max(sumMax, sum);
         }
         return 1.0 * sumMax / k;
@@ -35,6 +35,7 @@ public class L643子数组最大平均数I {
 
     /**
      * 滑动窗口常规写法
+     *
      * @param nums
      * @param k
      * @return
@@ -47,15 +48,15 @@ public class L643子数组最大平均数I {
 
         double max = -9999;
 
-        while(right < nums.length){
-            avr+=nums[left];
-            while (right - left + 1 > k){
-                avr -=nums[left];
+        while (right < nums.length) {
+            avr += nums[left];
+            while (right - left + 1 > k) {
+                avr -= nums[left];
                 left++;
             }
-            if (right-left+1 == k){
-                if (avr/k>max){
-                    max = avr/k;
+            if (right - left + 1 == k) {
+                if (avr / k > max) {
+                    max = avr / k;
                 }
             }
             right++;

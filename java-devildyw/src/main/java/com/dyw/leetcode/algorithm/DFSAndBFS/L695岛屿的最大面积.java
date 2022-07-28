@@ -23,6 +23,7 @@ public class L695岛屿的最大面积 {
 
     /**
      * 广度优先搜索 通过栈来完成
+     *
      * @param grid
      * @return
      */
@@ -30,8 +31,8 @@ public class L695岛屿的最大面积 {
         //初始化结果
         int ans = 0;
         //遍历二维数组
-        int[] di = {0,0,1,-1};
-        int[] dj = {1,-1,0,0};
+        int[] di = {0, 0, 1, -1};
+        int[] dj = {1, -1, 0, 0};
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
                 //初始话当前面积
@@ -39,14 +40,14 @@ public class L695岛屿的最大面积 {
                 //初始化栈
                 Deque<int[]> statck = new LinkedList<>();
                 //将初始节点push进栈中
-                statck.push(new int[]{i,j});
+                statck.push(new int[]{i, j});
                 //广度优先搜索 当栈为空时结束
-                while (!statck.isEmpty()){
+                while (!statck.isEmpty()) {
                     //取出栈顶元素 得到i和j
                     int[] pop = statck.pop();
-                    int cur_i = pop[0],cur_j = pop[1];
+                    int cur_i = pop[0], cur_j = pop[1];
                     //如果cur_i和cur_j不在规定范围或是在范围内但不是陆地 就继续下一个循环判断下一个点 跳过下面步骤
-                    if (cur_i < 0 || cur_j < 0 || cur_i== grid.length||cur_j == grid[0].length||grid[cur_i][cur_j]!=1){
+                    if (cur_i < 0 || cur_j < 0 || cur_i == grid.length || cur_j == grid[0].length || grid[cur_i][cur_j] != 1) {
                         continue;
                     }
                     //如果是陆地 则岛屿面积加一
@@ -55,11 +56,11 @@ public class L695岛屿的最大面积 {
                     grid[cur_i][cur_j] = 0;
                     //将该点的上下左右点都加入到栈中 进行下一次遍历。
                     for (int index = 0; index < 4; index++) {
-                        int next_i = cur_i+di[index],next_j = cur_j+dj[index];
-                        statck.push(new int[]{next_i,next_j});
+                        int next_i = cur_i + di[index], next_j = cur_j + dj[index];
+                        statck.push(new int[]{next_i, next_j});
                     }
                 }
-                ans = Math.max(ans,cur);
+                ans = Math.max(ans, cur);
             }
         }
         return ans;
