@@ -15,7 +15,6 @@
 
 ## 二叉搜索树
 前面介绍的树，都没有数值的，而二叉搜索树是有数值的了，二叉搜索树是一个有序树。
-
 若它的左子树不空，则左子树上所有结点的值均小于它的根结点的值；
 若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值；
 它的左、右子树也分别为二叉排序树
@@ -210,8 +209,8 @@
 - [2022年7月29日14:55:38 - 二叉树的前序遍历 - 力扣（LeetCode）](https://leetcode.cn/problems/binary-tree-preorder-traversal/solution/2022nian-7yue-29ri-145538-by-ladidol-0077/)
 - [2022年7月29日15:00:52 - 二叉树的后序遍历 - 力扣（LeetCode）](https://leetcode.cn/problems/binary-tree-postorder-traversal/solution/2022nian-7yue-29ri-150052-by-ladidol-cfdt/)
 - [2022年7月29日15:03:10 - 二叉树的中序遍历 - 力扣（LeetCode）](https://leetcode.cn/problems/binary-tree-inorder-traversal/solution/2022nian-7yue-29ri-150310-by-ladidol-kzeu/)
-- n叉树前序
-- n叉树后序
+- [2022年7月30日00:19:45 - N 叉树的前序遍历 - 力扣（LeetCode）](https://leetcode.cn/problems/n-ary-tree-preorder-traversal/solution/2022nian-7yue-30ri-001945-by-ladidol-4saa/)
+- [2022年7月30日00:22:18 - N 叉树的后序遍历 - 力扣（LeetCode）](https://leetcode.cn/problems/n-ary-tree-postorder-traversal/solution/2022nian-7yue-30ri-002218-by-ladidol-bz4d/)
 
 > 需要借用一个辅助数据结构即队列来实现，**队列先进先出，符合一层一层遍历的逻辑，而是用栈先进后出适合模拟深度优先遍历也就是递归的逻辑。而这种层序遍历方式就是图论中的广度优先遍历，只不过我们应用在二叉树上。**使用队列实现二叉树广度优先遍历
 
