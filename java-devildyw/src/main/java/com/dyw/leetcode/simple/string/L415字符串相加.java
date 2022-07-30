@@ -48,4 +48,25 @@ public class L415字符串相加 {
         //返回结果
         return ans.toString();
     }
+
+    public String addStrings01(String num1, String num2) {
+        //从末尾开始相加 使用Stringbuffer存储每次相加的结果 初始化i,j指针 add为进位保存变量
+        int i = num1.length() - 1, j = num2.length() - 1, add = 0;
+        StringBuffer sb = new StringBuffer();
+        //如果i和j都小于0了说明两者的运算都完成了 如果add不为0说明有进位 所以需要在进行一次循环将进位计算
+        while (i >= 0 || j >= 0 || add != 0) {
+            int x = i >= 0 ? num1.charAt(i) - '0' : 0;
+            int y = j >= 0 ? num2.charAt(j) - '0' : 0;
+            //计算
+            int result = x + y + add;
+            //将个位数存入stringbuffer中
+            sb.append(result % 10);
+            //计算进位
+            add = result / 10;
+            i--;
+            j--;
+        }
+        //因为我们是从后往前加的 所以stringbuffer中的结果是翻着来的
+        return sb.reverse().toString();
+    }
 }

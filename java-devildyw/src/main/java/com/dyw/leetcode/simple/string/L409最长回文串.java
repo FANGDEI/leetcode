@@ -40,4 +40,19 @@ public class L409最长回文串 {
 
         return count == 0 ? s.length() : (s.length() - count + 1);
     }
+
+    public int longestPalindrome01(String s){
+        //统计出所给字符串中出现次数为奇数的个数
+        int[] ints = new int[128];
+        for (int i = 0; i < s.length(); i++) {
+            ints[s.charAt(i)]++;
+        }
+        //统计奇数的个数
+        int count = 0;
+        for (int i = 0; i < 128; i++) {
+            count+=ints[i]%2;
+        }
+        //因为在奇数中可以选择一个字符放在回文串中央 所以找出奇数的个数 如果存在奇数 那么可以取一个放在中央 s.length - (count - 1)
+        return count==0? s.length():(s.length()-count+1);
+    }
 }
