@@ -19,7 +19,7 @@ public class L102二叉树的层序遍历 {
         public List<List<Integer>> levelOrder(TreeNode root) {
             List<List<Integer>> res = new ArrayList<>();
             if (root == null) return res;
-            ArrayDeque<TreeNode> queue = new ArrayDeque<>();
+            ArrayDeque<TreeNode> queue = new ArrayDeque<>();//一般都用LinkedList来做题，如果能做成功就换成ArrayDeque看看效率能不能提高一些
             queue.offer(root);
             while(!queue.isEmpty()){//主要利用了每一层中queue都会增加的
                 int len = queue.size();
@@ -27,7 +27,7 @@ public class L102二叉树的层序遍历 {
                 while(len>0){//这是上一层的遍历,用len就不会受当前queue的大小影响.
                     TreeNode cur = queue.poll();
                     levelList.add(cur.val);
-                    if (cur.left != null) queue.offer(cur.left);
+                    if (cur.left != null) queue.offer(cur.left);//这里if判断是否存在需要看题中null节点对结果的影响情况
                     if (cur.right != null) queue.offer(cur.right);
                     len--;
                 }

@@ -26,7 +26,8 @@ import java.util.ArrayDeque;
  * @version: 1.0
  */
 public class L104二叉树的最大深度 {
-    class Solution {
+    //bfs 层序遍历
+    class Solution1 {
         public int maxDepth(TreeNode root) {
             ArrayDeque<TreeNode> queue = new ArrayDeque<>();
             if (root == null) return 0;
@@ -45,4 +46,16 @@ public class L104二叉树的最大深度 {
             return maxDeep;
         }
     }
+
+    //dfs 深度优先
+    class Solution {
+        public int maxDepth(TreeNode root) {
+            if (root == null) return 0;//如果当前节点为空的话就返回深度。
+            int leftDepth = maxDepth(root.left);
+            int rightDepth = maxDepth(root.right);
+            return Math.max(leftDepth,rightDepth) + 1;
+        }
+    }
+
+
 }

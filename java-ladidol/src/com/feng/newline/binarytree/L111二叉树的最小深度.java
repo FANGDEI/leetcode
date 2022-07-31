@@ -15,8 +15,8 @@ import java.util.ArrayDeque;
  */
 public class L111二叉树的最小深度 {
 
-
-    class Solution {
+    //bfs 层序遍历
+    class Solution1 {
         public int minDepth(TreeNode root) {
             ArrayDeque<TreeNode> queue = new ArrayDeque<>();
             if (root == null) return 0;
@@ -38,6 +38,23 @@ public class L111二叉树的最小深度 {
                 }
             }
             return minDeep;
+        }
+    }
+
+    //值得注意的就是 当且仅当两个孩子都是空才是到头了。
+    //dfs 递归。
+    class Solution {
+        public int minDepth(TreeNode root) {
+            if (root == null) return 0;//终止条件
+            int leftDepth = minDepth(root.left);
+            int rightDepth = minDepth(root.right);
+            if (root.left != null && root.right == null) {//当且仅当其中一个子节点不为空
+                return leftDepth + 1;
+            }
+            if (root.left == null && root.right != null) {//当且仅当其中一个子节点不为空
+                return rightDepth + 1;
+            }
+            return Math.min(rightDepth,leftDepth) + 1;//放回最小的。
         }
     }
 }
