@@ -111,4 +111,39 @@ public class L5最长回文子串 {
         return s.substring(maxEnd - maxLen + 1, maxEnd + 1);
     }
 
+
+    /**
+     * 暴力解法 优化版(动态规划版)
+     *
+     * <img src="https://ding-blog.oss-cn-chengdu.aliyuncs.com/images/202208021157300.png">
+     *
+     * @param s
+     * @return
+     */
+    public String longestPalindrome02(String s) {
+        int length = s.length();
+        //P[i][j]表示i和j对应对应位置的i和j所包围的子串是否是回文串
+        boolean[][] P = new boolean[length][length];
+
+        int maxLen = 0;
+        String maxPal = "";
+
+        for (int len = 1; len <= length; len++) {
+            for (int start = 0; start < length; start++) {
+                int end = start + len - 1;
+                if (end >= length) {
+                    break;
+                }
+                //当len = 1 和 2时 分别是start == end 和 start + 1 =end -1的情况 这种情况前半部分直接判断为true 因为判断P[start+1][end-1]没有意义
+                //所以如果我们想知道 P（i,j）P（i,j）的情况，不需要调用判断回文串的函数了，只需要知道 P（i + 1，j - 1）P（i+1，j−1）的情况就可以了，
+                // 这样时间复杂度就少了 O(n)O(n)。因此我们可以用动态规划的方法，空间换时间，把已经求出的 P（i，j）P（i，j）存储起来。
+                P[start][end] = (len == 1 || len == 2 || P[start + 1][end - 1]) && s.charAt(start) == s.charAt(end);//长度为1和2的单独判下
+                if (P[start][end] && len > maxLen) {
+                    maxPal = s.substring(start, end + 1);
+                }
+            }
+        }
+        return maxPal;
+    }
+
 }
