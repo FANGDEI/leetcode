@@ -3,7 +3,7 @@ package com.dyw.leetcode.simple.string;
 /**
  * @author Devil
  * @since 2022-07-04-13:11
- *
+ * <p>
  * 给你一个字符串 s ，将该字符串中的大写字母转换成相同的小写字母，返回新的字符串。
  */
 @SuppressWarnings("all")
@@ -16,9 +16,9 @@ public class L709转换成小写字母 {
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            if (c<='Z'&&c>='A'){
-                sb.append((char)(c+32));
-            }else{
+            if (c <= 'Z' && c >= 'A') {
+                sb.append((char) (c + 32));
+            } else {
                 sb.append(c);
             }
         }

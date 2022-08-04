@@ -25,26 +25,27 @@ public class L459重复的子字符串 {
 
     /**
      * <img src="https://ding-blog.oss-cn-chengdu.aliyuncs.com/images/image-20220629122502976.png" alt="题解">
+     *
      * @param s
      * @return
      */
     public boolean repeatedSubstringPattern01(String s) {
         int n = s.length();
 
-        for (int i = 1; i*2 <= n; i++) {
+        for (int i = 1; i * 2 <= n; i++) {
             //因为n是n'的n倍 这里通过n%i通过倍数关系判断 找到子串
-            if (n%i==0){
+            if (n % i == 0) {
                 boolean match = true;
                 for (int j = i; j < n; j++) {
                     //比较字符从两段子串的相同位置比较
-                    if (s.charAt(j)!=s.charAt(j-i)){
+                    if (s.charAt(j) != s.charAt(j - i)) {
                         //不相等就跳出该层循环.说明该字串不是整个字符串的重复子串 则寻找下一个子串
                         match = false;
                         break;
                     }
                 }
                 //如果满足就返回true
-                if (match){
+                if (match) {
                     return true;
                 }
             }

@@ -12,14 +12,15 @@ package com.dyw.leetcode.simple.arrays;
  */
 @SuppressWarnings("all")
 public class L806写字符串需要的行数 {
+    private static final Integer MAX_WIDTH = 100;
+
     public static void main(String[] args) {
 
     }
 
-    private static final Integer MAX_WIDTH = 100;
-
     /**
      * 模拟 遍历字符串 找到对应字符在widths数组中的所需单位 如果该行前面的width加上这个单位大于了100那么就开新的一行
+     *
      * @param widths
      * @param s
      * @return

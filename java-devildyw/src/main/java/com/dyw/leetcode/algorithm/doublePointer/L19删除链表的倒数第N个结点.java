@@ -14,6 +14,7 @@ public class L19删除链表的倒数第N个结点 {
 
     /**
      * 前后指针 截用前指针走过n个距离 再同时遍历前后指针使的前指针到达末尾后指针到达倒数第n个节点前一个节点
+     *
      * @param head
      * @param n
      * @return
@@ -27,7 +28,7 @@ public class L19删除链表的倒数第N个结点 {
         for (int i = 0; i < n; i++) {
             first = first.next;
         }
-        while (first!=null){
+        while (first != null) {
             first = first.next;
             second = second.next;
         }

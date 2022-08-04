@@ -1,7 +1,6 @@
 package com.dyw.leetcode.simple.arrays;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -22,17 +21,18 @@ public class L136只出现一次的数字 {
 
     /**
      * 哈希表
+     *
      * @param nums
      * @return
      */
     public int singleNumber(int[] nums) {
         HashMap<Integer, Integer> map = new HashMap<>();
         for (int num : nums) {
-            map.put(num,map.getOrDefault(num,0)+1);
+            map.put(num, map.getOrDefault(num, 0) + 1);
         }
         Set<Integer> integers = map.keySet();
         for (Integer integer : integers) {
-            if (map.get(integer)==1){
+            if (map.get(integer) == 1) {
                 return integer;
             }
         }

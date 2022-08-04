@@ -14,13 +14,13 @@ public class L101对称二叉树 {
         return symmetric(root, root);
     }
 
-    public boolean symmetric(TreeNode r1, TreeNode r2){
-        if (r1==null&&r2==null){
+    public boolean symmetric(TreeNode r1, TreeNode r2) {
+        if (r1 == null && r2 == null) {
             return true;
         }
-        if (r1==null||r2==null){
+        if (r1 == null || r2 == null) {
             return false;
         }
-        return r1.val==r2.val&&symmetric(r1.left,r2.right)&&symmetric(r1.right,r2.left);
+        return r1.val == r2.val && symmetric(r1.left, r2.right) && symmetric(r1.right, r2.left);
     }
 }

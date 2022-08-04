@@ -23,18 +23,18 @@ public class L605种花问题 {
         int length = flowerbed.length;
         for (int i = 0; i < length; i++) {
             //如果当前位置没有种花 且该位置为边界或者后一个元素为0 那么该位置就种花
-            if (flowerbed[i]==0&&(i+1== flowerbed.length||flowerbed[i+1]==0)){
+            if (flowerbed[i] == 0 && (i + 1 == flowerbed.length || flowerbed[i + 1] == 0)) {
                 //n-- 种花
                 n--;
                 //多跳一格
                 i++;
-            }else if (flowerbed[i]==1){
+            } else if (flowerbed[i] == 1) {
                 //多跳一格
                 i++;
             }
 
         }
-        return n<=0;
+        return n <= 0;
     }
 
     /**
@@ -45,11 +45,11 @@ public class L605种花问题 {
     public boolean canPlaceFlowers01(int[] flowerbed, int n) {
         int length = flowerbed.length;
         for (int i = 0; i < length; i++) {
-            if (flowerbed[i]==0&&(i==0||flowerbed[i-1]==0)&&(i==length-1||flowerbed[i+1]==0)){
+            if (flowerbed[i] == 0 && (i == 0 || flowerbed[i - 1] == 0) && (i == length - 1 || flowerbed[i + 1] == 0)) {
                 n--;
                 flowerbed[i] = 1;
             }
-            if (n<=0) {
+            if (n <= 0) {
                 return true;
             }
         }

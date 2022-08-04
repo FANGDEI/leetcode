@@ -19,17 +19,18 @@ public class L700二叉搜索树中的搜索 {
      * 小的节点总是在左子树上，大的节点总是在右子树上
      *
      * <img src="https://ding-blog.oss-cn-chengdu.aliyuncs.com/images/image-20220723111906522.png">
+     *
      * @param root
      * @param val
      * @return
      */
     public TreeNode searchBST(TreeNode root, int val) {
-        if (root == null){
+        if (root == null) {
             return null;
         }
-        if (val == root.val){
+        if (val == root.val) {
             return root;
         }
-        return searchBST(val<root.val?root.left:root.right,val);
+        return searchBST(val < root.val ? root.left : root.right, val);
     }
 }

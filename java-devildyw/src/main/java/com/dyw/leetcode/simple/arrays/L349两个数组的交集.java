@@ -1,13 +1,12 @@
 package com.dyw.leetcode.simple.arrays;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
 /**
  * @author Devil
  * @date 2022-05-04-12:45
- *
+ * <p>
  * 给定两个数组 nums1 和 nums2 ，返回 它们的交集 。输出结果中的每个元素一定是 唯一 的。我们可以 不考虑输出结果的顺序 。
  */
 @SuppressWarnings("all")
@@ -23,7 +22,7 @@ public class L349两个数组的交集 {
         }
         //然后遍历另一个数组 这个过程中检查是否有与第一个set相同的元素 有就填入另一个set
         for (int i : nums2) {
-            if (integers.contains(i)){
+            if (integers.contains(i)) {
                 integers1.add(i);
             }
         }
@@ -31,7 +30,7 @@ public class L349两个数组的交集 {
         int[] ints = new int[integers1.size()];
         int i = 0;
         Iterator<Integer> iterator = integers1.iterator();
-        while(iterator.hasNext()){
+        while (iterator.hasNext()) {
             ints[i++] = iterator.next();
         }
         return ints;

@@ -3,16 +3,15 @@ package com.dyw.leetcode.simple.arrays;
 /**
  * @author Devil
  * @date 2022-05-20-12:47
- *
+ * <p>
  * 在 MATLAB 中，有一个非常有用的函数 reshape ，它可以将一个m x n 矩阵重塑为另一个大小不同（r x c）的新矩阵，
  * 但保留其原始数据。
- *
+ * <p>
  * 给你一个由二维数组 mat 表示的m x n 矩阵，以及两个正整数 r 和 c ，分别表示想要的重构的矩阵的行数和列数。
- *
+ * <p>
  * 重构后的矩阵需要将原始矩阵的所有元素以相同的 行遍历顺序 填充。
- *
+ * <p>
  * 如果具有给定参数的 reshape 操作是可行且合理的，则输出新的重塑矩阵；否则，输出原始矩阵。
- *
  */
 @SuppressWarnings("all")
 public class L566重塑矩阵 {
@@ -21,7 +20,7 @@ public class L566重塑矩阵 {
          * [[1,2],[3,4]]
          * 2
          */
-        new L566重塑矩阵().matrixReshape01(new int[][]{{1,2},{3,4}},1,4);
+        new L566重塑矩阵().matrixReshape01(new int[][]{{1, 2}, {3, 4}}, 1, 4);
     }
 
     /**
@@ -30,7 +29,7 @@ public class L566重塑矩阵 {
     public int[][] matrixReshape(int[][] mat, int r, int c) {
         int iLength = mat.length;
         int jLength = mat[0].length;
-        if (r*c != iLength*jLength){
+        if (r * c != iLength * jLength) {
             return mat;
         }
 
@@ -64,11 +63,11 @@ public class L566重塑矩阵 {
      * 前提条件: 两个数组总容量相同
      * 通过上述关系我们可以 将mat数组的值填入result数组
      */
-    public int[][] matrixReshape01(int[][] mat, int r, int c){
+    public int[][] matrixReshape01(int[][] mat, int r, int c) {
         int iLength = mat.length;
         int jLength = mat[0].length;
         //比较数组大小 如果不匹配则返回原数组
-        if (r*c != iLength*jLength){
+        if (r * c != iLength * jLength) {
             return mat;
         }
 
@@ -77,7 +76,7 @@ public class L566重塑矩阵 {
         // 通过 i = x/n 和 j = x%n的关系 填入新的数组中
         for (int i = 0; i < iLength * jLength; i++) {
             //result数组的列数为c mat数组的列数为jLength
-            result[i/c][i%c] = mat[i/jLength][i%jLength];
+            result[i / c][i % c] = mat[i / jLength][i % jLength];
         }
         return result;
     }
@@ -85,6 +84,7 @@ public class L566重塑矩阵 {
 
     /**
      * 复习
+     *
      * @param mat
      * @param r
      * @param c
@@ -93,14 +93,14 @@ public class L566重塑矩阵 {
     public int[][] matrixReshape02(int[][] mat, int r, int c) {
         int n = mat.length;
         int m = mat[0].length;
-        if (n*m!=r*c){
+        if (n * m != r * c) {
             return null;
         }
         int[][] res = new int[r][c];
 
-        for (int i = 0; i < n*m; i++) {
+        for (int i = 0; i < n * m; i++) {
             //通过列的数量来化分行和列 能填满一行的每一列就是一行 填不满一行就是哪一行的某一个列
-            res[i/c][i%c] = mat[i/m][i%m];
+            res[i / c][i % c] = mat[i / m][i % m];
         }
         return res;
     }

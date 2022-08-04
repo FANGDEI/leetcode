@@ -12,6 +12,7 @@ public class L661图片平滑器 {
 
     /**
      * 常规遍历
+     *
      * @param img
      * @return
      */
@@ -23,15 +24,15 @@ public class L661图片平滑器 {
         for (int i = 0; i < iLength; i++) {
             for (int j = 0; j < jLength; j++) {
                 int sum = 0, num = 0;
-                for (int x = i-1; x <= i+1; x++) {
-                    for (int y = j-1; y <= j+1; y++) {
-                        if (x>=0&&y>=0&&x<iLength&&y<jLength){
+                for (int x = i - 1; x <= i + 1; x++) {
+                    for (int y = j - 1; y <= j + 1; y++) {
+                        if (x >= 0 && y >= 0 && x < iLength && y < jLength) {
                             num++;
-                            sum+=img[x][y];
+                            sum += img[x][y];
                         }
                     }
                 }
-                ints[i][j] = sum/num;
+                ints[i][j] = sum / num;
             }
         }
         return ints;

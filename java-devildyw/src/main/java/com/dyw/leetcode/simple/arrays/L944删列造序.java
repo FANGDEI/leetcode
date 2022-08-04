@@ -53,7 +53,7 @@ public class L944删列造序 {
         for (int i = 0; i < m; i++) {
             for (int j = 1; j < n; j++) {
                 //如果出现不满足升序的条件时 说明该列不满足条件 res++ 且break;
-                if (strs[j-1].charAt(i)>strs[j].charAt(i)){
+                if (strs[j - 1].charAt(i) > strs[j].charAt(i)) {
                     res++;
                     break;
                 }

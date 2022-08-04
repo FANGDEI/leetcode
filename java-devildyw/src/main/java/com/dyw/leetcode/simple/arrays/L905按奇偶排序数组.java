@@ -49,15 +49,15 @@ public class L905按奇偶排序数组 {
         int left = 0, right = nums.length - 1;
         while (left < right) {
             //遍历左半边数组 找到下一个为奇数的元素的下标
-            while (left<right&&nums[left]%2==0){
+            while (left < right && nums[left] % 2 == 0) {
                 left++;
             }
             //遍历右半边数组 找到下一个为偶数的元素的下标
-            while (left<right&&nums[right]%2==1){
+            while (left < right && nums[right] % 2 == 1) {
                 right--;
             }
             //如果满足left<right就将两者进行交换 (奇偶交换)
-            if (left<right){
+            if (left < right) {
                 int temp = nums[left];
                 nums[left] = nums[right];
                 nums[right] = temp;
