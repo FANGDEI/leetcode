@@ -14,9 +14,14 @@ package com.feng.newline.binarytree;
 //我是摆烂小王子！
 public class L235二叉搜索树的最近公共祖先 {
     //普通二叉树求最近公共祖先需要使用回溯，从底向上来查找，二叉搜索树就不用了，因为搜索树有序（相当于自带方向），那么只要从上向下遍历就可以了。
+    //https://img-blog.csdnimg.cn/20210204150858927.png
+    //因为一定书里面一定存在pq的，所以，只要开始分流就证明该分流点就是最近公共祖先。
     class Solution {
         public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-            return new TreeNode();
+            if (root == null) return root;
+            if (root.val>p.val&&root.val>q.val) return lowestCommonAncestor(root.left,p,q);//往左边找
+            if (root.val<p.val&&root.val<q.val) return lowestCommonAncestor(root.right,p,q);//往右边找
+            return root;//一左一右
         }
     }
 }
