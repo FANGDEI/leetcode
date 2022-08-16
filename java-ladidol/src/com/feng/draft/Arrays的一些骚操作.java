@@ -16,6 +16,12 @@ public class Arrays的一些骚操作 {
     public static void main(String[] args) {
         int[] nums = {1, 2, 3};
         int[][] erWei = {{1, 2}, {1, 3}, {4, 5}};
+        char[][] chessBoard = {{'1', '2'}, {'2', '4'}};
+
+        //初始化二维数组
+        for (char[] c : chessBoard) {
+            Arrays.fill(c, '.');//快速初始化一维数组。
+        }
 
         //对于逆序int数组。
         nums = Arrays.stream(nums).boxed().sorted((a, b) -> b - a).mapToInt(p -> p).toArray();
@@ -39,16 +45,11 @@ public class Arrays的一些骚操作 {
         Arrays.sort(erWei, (a, b) -> a[0] > b[0] ? 1 : -1);
 
 
-
         // 将数组按照绝对值大小从大到小排序，注意要按照绝对值的大小
         nums = IntStream.of(nums)
                 .boxed()
                 .sorted((o1, o2) -> Math.abs(o2) - Math.abs(o1))
                 .mapToInt(Integer::intValue).toArray();
-
-
-
-
 
 
         //一些Arrays.stream（）的骚操作！
