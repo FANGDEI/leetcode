@@ -24,7 +24,11 @@ public class Arrays的一些骚操作 {
         }
 
         //对于逆序int数组。
-        nums = Arrays.stream(nums).boxed().sorted((a, b) -> b - a).mapToInt(p -> p).toArray();
+        nums = Arrays.stream(nums)
+                .boxed()
+                .sorted((a, b) -> b - a)
+                .mapToInt(p -> p)
+                .toArray();
         System.out.println(Arrays.toString(nums));
 
         //对于Integer数组。
