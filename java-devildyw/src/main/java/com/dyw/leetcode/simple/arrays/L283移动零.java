@@ -45,4 +45,22 @@ public class L283移动零 {
             nums[index] = 0;
         }
     }
+
+    /**
+     * 将非零元素全部按顺序全部移到最前面 然后在末尾添0 双指针
+     * @param nums
+     */
+    public void moveZeroes02(int[] nums) {
+        int slow = 0;
+        for (int fast = 0; fast < nums.length; fast++) {
+            if (nums[fast]!=0){
+                nums[slow++] = nums[fast];
+            }
+        }
+
+        for (; slow < nums.length; slow++) {
+            nums[slow] = 0;
+        }
+
+    }
 }
