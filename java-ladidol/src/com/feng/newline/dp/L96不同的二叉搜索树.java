@@ -28,30 +28,28 @@ public class L96不同的二叉搜索树 {//这里的二叉搜索树，就是说
     //就是先找规律，你会发现，这个是从左往右，节点依次当根节点。dp[3] = dp[2] * dp[0] + dp[1] * dp[1] + dp[0] * dp[2]
 
     public static void main(String[] args) {
-        System.out.println(new Solution().numTrees(4));
+//        System.out.println(new Solution().numTrees(4));
     }
-
-
-
-}
-class Solution {
-    //1. 确定dp数组以及下标的含义：i个数字可以组成多少个二叉搜索树。
-    //2. 确定递推公式：dp[i] += dp[j - 1] * dp[i - j];当根节点是j时：j-1 为左子树节点数量，i-j 为以j为头结点右子树节点数量
-    //3. dp数组如何初始化：dp[0] = 1
-    //4. 确定遍历顺序：那么遍历i里面每一个数作为头结点的状态，用j来遍历。
-    //5. 举例推导dp数组：1,1,2,5,14,42
-    public int numTrees(int n) {
-        int[] dp = new int[n+1];
-        dp[0] = 1;
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= i; j++) {//i个节点的全部情况。
-                dp[i] += dp[j-1] * dp[i-j];//当根节点是j时：j-1 为左子树节点数量，i-j 为以j为头结点右子树节点数量
+    class Solution {
+        //1. 确定dp数组以及下标的含义：i个数字可以组成多少个二叉搜索树。
+        //2. 确定递推公式：dp[i] += dp[j - 1] * dp[i - j];当根节点是j时：j-1 为左子树节点数量，i-j 为以j为头结点右子树节点数量
+        //3. dp数组如何初始化：dp[0] = 1
+        //4. 确定遍历顺序：那么遍历i里面每一个数作为头结点的状态，用j来遍历。
+        //5. 举例推导dp数组：1,1,2,5,14,42
+        public int numTrees(int n) {
+            int[] dp = new int[n+1];
+            dp[0] = 1;
+            for (int i = 1; i <= n; i++) {
+                for (int j = 1; j <= i; j++) {//i个节点的全部情况。
+                    dp[i] += dp[j-1] * dp[i-j];//当根节点是j时：j-1 为左子树节点数量，i-j 为以j为头结点右子树节点数量
+                }
             }
+            return dp[n];
         }
-        System.out.println(Arrays.toString(dp));
-        return dp[n];
     }
+
 }
+
 
 
 //    class Solution {

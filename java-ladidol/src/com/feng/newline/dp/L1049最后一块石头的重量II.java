@@ -87,7 +87,7 @@ public class L1049最后一块石头的重量II {
                 }
             }
 
-            System.out.println(dp[stones.length - 1][target]);
+//            System.out.println(dp[stones.length - 1][target]);
             return (sum - dp[stones.length - 1][target]) - dp[stones.length - 1][target];
         }
     }

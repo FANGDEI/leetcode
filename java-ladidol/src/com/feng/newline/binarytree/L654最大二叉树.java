@@ -11,16 +11,14 @@ package com.feng.newline.binarytree;
  * 递归地在最大值 右边 的子数组后缀上构建右子树。
  * 返回nums 构建的 最大二叉树 。
  * @date: 2022/8/3 17:59
- * @version: 1.0
+ * @version: 1.0 每日一题
  */
 public class L654最大二叉树 {
 
 
-
-
     class Solution {
         public TreeNode constructMaximumBinaryTree(int[] nums) {
-            return traversal(nums,0, nums.length);
+            return traversal(nums, 0, nums.length);
         }
 
         //左闭右开
@@ -30,7 +28,7 @@ public class L654最大二叉树 {
             //第一步：先找分割点下标：maxIndex。
             int maxIndex = left;
             for (int i = left + 1; i < right; i++) {
-                if (nums[i]> nums[maxIndex]) maxIndex = i;//寻找最大值下标；
+                if (nums[i] > nums[maxIndex]) maxIndex = i;//寻找最大值下标；
             }
             //第二步：构建根节点，和它的子节点。
             TreeNode root = new TreeNode(nums[maxIndex]);//根节点
@@ -41,4 +39,29 @@ public class L654最大二叉树 {
             return root;
         }
     }
+
+
+    class Solution2 {
+        public TreeNode constructMaximumBinaryTree(int[] nums) {
+            return traversal(nums, 0, nums.length);
+        }
+
+        //左闭右开
+        TreeNode traversal(int[] nums, int left, int right) {
+            if (left + 1 == right) return new TreeNode(nums[left]);
+            if (left == right) return null;
+            int maxIndex = left;
+            int max = nums[left];
+            for (int i = left; i < right; i++) {
+                if (max < nums[i]) {
+                    max = nums[i];
+                    maxIndex = i;
+                }
+            }
+            TreeNode root = new TreeNode(nums[maxIndex], traversal(nums, left, maxIndex), traversal(nums, maxIndex + 1, right));
+            return root;
+        }
+    }
+
+
 }

@@ -1,5 +1,7 @@
 package com.feng.draft.template.dp;
 
+import java.util.Arrays;
+
 /**
  * @projectName: leetcode
  * @package: com.feng.draft.template.dp
@@ -20,17 +22,17 @@ public class _01_Backage {
         int[] weights = {1, 3, 4};
         int[] values = {15, 20, 30};
         int bagsize = 4;//背包的最大容量。
-        test2weightbagproblem(weights, values, bagsize);
+        test2weightSanYebagproblem(weights, values, bagsize);
     }
 
-    //01背包二维dp
+    //01背包二维dp (1)，这个是美化版本。
     static void test1weightbagproblem(int[] weights, int[] values, int bagWeight) {
         int wLen = weights.length;
         int value0 = 0;
         //定义dp数组：dp[i][j]表示背包容量为j时，前i个物品能获得的最大价值
         int[][] dp = new int[wLen + 1][bagWeight + 1];
         //初始化：背包容量为0时，能获得的价值都为0
-        for (int i = 0; i <= wLen; i++) {
+        for (int i = 0; i <= wLen; i++) {//dp[i][0]均为0，不用初始化,这一句可以去省略！！！
             dp[i][0] = value0;
         }
 
@@ -52,6 +54,66 @@ public class _01_Backage {
             }
             System.out.print("\n");
         }
+    }
+
+    //01背包二维dp(2)，这个是教义上说的通的。正统！
+    static void test11weightbagproblem(int[] weights, int[] values, int bagWeight) {
+        int wLen = weights.length;
+        int value0 = 0;
+        //定义dp数组：dp[i][j]表示背包容量为j时，前i个物品能获得的最大价值
+        int[][] dp = new int[wLen][bagWeight + 1];
+        //初始化：背包容量为0时，能获得的价值都为0
+        for (int i = 0; i < wLen; i++) {//dp[i][0]均为0，不用初始化,这一句可以去省略！！！
+            dp[i][0] = value0;
+        }
+        for (int j = weights[0]; j < bagWeight; j++) {//对dp[0][j]进行初始化
+            dp[0][j] = values[0];
+        }
+
+        //遍历顺序：先遍历物品，再遍历背包容量
+        for (int i = 1; i < wLen; i++) {
+            for (int j = 0; j <= bagWeight; j++) {
+                if (j < weights[i]) {//j指针越界的情况，就是dp[i - 1][j - weights[i]] + values[i]不合法了。
+                    dp[i][j] = dp[i - 1][j];
+                } else {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - weights[i]] + values[i]);
+                }
+            }
+        }
+
+        //打印dp数组
+        for (int i = 0; i < wLen; i++) {
+            for (int j = 0; j <= bagWeight; j++) {
+                System.out.print(dp[i][j] + " ");
+            }
+            System.out.print("\n");
+        }
+    }
+
+
+    //01背包二维dp空间大优化，dp[2][j]，三叶姐的优化版本。
+    static void test2weightSanYebagproblem(int[] weights, int[] values, int bagWeight) {
+        int wLen = weights.length;
+        int value0 = 0;
+        //定义dp数组：dp[i][j]表示背包容量为j时，前i个物品能获得的最大价值
+        int[][] dp = new int[2][bagWeight + 1];
+
+        for (int j = weights[0]; j < bagWeight; j++) {//对dp[0][j]进行初始化
+            dp[0][j] = values[0];
+        }
+
+        for (int i = 1; i < wLen; i++) {
+            for (int j = 0; j <= bagWeight; j++) {
+                if (j < weights[i]) {//j指针越界的情况，就是dp[i - 1][j - weights[i]] + values[i]不合法了。
+                    dp[i & 1][j] = dp[(i - 1) & 1][j];
+                } else {
+                    dp[i & 1][j] = Math.max(dp[(i - 1) & 1][j], dp[(i - 1) & 1][j - weights[i]] + values[i]);
+                }
+            }
+        }
+
+        System.out.println(Arrays.toString(dp[0]));
+        System.out.println(Arrays.toString(dp[1]));
     }
 
 
