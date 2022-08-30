@@ -11,7 +11,7 @@ import java.util.Arrays;
 @SuppressWarnings("all")
 public class L977有序数组的平方 {
     public static void main(String[] args) {
-        int[] ints = new L977有序数组的平方().sortedSquares(new int[]{-4, -1, 0, 3, 10});
+        int[] ints = new L977有序数组的平方().sortedSquares02(new int[]{-4, -1, 0, 3, 10});
         for (int anInt : ints) {
             System.out.print(anInt + " ");
         }
@@ -53,6 +53,29 @@ public class L977有序数组的平方 {
             i--;
         }
         return res;
+    }
+
+    /**
+     * 代码随想录双指针法
+     *
+     * @param nums
+     * @return
+     */
+    public int[] sortedSquares02(int[] nums) {
+        int left = 0;
+        int right = nums.length - 1;
+        int[] result = new int[nums.length];
+        int index = result.length-1;
+        while (left<=right){
+            if (nums[left]*nums[left]<nums[right]*nums[right]){
+                result[index--] = nums[right]*nums[right];
+                right--;
+            }else{
+                result[index--] = nums[left]*nums[left];
+                left++;
+            }
+        }
+        return result;
     }
 
 }
