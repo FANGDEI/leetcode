@@ -87,8 +87,31 @@ public class L1049最后一块石头的重量II {
                 }
             }
 
-//            System.out.println(dp[stones.length - 1][target]);
             return (sum - dp[stones.length - 1][target]) - dp[stones.length - 1][target];
+        }
+    }
+
+    //滚动数组优化，二维数组
+    class Solution3 {
+        public int lastStoneWeightII(int[] stones) {
+            int sum = Arrays.stream(stones).sum();
+            int target = sum / 2;
+            int[][] dp = new int[2][target + 1];
+            for (int j = stones[0]; j <= target; j++) {
+                dp[0][j] = stones[0];
+            }
+
+            for (int i = 1; i < stones.length; i++) {
+                for (int j = 1; j <= target; j++) {//注意是等于
+                    if (j >= stones[i]) {
+                        dp[i & 1][j] = Math.max(dp[(i - 1) & 1][j], dp[(i - 1) & 1][j - stones[i]] + stones[i]);
+                    } else {
+                        dp[i & 1][j] = dp[(i - 1) & 1][j];
+                    }
+                }
+            }
+
+            return (sum - dp[(stones.length - 1) & 1][target] * 2);
         }
     }
 
