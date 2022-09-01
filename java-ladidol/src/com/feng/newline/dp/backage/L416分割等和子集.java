@@ -1,4 +1,4 @@
-package com.feng.newline.dp;
+package com.feng.newline.dp.backage;
 
 import java.util.Arrays;
 
@@ -64,8 +64,7 @@ public class L416分割等和子集 {
                 sum += nums[i];
             }
 
-            if (sum % 2 == 1)
-                return false;
+            if (sum % 2 == 1) return false;//不能被二整除一定不合法。
             int target = sum / 2;
 
             //dp[i][j]代表可装物品为0-i，背包容量为j的情况下，背包内容量的最大价值
@@ -93,4 +92,69 @@ public class L416分割等和子集 {
             return dp[nums.length - 1][target] == target;
         }
     }
+
+
+    //滚动数组优化
+    class Solution3 {
+        public boolean canPartition(int[] nums) {
+            int sum = Arrays.stream(nums).sum();
+            if (sum % 2 == 1) return false;//不能被二整除一定不合法。
+            int target = sum / 2;
+
+            //dp[i][j]代表可装物品为0-i，背包容量为j的情况下，背包内容量的最大价值
+            int[][] dp = new int[2][target + 1];
+
+            //初始化,dp[0][j]的最大价值nums[0](if j > weight[i])
+            //dp[i][0]均为0，不用初始化
+            for (int j = nums[0]; j <= target; j++) {
+                dp[0][j] = nums[0];
+            }
+
+            //遍历物品，遍历背包
+            for (int i = 1; i < nums.length; i++) {
+                for (int j = 0; j <= target; j++) {
+                    //背包容量可以容纳nums[i]
+                    if (j >= nums[i]) {
+                        dp[i & 1][j] = Math.max(dp[(i - 1) & 1][j], dp[(i - 1) & 1][j - nums[i]] + nums[i]);
+                    } else {
+                        dp[i & 1][j] = dp[(i - 1) & 1][j];
+                    }
+                }
+            }
+
+            return dp[(nums.length - 1) & 1][target] == target;
+        }
+    }
+
+
+
+    //直接求解，背包问题——能否取到价值最大化
+    class Solution4 {
+        //有用到一个技巧：事实上，这里有一个技巧，就是我们增加一个「不考虑任何物品」的情况讨论。
+        //所以这里多了一层f[0][j]表示「不考虑任何物品」，f[0][0] = true;
+        public boolean canPartition(int[] nums) {
+            int n = nums.length;
+            //「等和子集」的和必然是总和的一半
+            int sum = 0;
+            for (int i : nums) sum += i;
+            int target = sum / 2;
+            if (target * 2 != sum) return false;
+
+            // f[i][j] 代表考虑前 i 件物品，能否凑出价值「恰好」为 j 的方案
+            // 修改「物品维度」为 2
+            boolean[][] f = new boolean[2][target + 1];
+            f[0][0] = true;//这里很关键，只有这里是true，后面的true都是这个转化过来的。
+            for (int i = 1; i <= n; i++) {
+                int t = nums[i - 1];
+                for (int j = 0; j <= target; j++) {
+                    boolean no = f[(i - 1) & 1][j];
+                    boolean yes = j >= t ? f[(i - 1) & 1][j - t] : false;
+                    f[i & 1][j] = no | yes;
+                }
+            }
+            return f[n & 1][target];
+        }
+    }
+
+
 }

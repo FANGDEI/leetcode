@@ -1,4 +1,4 @@
-package com.feng.newline.dp;
+package com.feng.newline.dp.backage;
 
 /**
  * @projectName: leetcode
@@ -30,6 +30,10 @@ package com.feng.newline.dp;
  * @version: 1.0
  */
 public class L70爬楼梯 {
+
+
+    // 斐波拉契dp解法：
+
     //提示：爬到第一层楼梯有一种方法，爬到二层楼梯有两种方法。
     //那么第一层楼梯再跨两步就到第三层 ，第二层楼梯再跨一步就到第三层。1-》3只能走大步子，2-》3也只能走一个小步子。
     //所以到第三层楼梯的状态可以由第二层楼梯 和 到第一层楼梯状态推导出来，那么就可以想到动态规划了
@@ -40,7 +44,7 @@ public class L70爬楼梯 {
     //3. dp数组如何初始化：dp[1] = 1，dp[2] = 2;//dp[0]没有意义。
     //4. 确定遍历顺序：从前往后
     //5. 举例推导dp数组：1,2,3,5,8
-    class Solution {
+    class Solution1 {
         public int climbStairs(int n) {
             if (n <= 2) {
                 return n;
@@ -54,4 +58,24 @@ public class L70爬楼梯 {
             return dp[n];
         }
     }
+
+
+    // 完全背包解法：
+    // 据题意：排列，dp[j] += dp[j - nums[i]]
+    class Solution {
+        public int climbStairs(int n) {
+            int[] dp = new int[n + 1];
+            dp[0] = 1;
+            for (int i = 1; i <= n; i++) {//先遍历背包
+                for (int j = 1; j <= 2; j++) {
+                    if (i>=j) {
+                        dp[i] += dp[i - j];
+                    }
+                }
+            }
+            return dp[n];
+        }
+    }
+
+
 }

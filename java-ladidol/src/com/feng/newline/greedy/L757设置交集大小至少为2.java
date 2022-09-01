@@ -1,4 +1,4 @@
-package com.feng.newline.dp;
+package com.feng.newline.greedy;
 
 import java.util.Arrays;
 
