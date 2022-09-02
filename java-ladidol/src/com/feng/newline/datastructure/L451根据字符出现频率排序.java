@@ -1,4 +1,4 @@
-package com.feng.newline.hashtable;
+package com.feng.newline.datastructure;
 
 import java.util.*;
 
