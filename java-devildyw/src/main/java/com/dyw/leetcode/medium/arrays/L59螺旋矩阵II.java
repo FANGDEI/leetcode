@@ -1,5 +1,7 @@
 package com.dyw.leetcode.medium.arrays;
 
+import java.net.ServerSocket;
+
 /**
  * @author Devil
  * @since 2022-07-27-12:00
@@ -9,7 +11,7 @@ package com.dyw.leetcode.medium.arrays;
 @SuppressWarnings("all")
 public class L59螺旋矩阵II {
     public static void main(String[] args) {
-
+        new L59螺旋矩阵II().generateMatrix01(3);
     }
 
     /**
@@ -51,5 +53,47 @@ public class L59螺旋矩阵II {
             //这就完成了一个螺旋 如此重复知道填到n*n为止
         }
         return ans;
+    }
+
+
+    public int[][] generateMatrix01(int n) {
+        int loop = 0; //控制循环次数
+        int[][] res = new int[n][n];
+        int start = 0; //每次循环起始点
+        int count = 1; //填充数字
+        int i, j; //下标
+
+        while (loop++ < n / 2) {
+            //模拟上侧从左闭到右开区间
+            for (j = start; j < n - loop; j++) {
+                res[start][j] = count++;
+            }
+
+            //模拟右侧从上闭到下开区间
+            for (i = start; i < n - loop; i++) {
+                res[i][j] = count++;
+            }
+
+            //模拟下侧闭区间到左开区间
+            for (; j >= loop; j--) {
+                res[i][j] = count++;
+            }
+
+            //模拟左侧从下闭到上开区间
+            for (; i>=loop;i--){
+                res[i][j] = count++;
+            }
+            System.out.println(i+":"+j);
+            start++;//一圈后 起始位置加1
+
+        }
+
+        //判断n为奇数的情况 中间会留下一个位置 需要我们单独填入
+        if (n%2 == 1){
+            res[start][start] = count;
+        }
+
+        return res;
+
     }
 }
