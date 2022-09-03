@@ -44,4 +44,21 @@ public class L203移除链表元素 {
         }
         return Head.next;
     }
+
+    public ListNode removeElements01(ListNode head, int val) {
+        //创建虚拟头结点
+        ListNode dummy = new ListNode(0,head);
+        ListNode pre = dummy;
+        ListNode cur = dummy;
+
+        while (cur!=null){
+            if (cur.val==val){
+                pre.next = cur.next;
+            }else{
+                pre = cur;
+            }
+            cur = cur.next;
+        }
+        return dummy.next;
+    }
 }

@@ -19,16 +19,14 @@ public class L206反转链表 {
      * @return
      */
     public ListNode reverseList(ListNode head) {
-        ListNode newHead = new ListNode();
-        newHead.next = null;
-
-        while (head != null) {
-            ListNode node = new ListNode(head.val);
+        ListNode newHead = new ListNode(0);
+        ListNode node = null;
+        while (head!=null){
+            node = new ListNode(head.val);
             node.next = newHead.next;
             newHead.next = node;
             head = head.next;
         }
-
-        return head.next;
+        return newHead.next;
     }
 }
