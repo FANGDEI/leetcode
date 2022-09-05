@@ -36,18 +36,75 @@ public class L160相交链表 {
      */
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         HashSet<ListNode> set = new HashSet<>();
-        ListNode tail1 = headA;
-        ListNode tail2 = headB;
-        while (tail1!=null){
-            set.add(tail1);
-            tail1 = tail1.next;
+        while (headA!=null){
+            set.add(headA);
+            headA = headA.next;
         }
 
-        while (tail2!=null){
-            if (set.contains(tail2)){
-                return tail2;
+        while (headB!=null){
+            if (set.contains(headB)){
+                return headB;
             }
-            tail2 = tail2.next;
+            headB = headB.next;
+        }
+
+        return null;
+    }
+
+    /**
+     * 指针对齐法
+     *
+     * 将两个链表的末尾对其 以相同长度开始遍历 比较遍历途中的节点是否相等 取第一个相等节点作为相交节点
+     * @param headA
+     * @param headB
+     * @return
+     */
+    public ListNode getIntersectionNode01(ListNode headA, ListNode headB) {
+        ListNode curA = headA;
+        ListNode curB = headB;
+
+        int lenA = 0, lenB = 0;
+        //计算两个链表的长度
+        while (curA!=null){
+            lenA++;
+            curA = curA.next;
+        }
+
+        while (curB!=null){
+            lenB++;
+            curB = curB.next;
+        }
+
+        curA = headA;
+        curB = headB;
+
+        //让curA为最长链表的头，lenA为其长度
+        if (lenB>lenA){
+            int temLen = lenA;
+            lenA = lenB;
+            lenB = temLen;
+
+            ListNode tempNode = curA;
+            curA = curB;
+            curB = tempNode;
+        }
+
+        //求出长度差
+        int gap = lenA - lenB;
+
+        //让curA和curB在同一起点上（末尾位置对其）
+
+        while (gap-->0){
+            curA = curA.next;
+        }
+
+        //比哪里curA 和 curB，遇到相同直接返回
+        while (curA!=null){
+            if (curA == curB){
+                return curA;
+            }
+            curA = curA.next;
+            curB = curB.next;
         }
         return null;
     }
