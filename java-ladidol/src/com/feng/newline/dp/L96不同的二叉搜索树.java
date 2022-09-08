@@ -31,6 +31,9 @@ public class L96不同的二叉搜索树 {//这里的二叉搜索树，就是说
 //        System.out.println(new Solution().numTrees(4));
     }
     class Solution {
+
+        // 乘法大法就是秒啊。
+
         //1. 确定dp数组以及下标的含义：i个数字可以组成多少个二叉搜索树。
         //2. 确定递推公式：dp[i] += dp[j - 1] * dp[i - j];当根节点是j时：j-1 为左子树节点数量，i-j 为以j为头结点右子树节点数量
         //3. dp数组如何初始化：dp[0] = 1
