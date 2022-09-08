@@ -14,7 +14,7 @@ public class L707设计链表 {
         MyLinkedList1 linkedList = new MyLinkedList1();
         linkedList.addAtHead(1);
         linkedList.addAtTail(3);
-        linkedList.addAtIndex(1,2);   //链表变为1-> 2-> 3
+        linkedList.addAtIndex(1, 2);   //链表变为1-> 2-> 3
 //        linkedList.get(1);            //返回2
 //        linkedList.deleteAtIndex(1);  //现在链表是1-> 3
 //        linkedList.get(1);            //返回3
@@ -48,7 +48,7 @@ class MyLinkedList {
     }
 
     public int get(int index) {
-        if (index<=-1||index>=size){
+        if (index <= -1 || index >= size) {
             return -1;
         }
         ListNode currentNode = dummy;
@@ -65,15 +65,15 @@ class MyLinkedList {
 //        ListNode currentNode = new ListNode(val);
 //        currentNode.next = dummy.next;
 //        dummy.next = currentNode;
-        addAtIndex(0,val);
+        addAtIndex(0, val);
     }
 
     public void addAtTail(int val) {
-        addAtIndex(size,val);
+        addAtIndex(size, val);
     }
 
     public void addAtIndex(int index, int val) {
-        if (index <= -1 || index>size){//不是在最后一个就直接返回就行
+        if (index <= -1 || index > size) {//不是在最后一个就直接返回就行
             return;
         }
         //直接遍历出要插入的地方的前置节点
@@ -88,7 +88,7 @@ class MyLinkedList {
     }
 
     public void deleteAtIndex(int index) {
-        if (index<=-1||index>=size){
+        if (index <= -1 || index >= size) {
             return;
         }
         ListNode preNode = dummy;
@@ -101,7 +101,7 @@ class MyLinkedList {
 }
 
 //双向链表
-class MyLinkedList1{
+class MyLinkedList1 {
     //双向链表就是,可能在index遍历查询的时候, 就最多走n/2的复杂度!
 
     int size;
@@ -110,7 +110,7 @@ class MyLinkedList1{
     ListDoubleNode dummyTail;//虚拟尾节点,没有后置next节点
     //当连个虚拟节点相连的时候就是真实链表为空的时候
 
-    public MyLinkedList1(){
+    public MyLinkedList1() {
         size = 0;
         dummyHead = new ListDoubleNode();
         dummyTail = new ListDoubleNode();
@@ -120,18 +120,18 @@ class MyLinkedList1{
 
 
     public int get(int index) {
-        if (index<=-1||index>=size){
+        if (index <= -1 || index >= size) {
             return -1;
         }
         ListDoubleNode cur;
-        if (index<size/2){
+        if (index < size / 2) {
             cur = dummyHead;
             for (int i = 0; i <= index; i++) {
                 cur = cur.next;
             }
-        }else {
+        } else {
             cur = dummyTail;
-            for (int i = 0; i <= size-index - 1; i++) {
+            for (int i = 0; i <= size - index - 1; i++) {
                 cur = cur.pre;
             }
         }
@@ -139,10 +139,14 @@ class MyLinkedList1{
     }
 
     public void addAtIndex(int index, int val) {
-        if(index > size){return;}
-        if(index < 0){index = 0;}
+        if (index > size) {
+            return;
+        }
+        if (index < 0) {
+            index = 0;
+        }
         ListDoubleNode preNode = dummyHead;//这里是前置节点哦
-        for(int i = 0; i < index; i++){
+        for (int i = 0; i < index; i++) {
             preNode = preNode.next;
         }
         ListDoubleNode newNode = new ListDoubleNode(val);
@@ -176,13 +180,23 @@ class MyLinkedList1{
     }
 
     public void deleteAtIndex(int index) {
-        if(index >= size || index < 0){return;}
+        if (index >= size || index < 0) {
+            return;
+        }
         ListDoubleNode preNode = dummyHead;
-        for(int i = 0; i < index; i++){
+        for (int i = 0; i < index; i++) {
             preNode = preNode.next;
         }
         preNode.next.next.pre = preNode;//这里删除的其实就是preNode.next节点
         preNode.next = preNode.next.next;
+        size--;
+    }
+
+    //对于指定节点的删除
+    public void delete(ListDoubleNode node) {
+        ListDoubleNode preNode = node.pre;
+        node.next.pre = preNode;
+        preNode.next = node.next;
         size--;
     }
 
