@@ -63,5 +63,10 @@ public class Arrays的一些骚操作 {
         Arrays.stream(nums).average();
 
 
+        String text = "  this   is  a sentence ";
+        //分割出单词
+        String[] words = text.trim().split("\\s+");
+
+
     }
 }
