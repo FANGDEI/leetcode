@@ -1,4 +1,4 @@
-package com.dyw.leetcode.simple.arrays;
+package com.dyw.leetcode.medium.arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -109,5 +109,60 @@ public class L15三数之和 {
             }
         }
         return ans;
+    }
+
+    /**
+     * 双指针法
+     *
+     * @param nums
+     * @return
+     */
+    public List<List<Integer>> threeSum02(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        //对数组进行排序 方便使用双指针
+        Arrays.sort(nums);
+
+        //遍历
+        for (int i = 0; i < nums.length; i++) {
+            //如果排序后的第一个元素值就大于了0 那么后续元素怎么相加都不可能为0
+            if (nums[i] > 0) {
+                return result;
+            }
+
+            //除重 防止出现相同结果
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+
+            //初始化指针
+            int left = i + 1;
+            int right = nums.length - 1;
+            while (right > left) {
+                //获取三数之和
+                int sum = nums[i] + nums[left] + nums[right];
+                //如果sum大于零 则将右指针向左移动来减小
+                if (sum > 0) {
+                    right--;
+                //如果sum小于零 则将左指针向右移动增大  注意指针只能向着一开始规定的方向移动 防止出现右指针在右边界还右移这种越界的情况
+                } else if (sum < 0) {
+                    left++;
+                } else{
+                    //如果三数之和等于0 则将结果放入结果集
+                    result.add(Arrays.asList(nums[i],nums[left],nums[right]));
+                    //去重
+                    while (right>left&&nums[right]==nums[right-1]){
+                        right--;
+                    }
+                    while (right>left&&nums[left]==nums[left+1]){
+                        left++;
+                    }
+
+                    right--;
+                    left++;
+                }
+            }
+
+        }
+        return result;
     }
 }
