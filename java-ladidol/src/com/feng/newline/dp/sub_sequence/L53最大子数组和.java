@@ -1,4 +1,4 @@
-package com.feng.newline.greedy;
+package com.feng.newline.dp.sub_sequence;
 
 /**
  * @projectName: leetcode
@@ -21,16 +21,16 @@ package com.feng.newline.greedy;
  * <p>
  * 输入：nums = [5,4,-1,7,8]
  * 输出：23
- * @date: 2022/8/13 16:27
+ * @date: 2022/8/13 16:27, dp于2022年9月9日22:26:05
  * @version: 1.0
  */
 public class L53最大子数组和 {
     //贪心贪的是哪里呢？
     //如果 -2 1 在一起，计算起点的时候，一定是从1开始计算，因为负数只会拉低总和，这就是贪心贪的地方！
     //局部最优：当前“连续和”为负数的时候立刻放弃变长，从下一个元素重新计算“连续和”，因为负数加上下一个元素 “连续和”只会越来越小。
-    //全局最优：选取最大“连续和”
+    //全局最优：选取最大“连续和”。
     //局部最优的情况下，并记录最大的“连续和”，可以推出全局最优。
-    class Solution {
+    class Solution2 {
         public int maxSubArray(int[] nums) {
             int preSum = 0;
             int max = Integer.MIN_VALUE;
@@ -46,4 +46,23 @@ public class L53最大子数组和 {
             return max;
         }
     }
+
+    // dp
+    class Solution {
+        // dp[i] 考虑前i个数字，最大连续子数组和；
+        // dp[i] = Math.max(dp[i-1]+nums[i], nums[i]);
+        public int maxSubArray(int[] nums) {
+            int[] dp = new int[nums.length];
+            dp[0] = nums[0];
+            int ans = dp[0];
+            for (int i = 1; i < nums.length; i++) {
+                dp[i] = Math.max(dp[i - 1] + nums[i], nums[i]);
+                if (dp[i]>ans) ans = dp[i];
+            }
+            // 注意这些都是过程中会出现答案。
+            return ans;
+        }
+    }
+
+
 }
