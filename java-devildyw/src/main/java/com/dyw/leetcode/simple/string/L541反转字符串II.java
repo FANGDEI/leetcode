@@ -88,4 +88,32 @@ public class L541反转字符串II {
             right--;
         }
     }
+
+
+    public String reverseStr02(String s, int k) {
+        StringBuffer res = new StringBuffer();
+        int length = s.length();
+        int start = 0;
+
+        while (start < length) {
+            //找到 k 处和2 k处
+            StringBuffer temp = new StringBuffer();
+            //与length进行比较，如果大于length了，那就将其设置为length
+            int firstK = (start + k > length) ? length : start + k;
+            int secondK = (start + (2 * k) > length) ? length : start + (2 * k);
+
+            //无论start所处位置 ，至少会翻转一次 而且是翻转前k个 不足k个翻转剩余所有 这个里刚好可以满足
+            temp.append(s.substring(start,firstK));
+            //再将temp翻转后的字符串填入res中
+            res.append(temp.reverse());
+
+            //如果firstK到secondK之间有元素，这些元素直接放入rs里即可
+            if (firstK<secondK){ //此时剩余长度一定大于k
+                res.append(s.substring(firstK,secondK));
+            }
+            start += (2*k); //start 右移2k个单位
+        }
+
+        return res.toString();
+    }
 }
