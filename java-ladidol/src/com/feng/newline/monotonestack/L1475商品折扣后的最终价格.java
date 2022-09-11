@@ -39,7 +39,7 @@ import java.util.Deque;
  */
 public class L1475商品折扣后的最终价格 {
     // 直接通过暴力遍历解法
-    class Solution {
+    class Solution1 {
         public int[] finalPrices(int[] prices) {
             for (int i = 0; i < prices.length; i++) {
                 int k = 0;
@@ -51,21 +51,20 @@ public class L1475商品折扣后的最终价格 {
             return prices;
         }
     }
+
     // 单调栈
-    // 待做
-    class Solution23 {
+    class Solution {
+        // 用的是从栈头到栈底递减。（从上到下从大到小）
         public int[] finalPrices(int[] ps) {
-            int n = ps.length;
-            int[] ans = new int[n];
-            Deque<Integer> d = new ArrayDeque<>();
-            for (int i = 0; i < n; i++) {
-                while (!d.isEmpty() && ps[d.peekLast()] >= ps[i]) {
-                    int idx = d.pollLast();
-                    ans[idx] = ps[idx] - ps[i];
+            Deque<Integer> stack = new ArrayDeque<>();
+            for (int i = 0; i < ps.length; i++) {
+                while (!stack.isEmpty() && ps[i] <= ps[stack.peek()]) {
+                    ps[stack.peek()] = ps[stack.peek()] - ps[i];
+                    stack.pop();
                 }
-                d.addLast(i); ans[i] = ps[i];
+                stack.push(i);
             }
-            return ans;
+            return ps;//直接用原数组封装答案
         }
     }
 

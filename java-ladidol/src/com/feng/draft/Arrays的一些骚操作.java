@@ -35,6 +35,10 @@ public class Arrays的一些骚操作 {
         Integer[] nums2 = {1, 2, 3};
         Arrays.sort(nums2, (o1, o2) -> o2 - o1);
 
+        //二维数组排序（double类型）
+        Arrays.sort(erWei, (a, b) -> Double.compare(a[0], b[0]));
+
+
         //二维数组排序。
         Arrays.sort(erWei, (a, b) -> {
             if (a[0] == b[0]) return a[1] - b[1];//从第二位的从小到大。
@@ -66,6 +70,11 @@ public class Arrays的一些骚操作 {
         String text = "  this   is  a sentence ";
         //分割出单词
         String[] words = text.trim().split("\\s+");
+
+
+        // 快速获得下标数组id = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        Integer[] id = IntStream.range(0, 10).boxed().toArray(Integer[]::new);
+
 
 
     }
