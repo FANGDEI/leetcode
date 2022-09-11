@@ -1,5 +1,7 @@
 package com.dyw.leetcode.simple.string;
 
+import sun.reflect.generics.repository.ConstructorRepository;
+
 /**
  * @author Devil
  * @since 2022-06-29-11:56
@@ -9,7 +11,7 @@ package com.dyw.leetcode.simple.string;
 @SuppressWarnings("all")
 public class L459重复的子字符串 {
     public static void main(String[] args) {
-        System.out.println(new L459重复的子字符串().repeatedSubstringPattern("ababab"));
+        System.out.println(new L459重复的子字符串().repeatedSubstringPattern02("ababab"));
     }
 
     /**
@@ -51,6 +53,30 @@ public class L459重复的子字符串 {
             }
         }
         //如果上述循环都没有找到一个满足条件的子串那么就返回false
+        return false;
+    }
+
+    public boolean repeatedSubstringPattern02(String s) {
+        int n = s.length();
+        //这里的i即代表长度 又代表了比较下标j的开始所以从1开始 <=n
+        for (int i = 1; i*2<=n; i++){
+            //总字符串长度是子字符串的n倍
+            if (n%i==0){
+                //标记
+                boolean match = true;
+                //遍历比较
+                for (int j = i; j<n; j++){
+                    //一个从 j开始也就是此时的i开始 一个是从0开始 分别都走同样的距离 如果是由0-i的子字符串构成 则返回true 如果不是则break 继续寻找i
+                    if (s.charAt(j)!=s.charAt(j-i)){
+                        match= false;
+                        break;
+                    }
+                }
+                if (match){
+                    return true;
+                }
+            }
+        }
         return false;
     }
 }
