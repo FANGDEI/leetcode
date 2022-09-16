@@ -21,5 +21,10 @@ public class List的一些骚操作 {
     //碰到需要返回int[][]类型的话，上述的list可以:
     int[][] nums = list.toArray(new int[list.size()][]);
 
+    public static void main(String[] args) {
+        // Integer.MAX_VALUE = 2147483647
+        System.out.println("Integer.MAX_VALUE = " + Integer.MAX_VALUE);
+    }
+
 
 }
