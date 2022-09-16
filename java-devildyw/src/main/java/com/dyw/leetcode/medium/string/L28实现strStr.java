@@ -18,7 +18,7 @@ package com.dyw.leetcode.medium.string;
 @SuppressWarnings("all")
 public class L28实现strStr {
     public static void main(String[] args) {
-
+        System.out.println(new L28实现strStr().strStr01("aabaabaaf", "aabaaf"));
     }
 
     /**
@@ -48,5 +48,59 @@ public class L28实现strStr {
             }
         }
         return -1;
+    }
+
+    /**
+     * kmp算法
+     * @param haystack
+     * @param needle
+     * @return
+     */
+    public int strStr01(String haystack, String needle) {
+        if (needle.length()==0){
+            return 0;
+        }
+        //初始化next数组
+        int[] next = new int[needle.length()];
+        // 计算next数组
+        getNext(next,needle);
+
+        //初始化指针
+        int j = 0; //next数组指针 用于回溯
+
+        for (int i = 0; i < haystack.length(); i++) {
+            //回溯
+            while (j>0&&haystack.charAt(i)!=needle.charAt(j)){
+                j = next[j-1];
+            }
+            if (haystack.charAt(i)==needle.charAt(j)){
+                j++;
+            }
+            //如果长度相等则代表匹配 返回结果
+            if (j==needle.length()){
+                return i - j + 1;
+            }
+        }
+        //循环结束也没有匹配成功则代表没有匹配的结果
+        return -1;
+    }
+
+    private void getNext(int[] next, String needle) {
+        //j在这里即代表前缀串的末尾 又代表了此时最长公共前后缀的长度
+        int j = 0, i = 0;
+        //初始化为0号位上的公共前后缀长度为0 因为只有一个字符他没有前后缀
+        next[i++] = j;
+        for (; i < needle.length(); i++) {
+            //i 与 j 指向字符不相等情况 需要回溯
+            while (j>0&&needle.charAt(i)!=needle.charAt(j)){
+                j = next[j-1];
+            }
+            //如果相等 j++ 前缀末尾+1 公共前后缀长度加1
+            if (needle.charAt(i)==needle.charAt(j)){
+                j++;
+            }
+            //在i号位置上天上公共前后缀长度j
+            next[i] = j;
+        }
     }
 }

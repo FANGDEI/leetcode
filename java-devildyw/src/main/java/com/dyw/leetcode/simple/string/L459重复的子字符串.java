@@ -1,6 +1,8 @@
 package com.dyw.leetcode.simple.string;
 
-import sun.reflect.generics.repository.ConstructorRepository;
+import com.dyw.leetcode.algorithm.KMP.KMP;
+
+import java.util.Arrays;
 
 /**
  * @author Devil
@@ -11,7 +13,7 @@ import sun.reflect.generics.repository.ConstructorRepository;
 @SuppressWarnings("all")
 public class L459重复的子字符串 {
     public static void main(String[] args) {
-        System.out.println(new L459重复的子字符串().repeatedSubstringPattern02("ababab"));
+        System.out.println(new L459重复的子字符串().repeatedSubstringPattern03("ababab"));
     }
 
     /**
@@ -72,10 +74,48 @@ public class L459重复的子字符串 {
                         break;
                     }
                 }
-                if (match){
+                if (match) {
                     return true;
                 }
             }
+        }
+        return false;
+    }
+
+    /**
+     * 假设字符串s使用多个重复子串构成（这个子串是最小重复单位），重复出现的字符串长度是 x ，所以 s 是由 n* x组成。
+     * <p>
+     * 因为字符串s的最长相同前后缀的长度一定是不包含s本身，所以最长相同前后缀长度必然是 m*x, 而且是 n-m = 1. (因为不能包含本身所以如果由子串重复构成 所以n-m = 1)
+     * <p>
+     * 所以如果 n*x % (n-m)*x = 0,就能判定有重复出现的子字符串。
+     * <p>
+     * 数组长度减去最长相同前后缀的长度相当于是第一个周期的长度，也就是一个周期的长度，如果这个周期可以被整除，就说明整个数组就是这个周期的循环。
+     *
+     * @param s
+     * @return
+     */
+    public boolean repeatedSubstringPattern03(String s) {
+        return kmp(s);
+    }
+
+    private boolean kmp(String s) {
+        int n = s.length();
+        int[] next = new int[n];
+        int j = 0;
+        next[0] = j;
+
+        for (int i = 1; i < s.length(); i++) {
+            while (j>0 && s.charAt(i)!=s.charAt(j)){
+                j = next[j-1];
+            }
+            if (s.charAt(i)==s.charAt(j)){
+                j++;
+            }
+            next[i] = j;
+        }
+
+        if (next[n-1]>0&&(n % (n-next[n-1]))==0){
+            return true;
         }
         return false;
     }
