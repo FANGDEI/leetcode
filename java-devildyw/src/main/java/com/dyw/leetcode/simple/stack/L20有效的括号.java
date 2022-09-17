@@ -63,4 +63,27 @@ public class L20有效的括号 {
             return false;
         }
     }
+
+    public boolean isValid01(String s) {
+        Deque<Character> deque = new LinkedList<>();
+        char ch;
+        for (int i = 0; i < s.length(); i++) {
+            ch = s.charAt(i);
+            //每次遍历字符串中的括号时 遇到左括号将其对应的右括号存入栈中 这样下次遇到右括号直接对比是否相等即可
+            if (ch=='('){
+                deque.push(')');
+            }else if (ch == '{'){
+                deque.push('}');
+            }else if (ch =='['){
+                deque.push(']');
+            }else if (deque.isEmpty()||deque.peek()!=ch){ //如果队列为空或者右括号与队列中的不相同时 返回false
+                return false;
+            }else{
+                //遇到相同的 直接出栈
+                deque.pop();
+            }
+        }
+        //最后返回栈是否为空
+        return deque.isEmpty();
+    }
 }
