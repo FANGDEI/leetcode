@@ -41,9 +41,8 @@ public class L115不同的子序列 {
     class Solution {
         public int numDistinct(String s, String t) {
 
-            // TODO: 2022/9/11  
-            // TODO: 2022/9/11 还可以把雇佣工人那题再看一下。
-
+            // 随缘再做吧
+            return 0;
 
         }
     }
