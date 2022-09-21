@@ -1,5 +1,6 @@
 package com.dyw.leetcode.medium.tree;
 
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
@@ -61,6 +62,37 @@ public class L515在每个树行中找最大值 {
             res.add(max);
         }
         return res;
+    }
+
+    /**
+     * 层序遍历
+     * @param root
+     * @return
+     */
+    public List<Integer> largestValues01(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        Deque<TreeNode> deque = new LinkedList<>();
+        if (root==null){
+            return result;
+        }
+
+        deque.offer(root);
+        while (!deque.isEmpty()){
+            int len = deque.size();
+            int max = Integer.MIN_VALUE;
+            while (len-->0){
+                TreeNode node = deque.poll();
+                max = Math.max(node.val,max);
+                if (node.left!=null){
+                    deque.offer(node.left);
+                }
+                if (node.right!=null){
+                    deque.offer(node.right);
+                }
+            }
+            result.add(max);
+        }
+        return result;
     }
 }
 

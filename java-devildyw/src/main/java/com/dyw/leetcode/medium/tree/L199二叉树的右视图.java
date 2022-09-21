@@ -19,7 +19,7 @@ public class L199二叉树的右视图 {
         treeNode.right = new TreeNode(3);
         treeNode.left.right = new TreeNode(5);
         treeNode.right.right = new TreeNode(4);
-        System.out.println(new L199二叉树的右视图().rightSideView(treeNode));
+        System.out.println(new L199二叉树的右视图().rightSideView01(treeNode));
     }
 
     /**
@@ -53,5 +53,33 @@ public class L199二叉树的右视图 {
             }
         }
         return list;
+    }
+
+
+    public List<Integer> rightSideView01(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        Deque<TreeNode> deque = new LinkedList<>();
+        if (root==null){
+            return result;
+        }
+
+        deque.offer(root);
+        while (!deque.isEmpty()){
+            int len = deque.size();
+            while (len-->0){
+                TreeNode node = deque.poll();
+                if (node.left!=null){
+                    deque.offer(node.left);
+                }
+                if (node.right!=null){
+                    deque.offer(node.right);
+                }
+                if (len==0){
+                    result.add(node.val);
+                }
+            }
+
+        }
+        return result;
     }
 }
