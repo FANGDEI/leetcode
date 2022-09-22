@@ -36,4 +36,26 @@ public class L226翻转二叉树 {
 
     }
 
+
+    /**
+     * 自底向上 递归
+     * @param root
+     * @return
+     */
+    public TreeNode invertTree01(TreeNode root) {
+        if (root==null){
+            return null;
+        }
+        if (root.left==null&&root.right==null){
+            return root;
+        }
+        TreeNode right = invertTree01(root.right);
+        TreeNode left = invertTree01(root.left);
+
+        root.right = left;
+        root.left = right;
+
+        return root;
+    }
+
 }
