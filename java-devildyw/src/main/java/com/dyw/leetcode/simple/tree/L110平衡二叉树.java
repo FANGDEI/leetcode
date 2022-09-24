@@ -33,7 +33,7 @@ public class L110平衡二叉树 {
         if (rightHeight == -1) {
             return -1;
         }
-        //左右子树高度差大于1，return -1 表示已经不是平衡树了
+        //左右子树高度差大于1,返回高度已经没有意义 所以这里返回一个标志 return -1 表示已经不是平衡树了
         if (Math.abs(leftHeight - rightHeight) > 1) {
             return -1;
         }
