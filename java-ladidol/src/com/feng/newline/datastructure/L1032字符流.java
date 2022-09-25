@@ -65,14 +65,14 @@ public class L1032字符流 {
 
 
     // Tries树
-    class StreamChecker {
+    class StreamChecker2 {
         // 一般字典树用来解决某个字符串或其前缀是否存在于一个字符串集合中
         //但本题这里是检查后缀是否存在于集合中，因此只需要反向添加字符串到字典树中，然后判断的时候也反向从后往前判断即可。
         TrieNode root = new TrieNode();
         //        String str = "";
         StringBuilder sb = new StringBuilder();//用StringBuilder就是快！！！
 
-        public StreamChecker(String[] words) {
+        public StreamChecker2(String[] words) {
             for (String word : words) {
                 reverseInsert(word);
             }
@@ -109,7 +109,50 @@ public class L1032字符流 {
             }
             cur.isWord = true;// 更新当前节点可以作为结束。
         }
+    }
 
+    // 2022年9月25日19:25:54再做这一题
+    class StreamChecker {
+
+        StringBuilder liu = new StringBuilder();
+
+        public StreamChecker(String[] words) {
+            for (String word : words) {
+                reverseInsert(word);
+            }
+        }
+
+        public boolean query(char letter) {//注意查询是查询words中有没有是liu中的前缀的。需要加一步判断isWord。
+            liu.append(letter);
+            TrieNode cur = root;
+//            char[] chars = liu.toString().toCharArray();
+            for (int i = liu.length() - 1; i >= 0; i--) {
+//                int index = chars[i] - 'a';
+                int index = liu.charAt(i) - 'a';//直接用StringBuilder.charAt（）会快一点。
+                if (cur.nextLetter[index] == null) return false;
+                else if (cur.nextLetter[index].isWord) return true;//找到一个前缀。
+                cur = cur.nextLetter[index];//维护当前节点指针。
+            }
+            return cur.isWord;//看一下是不是一个前缀。
+        }
+
+        class TrieNode {
+            boolean isWord;
+            TrieNode[] nextLetter = new TrieNode[26];
+        }
+
+        TrieNode root = new TrieNode();
+
+        void reverseInsert(String word) {
+            TrieNode cur = root;
+            char[] chars = word.toCharArray();
+            for (int i = word.length() - 1; i >= 0; i--) {
+                int index = chars[i] - 'a';
+                if (cur.nextLetter[index] == null) cur.nextLetter[index] = new TrieNode();
+                cur = cur.nextLetter[index];//维护当前节点指针。
+            }
+            cur.isWord = true;
+        }
     }
 
 
