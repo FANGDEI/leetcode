@@ -32,6 +32,7 @@ public class L513找树左下角的值 {
         Deque<TreeNode> deque = new LinkedList<>();
         deque.offer(root);
 
+
         while (!deque.isEmpty()){
             int size = deque.size();
             res = deque.peek().val;

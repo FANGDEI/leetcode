@@ -1,5 +1,6 @@
 package com.dyw.leetcode.medium.tree;
 
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
@@ -68,4 +69,46 @@ public class L113路径总和II {
         dfs01(root.right,targetSum);
         path.pollLast();
     }
+
+
+    /**
+     * 递归 因为我们讲结果集 List<List<Interger>> 作为了参数传入递归函数 所以这里我们不需要让递归函数拥有返回值
+     *
+     * path 用于记录路径 没到一个节点就会记录一个节点 每一层返回也有相应的回溯。
+     * @param root
+     * @param targetSum
+     * @return
+     */
+    public List<List<Integer>> pathSum01(TreeNode root, int targetSum) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (root==null){
+            return res;
+        }
+        List<Integer> path = new ArrayList<>();
+        preorderdfs(root,targetSum,res,path);
+        return res;
+    }
+
+    private void preorderdfs(TreeNode root, int targetSum, List<List<Integer>> res, List<Integer> path) {
+        path.add(root.val);
+        //遇到了叶子节点
+        if (root.left==null&&root.right==null){
+            //如果找到了和为 targetSum 的路径
+            if ((targetSum-=root.val)==0){
+                res.add(new ArrayList<>(path));
+            }
+            return;//如果不为targetSum，则返回
+        }
+
+        if (root.left!=null){
+            preorderdfs(root.left,targetSum-root.val,res,path);
+            path.remove(path.size()-1);//回溯
+        }
+        if (root.right!=null){
+            preorderdfs(root.right,targetSum-root.val,res,path);
+            path.remove(path.size()-1);
+        }
+    }
+
+
 }
