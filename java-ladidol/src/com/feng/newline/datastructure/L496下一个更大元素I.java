@@ -92,29 +92,26 @@ public class L496下一个更大元素I {
     // 如果先遍历nums2：就要先用map记录一下nums2中全部元素的下一个最近大的角标，方便遍历nums1时快速找到那个值。
 
 
+    // 2022年9月26日21:01:56，回顾此题。再次修改了这个。
     class Solution2 {
         public int[] nextGreaterElement(int[] nums1, int[] nums2) {
             Stack<Integer> temp = new Stack<>();
             int[] res = new int[nums1.length];
-            Arrays.fill(res,-1);
+            Arrays.fill(res, -1);
             HashMap<Integer, Integer> hashMap = new HashMap<>();
-            for (int i = 0 ; i< nums1.length ; i++){
-                hashMap.put(nums1[i],i);
+            for (int i = 0; i < nums1.length; i++) {
+                hashMap.put(nums1[i], i);
             }
             temp.add(0);
             for (int i = 1; i < nums2.length; i++) {
-                if (nums2[i] <= nums2[temp.peek()]) {
-                    temp.add(i);
-                } else {
-                    while (!temp.isEmpty() && nums2[temp.peek()] < nums2[i]) {
-                        if (hashMap.containsKey(nums2[temp.peek()])){
-                            Integer index = hashMap.get(nums2[temp.peek()]);
-                            res[index] = nums2[i];
-                        }
-                        temp.pop();
+                while (!temp.isEmpty() && nums2[temp.peek()] < nums2[i]) {
+                    if (hashMap.containsKey(nums2[temp.peek()])) {
+                        Integer index = hashMap.get(nums2[temp.peek()]);
+                        res[index] = nums2[i];
                     }
-                    temp.add(i);
+                    temp.pop();
                 }
+                temp.add(i);
             }
 
             return res;

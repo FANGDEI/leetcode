@@ -33,7 +33,7 @@ public class L503下一个更大元素II {
 
 
     // 单调栈
-    class Solution {
+    class Solution1 {
         // 第一感觉没有思路，想不出一个完整的思路
         // 后来发现：原来笨方法就是直接nums*2拼接：这里我用了一个小技巧：通过取余，就可以把答案全部覆盖在res（数组大小为n）中去了。
         public int[] nextGreaterElements(int[] nums) {
@@ -52,4 +52,25 @@ public class L503下一个更大元素II {
             return res;
         }
     }
+
+    // 2022年9月26日21:06:02，再做这一题
+    class Solution {
+        public int[] nextGreaterElements(int[] nums) {
+            Deque<Integer> stack = new ArrayDeque<>();
+            int n = nums.length;
+            int[] res = new int[n];
+            Arrays.fill(res, -1);
+            for (int i = 0; i < n * 2; i++) {
+                int idx = i % n;
+                while (!stack.isEmpty() && nums[stack.peek()] < nums[idx]) {//不要取等于
+                    res[stack.peek()] = nums[idx];
+                    stack.pop();
+                }
+                stack.push(idx);
+            }
+            return res;
+        }
+    }
+
+
 }
