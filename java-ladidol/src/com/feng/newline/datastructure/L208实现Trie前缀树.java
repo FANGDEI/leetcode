@@ -106,7 +106,7 @@ public class L208实现Trie前缀树 {
 
 
     // TireNode节点
-    class Trie {
+    class Trie2 {
 
         // trie树节点
         class TrieNode {
@@ -116,7 +116,7 @@ public class L208实现Trie前缀树 {
 
         TrieNode root;
 
-        public Trie() {
+        public Trie2() {
             root = new TrieNode();
         }
 
@@ -151,6 +151,58 @@ public class L208实现Trie前缀树 {
                 cur = cur.next[idx];
             }
             return true;// 只要前面都没有问题，就是prefix。
+        }
+    }
+
+
+    //2022年9月25日19:06:43 再做这一题
+    class Trie {
+
+        class TrieNode {
+            boolean isWord;
+            TrieNode[] nextLetter = new TrieNode[26];
+        }
+
+        TrieNode root;//必须存在一个根节点。
+
+        public Trie() {
+            root = new TrieNode();
+        }
+
+        public void insert(String word) {
+            TrieNode curNode = root;
+            char[] chars = word.toCharArray();
+            for (char c : chars) {
+                int index = c - 'a';
+                if (curNode.nextLetter[index] == null) curNode.nextLetter[index] = new TrieNode();
+                curNode = curNode.nextLetter[index];//维护当前节点指针。
+            }
+
+            curNode.isWord = true;//插入的时候需要，将其命名为单词哦。
+
+
+        }
+
+        public boolean search(String word) {
+            TrieNode curNode = root;
+            char[] chars = word.toCharArray();
+            for (char c : chars) {
+                int index = c - 'a';
+                if (curNode.nextLetter[index] == null) return false;//说明不匹配咯。
+                curNode = curNode.nextLetter[index];//继续维护当前节点指针。
+            }
+            return curNode.isWord;//看看有没有在这里结尾的单词咯
+        }
+
+        public boolean startsWith(String prefix) {
+            TrieNode curNode = root;
+            char[] chars = prefix.toCharArray();
+            for (char c : chars) {
+                int index = c - 'a';
+                if (curNode.nextLetter[index] == null) return false;
+                curNode = curNode.nextLetter[index];
+            }
+            return true;//前缀判定通过。
         }
     }
 
