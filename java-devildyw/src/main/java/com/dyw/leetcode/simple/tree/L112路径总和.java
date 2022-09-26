@@ -55,4 +55,65 @@ public class L112路径总和 {
         //只要其中有一种情况满足即可满足题意
         return right || left;
     }
+
+    /**
+     * 递归 每次遍历都会减去下层节点值 当遍历到叶子节点判断 count 的值是否为 0
+     *
+     * @param root
+     * @param targetSum
+     * @return
+     */
+    public boolean hasPathSum01(TreeNode root, int targetSum) {
+
+        if (root == null) {
+            return false;
+        }
+
+        return traversal(root, targetSum - root.val);
+    }
+
+    private boolean traversal(TreeNode cur, int count) {
+        //叶子节点恰好为0
+        if (cur.left == null && cur.right == null && count == 0) {
+            return true;
+        }
+        //叶子节点不为0
+        if (cur.right == null && cur.left == null) {
+            return false;
+        }
+
+        //不是叶子节点 继续向下遍历
+        if (cur.left != null) {
+            //如果返回 true 则返回返回true
+            if (traversal(cur.left, count - cur.left.val)) {
+                return true;
+            }
+        }
+        if (cur.right != null) {
+            if (traversal(cur.right, count - cur.right.val)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 精简后代码
+     * @param root
+     * @param targetSum
+     * @return
+     */
+    public boolean hasPathSum02(TreeNode root, int targetSum) {
+        //递归终止条件
+        if (root==null){
+            return false;
+        }
+        //叶子节点满足路径和返回true
+        if (root.left==null&&root.right==null){
+            return targetSum==root.val;
+        }
+
+        //如果不是叶子节点 或者叶子节点不满足路径和
+        return hasPathSum02(root.left,targetSum-root.val)||hasPathSum02(root.right,targetSum-root.val);
+    }
 }
