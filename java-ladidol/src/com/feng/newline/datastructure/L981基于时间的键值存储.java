@@ -64,8 +64,36 @@ public class L981基于时间的键值存储 {
         }
     }
 
-    // 取上界二分法（有个案例超时？？TLE）
+
+    // 2022年9月27日14:09:34，再做这一题。根据提示就是map套map
     class TimeMap {
+
+        HashMap<String, TreeMap<Integer, String>> map = new HashMap<>();// 第一层键为key，第二层键为timestamp。
+
+        public void set(String key, String value, int timestamp) {
+            TreeMap<Integer, String> curTree = map.getOrDefault(key, new TreeMap<>());
+            curTree.put(timestamp, value);
+            map.put(key, curTree);
+        }
+
+        public String get(String key, int timestamp) {
+            TreeMap<Integer, String> curTree = map.getOrDefault(key, new TreeMap<>());
+            String ans = "";
+//            int littleTime = timestamp;
+            while (!curTree.isEmpty() && timestamp >= 0) {
+                if (!curTree.getOrDefault(timestamp, "*").equals("*")) {
+                    ans = curTree.get(timestamp);
+                    break;
+                }
+                timestamp--;
+            }
+            return ans;
+        }
+    }
+
+
+    // 取上界二分法（有个案例超时？？TLE）
+    class TimeMap2 {
         HashMap<String, TreeMap<Integer, String>> map = new HashMap<>();
 
         public void set(String key, String value, int timestamp) {
