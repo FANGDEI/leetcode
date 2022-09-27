@@ -32,7 +32,7 @@ import java.util.*;
  */
 public class L451根据字符出现频率排序 {
     //用hash法，list排序。
-    class Solution {
+    class Solution1 {
         public String frequencySort(String s) {
             Map<Character, Integer> map = new HashMap<>();
             char[] chars = s.toCharArray();
@@ -52,13 +52,14 @@ public class L451根据字符出现频率排序 {
             return sb.toString();
         }
     }
+
     //数组模拟哈希，优先级队列排序
     class Solution2 {
         public String frequencySort(String s) {
             char[] cs = s.toCharArray();
             Map<Character, Integer> map = new HashMap<>();
             for (char c : cs) map.put(c, map.getOrDefault(c, 0) + 1);
-            PriorityQueue<int[]> q = new PriorityQueue<>((a,b)->{
+            PriorityQueue<int[]> q = new PriorityQueue<>((a, b) -> {
                 return a[1] != b[1] ? b[1] - a[1] : a[0] - b[0];
             });
             for (char c : map.keySet()) q.add(new int[]{c, map.get(c)});
@@ -66,10 +67,33 @@ public class L451根据字符出现频率排序 {
             while (!q.isEmpty()) {
                 int[] poll = q.poll();
                 int c = poll[0], k = poll[1];
-                while (k-- > 0) sb.append((char)(c));
+                while (k-- > 0) sb.append((char) (c));
             }
             return sb.toString();
         }
     }
+
+    // 2022年9月27日15:21:37：再做这一题，说实话又是map的一些神奇操作。
+    class Solution {
+        //就是用map进行字母计数，然后再根据数目降序排序。
+        public String frequencySort(String s) {
+            TreeMap<Character, Integer> map = new TreeMap<>();
+            char[] chars = s.toCharArray();
+            for (char c : chars) {
+                map.put(c, map.getOrDefault(c, 0) + 1);
+            }
+            List<Character> keyList = new LinkedList<>(map.keySet());
+            Collections.sort(keyList, (o1, o2) -> map.get(o2) - map.get(o1));
+
+            StringBuilder ans = new StringBuilder();
+            for (Character key : keyList) {
+                for (int i = 0; i < map.get(key); i++) {
+                    ans.append(key);
+                }
+            }
+            return ans.toString();
+        }
+    }
+
 
 }

@@ -1,5 +1,6 @@
 package com.feng.newline.datastructure;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
@@ -26,7 +27,8 @@ import java.util.PriorityQueue;
  * @version: 1.0
  */
 public class L846一手顺子 {
-    class Solution {
+    class Solution1 {
+        //先哈希表计数，再优先队列排序输出，最后从最小的开始一个一个取出顺子
         public boolean isNStraightHand(int[] hand, int groupSize) {
             Map<Integer, Integer> map = new HashMap<>();//哈希表
             PriorityQueue<Integer> queue = new PriorityQueue<>((a, b) -> a - b);//优先级队列
@@ -41,6 +43,28 @@ public class L846一手顺子 {
                     int cnt = map.getOrDefault(cur + i, 0);
                     if (cnt == 0) return false;
                     map.put(cur + i, cnt - 1);//减一更新。
+                }
+            }
+            return true;
+        }
+    }
+
+    // 2022年9月27日14:31:50再做这题
+    class Solution {
+        // 有点忘记了，看了一下提示：需要map和queue来协作。map计数优先级队列来顺序取出。
+        public boolean isNStraightHand(int[] hand, int groupSize) {
+            Map<Integer, Integer> map = new HashMap<>();
+            Arrays.sort(hand);
+            for (int i = 0; i < hand.length; i++) {
+                map.put(hand[i], map.getOrDefault(hand[i], 0) + 1);
+            }
+            for (int i = 0; i < hand.length; i++) {
+                int cur = hand[i];
+                if (map.get(cur) == 0) continue;//包含于前面的对子中。
+                for (int j = 0; j < groupSize; j++) {
+                    int count = map.getOrDefault(cur + j, 0);
+                    if (count == 0) return false;//不够减了。
+                    map.put(cur + j, count - 1);
                 }
             }
             return true;
