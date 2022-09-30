@@ -48,7 +48,7 @@ public class L53最大子数组和 {
     }
 
     // dp
-    class Solution {
+    class Solution {// 2022年9月30日22:55:35再看
         // dp[i] 考虑前i个数字，最大连续子数组和；
         // dp[i] = Math.max(dp[i-1]+nums[i], nums[i]);
         public int maxSubArray(int[] nums) {

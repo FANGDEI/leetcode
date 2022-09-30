@@ -1,5 +1,7 @@
 package com.feng.newline.dp.sub_sequence;
 
+import java.util.Arrays;
+
 /**
  * @projectName: leetcode
  * @package: com.feng.newline.dp.sub_sequence
@@ -35,10 +37,11 @@ package com.feng.newline.dp.sub_sequence;
 public class L1143最长公共子序列 {
 
 
-    //dp 迷迷糊糊的呜呜呜呜
+    //dp （重复子序列不需要连续）(说实话这一题才是正宗的dp状态题。)
     class Solution {
+        // dp[i][j]：长度为[0, i - 1]的字符串text1与长度为[0, j - 1]的字符串text2的最长公共子序列为dp[i][j]
         // s1[i]==s2[j] : f[i][j]=f[i-1][j-1]+1。代表必然使用 s1[i] 与 s2[j] 时 LCS 的长度。
-        //s1[i]!=s2[j] : f[i][j]=max(f[i-1][j], f[i][j-1])。如果s1[i] 与 s2[j]不相等时，就需要和它原来的对比一下了。分别单自考虑的时候。
+        // s1[i]!=s2[j] : f[i][j]=max(f[i-1][j], f[i][j-1])。如果s1[i] 与 s2[j]不相等时，就需要和它原来的对比一下了。分别单自考虑的时候。
         public int longestCommonSubsequence(String text1, String text2) {
             char[] text1s = text1.toCharArray();
             char[] text2s = text2.toCharArray();
@@ -47,12 +50,20 @@ public class L1143最长公共子序列 {
                 for (int j = 1; j <= text2.length(); j++) {
                     if (text1s[i - 1] == text2s[j - 1])
                         dp[i][j] = dp[i - 1][j - 1] + 1;
-                    else if (text1s[i - 1] != text2s[j - 1])
+                    else if (text1s[i - 1] != text2s[j - 1])// 不相等的话，可能就出现在之前
                         dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
                 }
             }
+            // 不是单条路的斜线传递，所以取最后一个数值就行。
             return dp[text1.length()][text2.length()];
 
         }
     }
+
+
+
+
+
+
+
 }

@@ -34,7 +34,7 @@ public class L392判断子序列 {
         //  t中找到了一个字符在s中也出现了
         // if (s[i - 1] != t[j - 1])
         //  相当于t要删除元素，继续匹配
-        public boolean isSubsequence(String s, String t) {
+        public boolean isSubsequence(String s, String t) {//2022年9月30日23:01:22再看
             int[][] dp = new int[s.length() + 1][t.length() + 1];
             for (int i = 1; i < dp.length; i++) {//注意dp.length和s.length不一样哦。
                 for (int j = 1; j < dp[0].length; j++) {
