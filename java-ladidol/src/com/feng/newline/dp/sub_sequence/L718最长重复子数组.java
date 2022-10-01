@@ -36,7 +36,7 @@ public class L718最长重复子数组 {
             for (int i = 1; i <= nums1.length; i++) {
                 for (int j = 1; j <= nums2.length; j++) {
                     if (nums1[i - 1] == nums2[j - 1])
-                        dp[i][j] = dp[i - 1][j - 1] + 1;//就是新加元素如果相等，目标子数组就加一。
+                        dp[i][j] = dp[i - 1][j - 1] + 1;//当且仅当两个元素相等的才能更新dp
                     ans = Math.max(ans, dp[i][j]);
                 }
             }

@@ -31,7 +31,7 @@ import java.util.Arrays;
 public class L674最长连续递增序列 {
     //dp[i] = Math.max{dp[i-1]+1, dp[i]} (num[i]>num[i-1]) 也是必须包括当前nums[i]值。
     //和L300题上面的一点点小修改。
-    class Solution {
+    class Solution1 {
         public int findLengthOfLCIS(int[] nums) {
             int[] dp = new int[nums.length];
             Arrays.fill(dp, 1);
@@ -45,4 +45,27 @@ public class L674最长连续递增序列 {
             return ans;
         }
     }
+
+    // 2022年9月30日21:19:40，重做这一题
+    class Solution {
+        // 类比于L300不一定连续的最大子序列求解,这个更简单。
+        public int findLengthOfLCIS(int[] nums) {
+
+            int dp = 1;//前一个dp[i-1]，默认就只有自己nums[i-1]的长度
+            int ans = 1;
+
+            for (int i = 1; i < nums.length; i++) {
+                if (nums[i] > nums[i - 1]) {
+                    dp = dp + 1;
+                }else{
+                    dp = 1;//不连续了就初始化dp；
+                }
+                //保存期间出现的最长连续递增子序列长度。
+                ans = Math.max(dp, ans);
+            }
+            return ans;
+        }
+    }
+
+
 }

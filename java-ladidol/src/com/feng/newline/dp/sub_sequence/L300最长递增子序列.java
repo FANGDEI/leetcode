@@ -31,6 +31,7 @@ import java.util.Arrays;
  * @version: 1.0
  */
 public class L300最长递增子序列 {
+    //（子序列，默认是不连续的）
 
     // 用回溯暴力求解趋势可以，但是因为只要最大值，不需要过程，这里用dp挺好。
 
@@ -45,9 +46,9 @@ public class L300最长递增子序列 {
             for (int i = 0; i < nums.length; i++) {
                 for (int j = 0; j < i; j++) {
                     if (nums[i] > nums[j])// 必须保证nums[i]能放到最后一位。
-                        dp[i] = Math.max(dp[j] + 1, dp[i]);// dp[i]在重新遍历前面的时候
+                        dp[i] = Math.max(dp[j] + 1, dp[i]);// 在改过程中，dp[i]的值在一直维护的，有很多中获取取到但只取其中最大值。
                 }
-                ans = Math.max(dp[i], ans);// 可能不包括最后几个元素。
+                ans = Math.max(dp[i], ans);// 在每一种nums[i]结尾中，取最大值。
             }
             return ans;
         }
