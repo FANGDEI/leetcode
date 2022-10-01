@@ -1,5 +1,7 @@
 package com.dyw.leetcode.medium.tree;
 
+import java.util.HashMap;
+
 /**
  * @author Devil
  * @since 2022-08-10-9:26
@@ -79,5 +81,32 @@ public class L105从前序与中序遍历序列构造二叉树 {
         root.right = buildTreeHelper01(preorder, p_start + leftNum + 1, p_end, inorder, i_root_index + 1, i_end);
         return root;
 
+    }
+
+    HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
+
+    public TreeNode buildTree01(int[] preorder, int[] inorder) {
+        for (int i = 0; i < inorder.length; i++) {
+            map.put(inorder[i],i);
+        }
+
+        TreeNode root =  buildTreeHelper02(preorder,0,preorder.length,inorder,0,inorder.length);
+
+        return root;
+    }
+
+    private TreeNode buildTreeHelper02(int[] preorder, int preBegin, int preEnd, int[] inorder, int inBegin, int inEnd) {
+        if (inBegin>=inEnd||preBegin>=preEnd){
+            return null;
+        }
+
+        //去出前序遍历的第一个元素的下标位置 在
+        int rootIndex = map.get(inorder[map.get(preorder[preBegin])]);
+        TreeNode root = new TreeNode(inorder[rootIndex]);
+        int lenOfLeft = rootIndex-inBegin;
+
+        root.left = buildTreeHelper02(preorder,preBegin+1,preBegin+lenOfLeft+1,inorder,inBegin,rootIndex);
+        root.right = buildTreeHelper02(preorder,preBegin+lenOfLeft+1,preEnd,inorder,rootIndex+1,inEnd);
+        return root;
     }
 }
