@@ -33,7 +33,10 @@ public class L583两个字符串的删除操作 {
          * 描述：
          * dp[i][j]：以i-1为结尾的字符串word1，和以j-1位结尾的字符串word2，想要达到相等，所需要删除元素的最少次数。
          * 当word1[i - 1] 与 word2[j - 1]相同的时候 直接不需要删除。dp[i-1][j-1]
-         * 当word1[i - 1] 与 word2[j - 1]不相同的时候 需要删除操作：①dp[i-1][j] + 1②dp[i-1][j-1] + 2③dp[i][j-1] + 1
+         * 当word1[i - 1] 与 word2[j - 1]不相同的时候 需要删除操作：
+         * 情况一：删word1[i - 1]，最少操作次数为dp[i - 1][j] + 1
+         * 情况二：删word2[j - 1]，最少操作次数为dp[i][j - 1] + 1
+         * 情况三：同时删word1[i - 1]和word2[j - 1]，操作的最少次数为dp[i - 1][j - 1] + 2
          */
         public int minDistance(String word1, String word2) {
             int[][] dp = new int[word1.length() + 1][word2.length() + 1];
