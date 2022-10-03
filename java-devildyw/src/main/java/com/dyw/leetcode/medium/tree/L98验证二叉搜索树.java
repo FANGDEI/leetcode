@@ -57,4 +57,20 @@ public class L98验证二叉搜索树 {
         //既不为空节点的值又在区间范围内那么深度搜索该节点的左子树和右子树并且更新区间
         return isValidBST(root.left, lower, root.val) && isValidBST(root.right, root.val, upper);
     }
+
+
+    public boolean isValidBST01(TreeNode root) {
+        return isValidBST01(root,Long.MIN_VALUE,Long.MAX_VALUE);
+    }
+
+    private boolean isValidBST01(TreeNode root, long lower,long upper) {
+        if (root==null){
+            return true;
+        }
+        if (root.val<= lower||root.val>=upper){
+            return false;
+        }
+
+        return isValidBST01(root.left,lower,root.val)&&isValidBST01(root.right,root.val,upper);
+    }
 }
