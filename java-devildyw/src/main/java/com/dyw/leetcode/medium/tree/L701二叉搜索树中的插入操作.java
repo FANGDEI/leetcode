@@ -51,4 +51,70 @@ public class L701二叉搜索树中的插入操作 {
         }
         return root;
     }
+
+
+    /**
+     * 迭代法
+     * @param root
+     * @param val
+     * @return
+     */
+    public TreeNode insertIntoBST01(TreeNode root, int val) {
+        if (root==null){
+            return new TreeNode(val);
+        }
+
+        TreeNode pos = root;
+        while (pos!=null){
+            if (pos.val<val){
+                if (pos.right==null){
+                    pos.right = new TreeNode(val);
+                    break;
+                }
+                pos = pos.right;
+            }else{
+                if (pos.left==null){
+                    pos.left = new TreeNode(val);
+                    break;
+                }
+                pos = pos.left;
+            }
+        }
+        return root;
+    }
+
+
+    /**
+     * 迭代法
+     * @param root
+     * @param val
+     * @return
+     */
+    public TreeNode insertIntoBST02(TreeNode root, int val) {
+        //如果节点为空 则直接插入即可 怎么插入都是二叉搜索树 对于一个节点来说
+        if (root==null){
+            return new TreeNode(val);
+        }
+
+        //接下来就是根节点不为空的情况了
+        //借助一个节点来遍历
+        TreeNode pos = root;
+
+        while (pos!=null){
+            if (pos.val<val){
+                if (pos.right==null){
+                    pos.right = new TreeNode(val);
+                    break;
+                }
+                pos = pos.right;
+            }else{
+                if (pos.left==null){
+                    pos.left  = new TreeNode(val);
+                    break;
+                }
+                pos = pos.left;
+            }
+        }
+        return root;
+    }
 }
