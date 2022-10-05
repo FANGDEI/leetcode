@@ -23,7 +23,7 @@ package com.feng.newline.binarytree;
 public class L450删除二叉搜索树中的节点 {
 
 
-    class Solution {
+    class Solution1 {
         public TreeNode deleteNode(TreeNode root, int key) {
             if (root == null) return root;
             if (root.val == key) {//找到要删除的了
@@ -42,6 +42,52 @@ public class L450删除二叉搜索树中的节点 {
             }
             if (root.val > key) root.left = deleteNode(root.left, key);
             if (root.val < key) root.right = deleteNode(root.right, key);
+            return root;
+        }
+    }
+
+
+    // 分情况讨论
+    class Solution {//2022年10月4日21:18:19再做这一题。
+
+        /*
+         * 参数：[root, key]
+         * 返回值：com.feng.newline.binarytree.TreeNode
+         * 作者： ladidol
+         * 描述：
+         * 分为四种情况：
+         * 1. 没找到deletenode
+         * 2. 没有子树的：直接删除
+         * 3. 只有一个子树的
+         * 4. 有两个子树的：将左孩子放到右子树中最左边一个节点的左孩子处。
+         */
+        public TreeNode deleteNode(TreeNode root, int key) {
+            return dfs(root, key);
+        }
+
+        TreeNode dfs(TreeNode root, int key) {
+            if (root == null) return null;
+
+            if (root.val == key) {
+                if (root.left == null && root.right == null) return null;
+
+                if (root.left != null && root.right == null) return root.left;
+                if (root.left == null && root.right != null) return root.right;
+
+                //一旦上面都不满足，就走这里
+                TreeNode cur = root.right;
+                while (cur.left != null) {//这是一个关键点：寻找当前子树的最边上的一个节点。
+                    cur = cur.left;
+                }
+                cur.left = root.left;//将原来的左子树给安顿好了。
+                return root.right;//右孩子变成新的父代嘞。
+            }
+            //前序遍历。
+//            root.left = dfs(root.left, key);
+//            root.right = dfs(root.right, key);
+            //通过二叉搜索树来遍历，会快一点点的，其实感觉不出来。
+            else if (root.val > key) root.left = dfs(root.left, key);
+            else if (root.val < key) root.right = dfs(root.right, key);
             return root;
         }
     }
