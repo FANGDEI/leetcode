@@ -56,4 +56,30 @@ public class L108将有序数组转换为二叉搜索树 {
         //返回根节点
         return root;
     }
+
+
+    /**
+     * 想构成平衡二叉搜索树 又因为题目已经给出了一个有序的数组 我们只需要从数组的中间开始建立根节点就必定是平衡的
+     * @param nums
+     * @return
+     */
+    public TreeNode sortedArrayToBST01(int[] nums) {
+        if (nums.length==0){
+            return null;
+        }
+        TreeNode root = traversal(nums,0,nums.length-1);
+        return root;
+    }
+
+    private TreeNode traversal(int[] nums, int left, int right) {
+        if (left>right){
+            return null;
+        }
+        int mid = left + (right - left)/2;
+        TreeNode root = new TreeNode(nums[mid]);
+
+        root.left = traversal(nums,left,mid-1);
+        root.right = traversal(nums,mid+1,right);
+        return root;
+    }
 }
