@@ -23,7 +23,7 @@ public class L98验证二叉搜索树 {
     //有了这个特性，验证二叉搜索树，就相当于变成了判断一个序列是不是递增的了。
 
     //方法一：通过判断中序遍历数组是不是递增就行。
-    class Solution {
+    class Solution2 {
 
         List<Integer> inorder;
 
@@ -49,6 +49,7 @@ public class L98验证二叉搜索树 {
     class Solution1 {
         // 递归
         TreeNode max;//只要是向右遍历，max会根据root不断更新只会越来越小，只要是向右子树节点遍历max就停留到root上面，只会越来越大。
+
         public boolean isValidBST(TreeNode root) {
             if (root == null) {
                 return true;
@@ -68,4 +69,33 @@ public class L98验证二叉搜索树 {
             return right;
         }
     }
+
+
+    // 就是中序遍历
+    class Solution {
+        /**
+         * 参数：[root]
+         * 返回值：boolean
+         * 作者： ladidol
+         * 描述：保证前一个节点一定小于当前节点。
+         */
+//        TreeNode pre = new TreeNode(Integer.MIN_VALUE);//前一个节点。
+        long preValue = Long.MIN_VALUE;//为了避免[-2147483648]的测试用例。
+
+
+        public boolean isValidBST(TreeNode root) {
+
+            if (root == null) return true;
+            //左
+            boolean left = isValidBST(root.left);
+            //中
+            if (preValue >= root.val) return false;
+            preValue = root.val;//维护pre节点。
+            //右
+            boolean right = isValidBST(root.right);
+            return left && right;//left的比较可以放到前面判断，就可以少走一点路了。
+        }
+    }
+
+
 }
