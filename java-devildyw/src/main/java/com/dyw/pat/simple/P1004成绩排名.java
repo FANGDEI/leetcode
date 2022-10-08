@@ -1,8 +1,6 @@
 package com.dyw.pat.simple;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Scanner;
 
 /**
@@ -10,7 +8,7 @@ import java.util.Scanner;
  * @since 2022-10-06-12:55
  */
 @SuppressWarnings("all")
-public class L1004成绩排名 {
+public class P1004成绩排名 {
 
     static class Student{
         private String name;
