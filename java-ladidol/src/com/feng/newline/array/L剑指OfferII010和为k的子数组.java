@@ -22,7 +22,7 @@ import java.util.Map;
  * -1000 <= nums[i] <= 1000
  * -107 <= k <= 107
  */
-public class L剑指OfferII010和为k的子数组 {
+public class L剑指OfferII010和为k的子数组 {//就是560. 和为 K 的子数组
     //前缀和(听说这是一个很经典的题)
     class Solution {
         /**
