@@ -1,6 +1,9 @@
 package com.feng.draft;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @projectName: leetcode
@@ -24,7 +27,16 @@ public class List的一些骚操作 {
     public static void main(String[] args) {
         // Integer.MAX_VALUE = 2147483647
         System.out.println("Integer.MAX_VALUE = " + Integer.MAX_VALUE);
+        // 生成的list不可变
+        List<String> list = Arrays.asList("1", "2", "3");
+        // 如果要可变需要用ArrayList包装一下
+        List<String> numbers = new ArrayList<>(Arrays.asList("1", "2", "3"));
+
+
+
     }
+
+
 
 
 }
