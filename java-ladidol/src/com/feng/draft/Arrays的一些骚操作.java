@@ -33,6 +33,7 @@ public class Arrays的一些骚操作 {
                 .mapToInt(p -> p)
                 .toArray();
         System.out.println(Arrays.toString(nums));
+        System.out.println("erWei = " + Arrays.deepToString(erWei));//深入toString方法。
 
         //对于Integer数组。
         Integer[] nums2 = {1, 2, 3};
