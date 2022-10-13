@@ -2,10 +2,10 @@ package com.feng.newline.list;
 
 public class ListNode {
     // 结点的数据域
-    int val;
+    public int val;
 
     // 下一个结点的地址
-    ListNode next;
+    public ListNode next;
 
     // 节点的构造函数(无参)
     public ListNode() {

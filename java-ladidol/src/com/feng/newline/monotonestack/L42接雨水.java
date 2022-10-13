@@ -25,7 +25,7 @@ import java.util.Deque;
  */
 public class L42接雨水 {
     //单调栈
-    class Solution {
+    class Solution1 {
         public int trap(int[] height) {
             int n = height.length;
             Deque<Integer> stack = new ArrayDeque<>();
@@ -47,6 +47,74 @@ public class L42接雨水 {
                 stack.push(i);
             }
 
+            return ans;
+        }
+    }
+
+    //单调栈再做
+    class Solution2 {//2022年10月12日11:01:15再做。
+
+        /**
+         * 参数：[height]
+         * 返回值：int
+         * 作者： ladidol
+         * 描述：注意三个值到底是啥角色：peek-1是左边界，peek是底部，nums[i]就是右边界。
+         */
+        public int trap(int[] height) {
+            Deque<Integer> stack = new ArrayDeque<>();
+            int n = height.length;
+            int[] nums = new int[n + 2];
+            for (int i = 1; i <= n; i++) {
+                nums[i] = height[i - 1];
+            }
+
+            int ans = 0;
+
+            stack.push(0);
+            stack.push(1);//原始数组第0位
+            for (int i = 2; i < nums.length; i++) {
+                while (!stack.isEmpty() && nums[stack.peek()] < nums[i]) {
+                    int mid = stack.pop();
+                    if (!stack.isEmpty()) {
+                        int left = stack.peek();
+                        int right = i;
+                        int width = right - left - 1;//注意底部的宽
+                        int high = Math.min(nums[right], nums[left]) - nums[mid];
+                        ans += width * high;
+                    }
+                }
+                stack.push(i);
+            }
+            return ans;
+        }
+    }
+
+    //单调栈再做
+    class Solution {//2022年10月12日11:01:15再做。
+
+        /**
+         * 参数：[height]
+         * 返回值：int
+         * 作者： ladidol
+         * 描述：注意三个值到底是啥角色：peek-1是左边界，peek是底部，nums[i]就是右边界。
+         */
+        public int trap(int[] height) {
+            Deque<Integer> stack = new ArrayDeque<>();
+            int ans = 0;
+            stack.push(0);
+            for (int i = 1; i < height.length; i++) {
+                while (!stack.isEmpty() && height[stack.peek()] < height[i]) {
+                    int mid = stack.pop();
+                    if (!stack.isEmpty()) {
+                        int left = stack.peek();
+                        int right = i;
+                        int width = right - left - 1;//注意底部的宽是需要减一的
+                        int high = Math.min(height[right], height[left]) - height[mid];
+                        ans += width * high;
+                    }
+                }
+                stack.push(i);
+            }
             return ans;
         }
     }
