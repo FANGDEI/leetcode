@@ -15,6 +15,7 @@ import java.util.stream.IntStream;
 public class Arrays的一些骚操作 {
     public static void main(String[] args) {
         int[] nums = {1, 2, 3};
+        int[] numsCopy = {1, 2, 3};
         int[][] erWei = {{1, 2}, {1, 3}, {4, 5}};
         char[][] chessBoard = {{'1', '2'}, {'2', '4'}};
 
@@ -78,6 +79,9 @@ public class Arrays的一些骚操作 {
 
         // 快速获得下标数组id = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
         Integer[] id = IntStream.range(0, 10).boxed().toArray(Integer[]::new);
+
+        //看看数组是否相等。
+        boolean equals = Arrays.equals(nums, numsCopy);
 
 
     }
