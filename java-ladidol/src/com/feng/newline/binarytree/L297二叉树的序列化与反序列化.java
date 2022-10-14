@@ -1,8 +1,6 @@
 package com.feng.newline.binarytree;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * @projectName: leetcode
@@ -33,12 +31,13 @@ import java.util.Queue;
  * @version: 1.0
  */
 public class L297二叉树的序列化与反序列化 {
-    public class Codec {
+    public class Codec1 {
 
         // Encodes a tree to a single string.
         public String serialize(TreeNode root) {
             if (root == null) return "null";
-            return dfs1(root);
+            String ans = dfs1(root);//ans = 1,2,null,null,3,4,null,null,5,null,null
+            return ans;
         }
 
         // Decodes your encoded data to tree.
@@ -65,6 +64,74 @@ public class L297二叉树的序列化与反序列化 {
             root.left = dfs2(queue);
             root.right = dfs2(queue);
             return root;
+        }
+    }
+
+    //层序遍历。
+    public class Codec {//2022年10月14日11:52:54再来做一遍。
+
+        /**
+         * 参数：[root]
+         * 返回值：java.lang.String
+         * 作者： ladidol
+         * 描述：第一感觉是，通过层序遍历。
+         */
+        // Encodes a tree to a single string.
+        public String serialize(TreeNode root) {
+
+            Deque<TreeNode> queue = new LinkedList<>();
+            List<Integer> res = new LinkedList<>();
+            queue.offer(root);
+            while (!queue.isEmpty()) {
+                int tmpSize = queue.size();
+                while (tmpSize > 0) {
+                    TreeNode cur = queue.poll();
+                    if (cur != null) {
+                        res.add(cur.val);
+                        queue.offer(cur.left);
+                        queue.offer(cur.right);
+                    } else {
+                        res.add(null);
+                    }
+                    tmpSize--;
+                }
+            }
+            //虽然后面有null的节点，但是似乎不影响答案的正确性。
+            return Arrays.toString(res.toArray());
+        }
+
+        // Decodes your encoded data to tree.
+        public TreeNode deserialize(String data) {
+            data = data.replace("[", "").replace("]", "").replace(" ", "");
+            String[] nodes = data.split(",");
+            if (nodes.length==0) return null;
+            if (nodes.length==1) {
+                if (nodes[0].equals("")||nodes[0].equals("null")) return null;
+                return new TreeNode(Integer.parseInt(nodes[0]));
+            }
+            //split = [1,  2,  3,  null,  null,  4,  5,  null,  null,  null,  null]
+            Deque<TreeNode> queue = new LinkedList<>();
+            TreeNode root = new TreeNode(Integer.parseInt(nodes[0]));
+            queue.offer(root);
+            int index = 0;
+            while (!queue.isEmpty()) {
+                int tmpSize = queue.size();
+                while (tmpSize > 0) {
+                    TreeNode cur = queue.poll();
+                    if (!nodes[++index].equals("null")) {
+                        cur.left = new TreeNode(Integer.parseInt(nodes[index]));
+                        queue.offer(cur.left);
+                    }
+                    if (!nodes[++index].equals("null")) {
+                        cur.right = new TreeNode(Integer.parseInt(nodes[index]));
+                        queue.offer(cur.right);
+                    }
+
+                    tmpSize--;
+                }
+            }
+            return root;
+
         }
     }
 

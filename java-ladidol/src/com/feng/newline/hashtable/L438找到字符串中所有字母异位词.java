@@ -64,20 +64,15 @@ public class L438找到字符串中所有字母异位词 {
             for (int i = 0; i < p.length(); i++) {
                 need[p.charAt(i) - 'a']++;
             }
-
             List<Integer> res = new ArrayList<>();
-            System.out.println("need = " + Arrays.toString(need));
-
             int n = s.length();
             int left = 0, right = 0;
             while (right < n) {
-                if (right - left + 1 < p.length()) {
+                if (right - left + 1 <= p.length()) {
                     window[s.charAt(right) - 'a']++;
-                } else {//到了p的长度了，就来验证一下。
-                    System.out.println("window = " + Arrays.toString(window));
-                    System.out.println("(right - left + 1) = " + (right - left + 1));
+                }
+                if (right - left + 1 == p.length()) {//到了p的长度了，就来验证一下。
                     if (Arrays.equals(window, need)) {
-                        System.out.println("left = " + left);
                         res.add(left);//存入窗口开始坐标
                     }
                     window[s.charAt(left) - 'a']--;//维护滑动窗口。
@@ -90,9 +85,9 @@ public class L438找到字符串中所有字母异位词 {
     }
 
 
-    //上面的通过不了。
+    //上面的通过不了，
     //滑动窗口+哈希+数组值相等比较。
-    class Solution23 {//2022年10月13日20:12:46再做。
+    class Solution23 {//2主要差别是if else的切换导致的。2022年10月13日20:12:46再做。
 
         /**
          * 参数：[s, p]
@@ -108,15 +103,12 @@ public class L438找到字符串中所有字母异位词 {
             }
 
             List<Integer> res = new ArrayList<>();
-            System.out.println("need = " + Arrays.toString(need));
 
             int n = s.length();
             int left = 0, right = 0;
             while (right < n) {
                 window[s.charAt(right) - 'a']++;
                 if (right - left + 1 == p.length()) {//到了p的长度了，就来验证一下。
-                    System.out.println("window = " + Arrays.toString(window));
-                    System.out.println("(right - left + 1) = " + (right - left + 1));
                     if (Arrays.equals(window, need)) {
                         res.add(left);//存入窗口开始坐标
                     }
