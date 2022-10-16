@@ -2,10 +2,7 @@ package com.feng.newline.divide_and_conquer;
 
 import com.feng.newline.list.ListNode;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * @author: ladidol
@@ -46,7 +43,7 @@ import java.util.PriorityQueue;
 public class L23合并K个升序链表 {
 
     //归并（分治思想）有空用这个来做一下。
-    class Solution {
+    class Solution12 {
         public ListNode mergeKLists(ListNode[] lists) {
             ListNode ans = new ListNode();
 
@@ -92,6 +89,35 @@ public class L23合并K个升序链表 {
                 cur = cur.next;
             }
             return ans;
+        }
+    }
+
+
+    //继续使用堆呜呜呜呜
+    class Solution {//2022年10月16日12:09:25再做
+
+        /**
+         * 参数：[lists]
+         * 返回值：com.feng.newline.list.ListNode
+         * 作者： ladidol
+         * 描述：这一次用Integer的queue，不好存最开始的头结点。
+         */
+        public ListNode mergeKLists(ListNode[] lists) {
+            PriorityQueue<Integer> queue = new PriorityQueue<>();
+            for (ListNode list : lists) {
+                while (list != null) {
+                    queue.offer(list.val);
+                    list = list.next;
+                }
+            }
+
+            ListNode dummy = new ListNode(-1);//先new一个头结点出来，不管是不是虚拟头结点，都能保存ans
+            ListNode cur = dummy;//这里表示从头结点开始遍历
+            while (!queue.isEmpty()) {
+                cur.next = new ListNode(queue.poll());
+                cur = cur.next;
+            }
+            return dummy.next;
         }
     }
 

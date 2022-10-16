@@ -16,7 +16,7 @@ public class 并查集 {
 
     int[] father = new int[n];
 
-    void init(int n) {
+    void init() {
         for (int i = 1; i < n; ++i)
             father[i] = i;
     }
@@ -46,11 +46,11 @@ public class 并查集 {
 
 
     //合并
-    void union1(int i, int j) {
+    void union(int i, int j) {
         father[find(i)] = find(j);
     }
 
-    public void union(int x, int y) {
+    public void union1(int x, int y) {
         int fatherX = find(x);
         int fatherY = find(y);
 
@@ -59,21 +59,28 @@ public class 并查集 {
         }
     }
 
+    //查询
+    boolean query(int x, int y) {
+        return find(x) == find(y);
+    }
+
+
 
     //*********************更强版本******************************************************************
     // 按秩合并（略）
     class unionSet2 {
         int[] father;
         int[] rank;
+
         //按秩合并初始化
-        public void init(int n){
+        public void init(int n) {
             for (int i = 0; i < n; i++) {
                 father[i] = i;
                 rank[i] = 0;
             }
         }
 
-        public void union2 ( int x, int y){
+        public void union2(int x, int y) {
             int fatherX = find(x);
             int fatherY = find(y);
             if (fatherX == fatherY) {

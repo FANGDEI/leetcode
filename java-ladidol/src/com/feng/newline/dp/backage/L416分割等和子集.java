@@ -36,7 +36,7 @@ public class L416分割等和子集 {
     //2. 确定递推公式：dp[j] = Math.max(dp[j], dp[j - nums[i]] + nums[i]);
     //3. dp数组如何初始化：dp[i] = 0;
     //4. 确定遍历顺序：01背包一维dp滚动数组
-    //5. 举例推导dp数组：
+    //5. 举例推导dp数组：d
 
 
     class Solution {
