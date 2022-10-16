@@ -28,6 +28,7 @@ public class L332重新安排行程 {
     private LinkedList<String> path = new LinkedList<>();
 
     public List<String> findItinerary(List<List<String>> tickets) {
+        //按字典排序
         Collections.sort(tickets, (a, b) -> a.get(1).compareTo(b.get(1)));
         path.add("JFK");
         boolean[] used = new boolean[tickets.size()];
