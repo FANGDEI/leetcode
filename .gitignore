@@ -41,7 +41,7 @@ hs_err_pid*
 # vendor/
 
 .vscode
-
+.idea
 # use for javascript
 # compiled output
 /dist
