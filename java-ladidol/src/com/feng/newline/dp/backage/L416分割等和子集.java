@@ -39,7 +39,7 @@ public class L416分割等和子集 {
     //5. 举例推导dp数组：d
 
 
-    class Solution {
+    class Solution12314 {
         public boolean canPartition(int[] nums) {
             int sum = Arrays.stream(nums).sum();
             if (sum % 2 != 0) return false;//总和为奇数，不能平分
@@ -127,7 +127,6 @@ public class L416分割等和子集 {
     }
 
 
-
     //直接求解，背包问题——能否取到价值最大化
     class Solution4 {
         //有用到一个技巧：事实上，这里有一个技巧，就是我们增加一个「不考虑任何物品」的情况讨论。
@@ -156,5 +155,39 @@ public class L416分割等和子集 {
         }
     }
 
+    //简单背包问题，01背包问题
+    class Solution {//2022年10月17日13:53:46，再做一遍。
+
+        /**
+         * 参数：[nums]
+         * 返回值：boolean
+         * 作者： ladidol
+         * 描述：dp[i][j]：考虑前i个数字，用背包容量j能装的最大容量。
+         * <p>
+         * dp[i][j] = Math.max(dp[i-1][j],dp[i-1][j-nums[i]]+nums[i])
+         */
+        public boolean canPartition(int[] nums) {
+            int sum = Arrays.stream(nums).sum();
+            if ((sum & 1) == 1) return false;
+            int m = sum / 2;
+            int n = nums.length;
+            int[][] dp = new int[n][m + 1];
+
+            //dp初始化
+            for (int j = nums[0]; j <= m; j++) {
+                dp[0][j] = nums[0];
+            }
+
+            for (int i = 1; i < n; i++) {
+                // for (int j = nums[i]; j <= m; j++) {//这里因为是二维数组，需要更新每一层中的每一个dp，所以这里不能从nums[i]中得到。
+                for (int j = 0; j <= m; j++) {//这里因为是二维数组，需要更新每一层中的每一个dp，所以这里不能从nums[i]中得到。
+                    int no = dp[i - 1][j];
+                    int yes = j >= nums[i] ? dp[i - 1][j - nums[i]] + nums[i] : 0;
+                    dp[i][j] = Math.max(no, yes);
+                }
+            }
+            return dp[n - 1][m] == m;
+        }
+    }
 
 }

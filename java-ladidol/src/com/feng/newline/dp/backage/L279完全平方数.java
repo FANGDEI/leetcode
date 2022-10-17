@@ -142,7 +142,7 @@ public class L279完全平方数 {
     }
 
     // 优化合并一下for循环:完全平方数和遍历一起进行。
-    class Solution {
+    class Solution123 {
         public int numSquares(int n) {
             int[] dp = new int[n + 1];
             Arrays.fill(dp, 0x3f3f3f3f);
@@ -154,6 +154,46 @@ public class L279完全平方数 {
                 }
             }
             return dp[n];
+        }
+    }
+
+    //动态规划
+    class Solution { //2022年10月17日09:43:17再做
+        /**
+         * 参数：[n]
+         * 返回值：int
+         * 作者： ladidol
+         * 描述：dp[i][j]：考虑前i个完全平方数，完全平方数和是j；
+         * dp[i][j] = Math.min(dp[i-1][j],dp[i-1][j-k*nums[i]]+k)
+         * 通过数学花间的得到：
+         * dp[i][j] = Math.min(dp[i-1][j],dp[i-1][j - nums.get(i)] + 1)
+         * 然后可以通过i的降维：
+         * dp[j] = Math.min(dp[j],dp[j - nums.get(i)] + 1)//优美的完全背包。
+         */
+        public int numSquares(int n) {
+            List<Integer> nums = getSquares(n);
+            int[] dp = new int[n + 1];
+            int INF = n + 1;//不可到达的数字。
+            Arrays.fill(dp, INF);
+            dp[0] = 0;
+            for (int i = 0; i < nums.size(); i++) {//从前i个数字开始考虑。
+                for (int j = 0; j <= n; j++) {
+                    int no = dp[j];
+                    int yes = INF;
+                    if (nums.get(i) < j)
+                        yes = dp[j - nums.get(i)] + 1;//背包问题也：这里是通过数学化简的到的也。
+                    dp[j] = Math.min(no, yes);
+                }
+            }
+            return dp[n];
+        }
+
+        List<Integer> getSquares(int n) {
+            List<Integer> list = new ArrayList<>();
+            for (int i = 1; i * i <= n; i++) {//真就是这样写的捏。
+                list.add(i * i);
+            }
+            return list;
         }
     }
 
