@@ -32,19 +32,45 @@ public class L455分发饼干 {
         Arrays.sort(s);
 
         //饼干的指针
-        int start = s.length-1;
+        int start = s.length - 1;
         //记录能满足的小孩数量
         int count = 0;
 
         //遍历 为了用饼干满足小孩 这里遍历以小孩胃口为基准 如果是用小饼干满足胃口小的小孩那么应该以饼干为基准
-        for (int index = g.length-1;index>=0;index--){
+        for (int index = g.length - 1; index >= 0; index--) {
             //判断饼干指针是否有效 如果有效 判断是否满足当前小孩的胃口
-            if (start>=0&&g[index]<=s[start]){
+            if (start >= 0 && g[index] <= s[start]) {
                 start--;
                 count++;
             }
         }
         //最终返回 满足小孩的数量
+        return count;
+    }
+
+
+    /**
+     * 小胃口 小饼干满足
+     *
+     * @param g
+     * @param s
+     * @return
+     */
+    public int findContentChildren01(int[] g, int[] s) {
+        Arrays.sort(g);
+        Arrays.sort(s);
+
+        //小孩胃口指针
+        int start = 0;
+        int count = 0;
+
+        for (int i = 0; i < s.length && start < g.length; i++) {
+            if (g[start] <= s[i]) {
+                start++;
+                count++;
+            }
+        }
+
         return count;
     }
 }
