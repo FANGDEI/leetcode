@@ -172,8 +172,6 @@ public class L494目标和 {
     }
 
 
-
-
     //转换一下思考：假设加法的总和为x，那么减法对应的总和就是absSum - x。所以我们要求的是 x - (absSum - x) = target   x = (target + absSum) / 2
 
 
@@ -183,11 +181,11 @@ public class L494目标和 {
     //3. dp数组如何初始化：dp[0] = 1，理论上也很好解释，装满容量为0的背包，有1种方法，就是装0件物品。
     //4. 确定遍历顺序：dp一维滚动数组遍历
     //5. 举例推导dp数组：
-    class Solution {
+    class Solution234 {
         public int findTargetSumWays(int[] nums, int target) {
             int absSum = 0;
             for (int i = 0; i < nums.length; i++) absSum += nums[i];
-            if (Math.abs(target)>absSum) return 0;//没有方案；
+            if (Math.abs(target) > absSum) return 0;//没有方案；
             if ((target + absSum) % 2 != 0) return 0;//没有解；
             int size = (target + absSum) / 2;//size一定是大于等于0；
 
@@ -210,7 +208,7 @@ public class L494目标和 {
         public int findTargetSumWays(int[] nums, int target) {
             int absSum = 0;
             for (int i = 0; i < nums.length; i++) absSum += nums[i];
-            if (Math.abs(target)>absSum) return 0;//没有方案；
+            if (Math.abs(target) > absSum) return 0;//没有方案；
             if ((target + absSum) % 2 != 0) return 0;//没有解；
             int size = (absSum - target) / 2;//
 
@@ -223,6 +221,65 @@ public class L494目标和 {
                 }
             }
             return dp[size];
+        }
+    }
+
+    //这种题，能用回溯就用回溯咯，何必想那么多。
+    //简单的dfs
+    class Solution1234242 {//2022年10月17日13:31:28再做一遍。
+
+        /**
+         * 参数：[nums, target]
+         * 返回值：int
+         * 作者： ladidol
+         * 描述：
+         */
+        public int findTargetSumWays(int[] nums, int target) {
+            dfs(0, 0, target, nums);
+            return res;
+        }
+
+        int res = 0;
+
+        void dfs(int curIndex, int curSum, int target, int[] nums) {
+            if (curSum == target && curIndex == nums.length) {
+                res++;
+                return;
+            }
+            if (curIndex == nums.length) return;
+
+            dfs(curIndex + 1, curSum + nums[curIndex], target, nums);
+            dfs(curIndex + 1, curSum - nums[curIndex], target, nums);
+        }
+    }
+
+    // 记忆性搜索：
+    // 不难发现，在 DFS 的函数签名中只有「数值下标 startIndex」和「当前结算结果 curSum」为可变参数，考虑将其作为记忆化容器的两个维度，
+    // 返回值作为记忆化容器的记录值。由于 curSum 存在负权值，为了方便，我们这里不设计成静态数组，而是使用「哈希表」进行记录。
+    class Solution {
+        Map<String, Integer> map = new HashMap<>();
+
+        public int findTargetSumWays(int[] nums, int target) {
+            this.nums = nums;
+            this.target = target;
+            int res = dfs(0, 0);
+            return res;
+        }
+
+        int[] nums;
+        int target;
+
+        int dfs(int curIndex, int curSum) {
+            String key = curIndex + "_" + curSum;
+            if (map.containsKey(key)) return map.get(key);
+            if (curIndex == nums.length) {
+                if (curSum == target) return 1;
+                return 0;
+            }
+            int left = dfs(curIndex + 1, curSum - nums[curIndex]);
+            int right = dfs(curIndex + 1, curSum + nums[curIndex]);
+            map.put(key, left + right);
+            return left + right;
         }
     }
 }
