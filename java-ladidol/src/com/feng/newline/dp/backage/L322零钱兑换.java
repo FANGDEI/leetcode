@@ -34,7 +34,6 @@ public class L322零钱兑换 {
     }
 
 
-
     // 一维解法，也是和279完全平方数一样的，就是后界面判断有点不一样。
     // 注意这些初始化。
     class Solution2 {
@@ -56,7 +55,7 @@ public class L322零钱兑换 {
     }
 
     // 修改一下一维解法：
-    class Solution {
+    class Solution23 {
         // dp[j] = Math.min(dp[j], dp[j-coins[j]] + 1)
         public int coinChange(int[] coins, int amount) {
             int INF = amount + 1;
@@ -73,6 +72,33 @@ public class L322零钱兑换 {
             return dp[amount] == INF ? -1 : dp[amount];
         }
     }
+    //就是完全背包问题
+    class Solution {
+        /**
+         * 参数：[coins, amount]
+         * 返回值：int
+         * 作者： ladidol
+         * 描述：dp[i][j]：考虑前i个硬币，硬币和是j，所需的最少硬币数。
+         * dp[i][j] = Math.min(dp[i-1][j],dp[i-1][j - nums.get(i)] + 1)
+         */
+        public int coinChange(int[] coins, int amount) {
+            int n = coins.length;
+            int INF = amount + 1;//到达不了的硬币数,注意是硬币个数，不是硬币种类。
+            int[] dp = new int[amount + 1];
+            Arrays.fill(dp, INF);
+            dp[0] = 0;
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j <= amount; j++) {
+                    int no = dp[j];
+                    int yes = j >= coins[i] ? dp[j - coins[i]] + 1 : INF;
+                    dp[j] = Math.min(no, yes);
+                }
+            }
+            System.out.println("dp = " + Arrays.toString(dp));
+            System.out.println("(dp[amount] == INF) = " + (dp[amount] == INF));
 
+            return dp[amount] == INF ? -1 : dp[amount];
+        }
+    }
 
 }
