@@ -65,7 +65,7 @@ public class L39组合总和 {
 
     //对总集合排序之后，如果下一层的sum（就是本层的 sum + candidates[i]）已经大于target，就可以结束本轮for循环的遍历。
 
-    class Solution {
+    class Solution23 {
         int[] candidates;
         int target;
         List<List<Integer>> res = new ArrayList<>();
@@ -94,5 +94,35 @@ public class L39组合总和 {
             }
         }
     }
+
+    //回溯
+    class Solution {//2022年10月19日14:08:15复习
+
+        /**
+         * 参数：[candidates, target]
+         * 返回值：java.util.List<java.util.List<java.lang.Integer>>
+         * 作者： ladidol
+         * 描述：简单回溯捏。
+         */
+        public List<List<Integer>> combinationSum(int[] candidates, int target) {
+            dfs(candidates, target, 0, new ArrayList<>(), 0);
+            return res;
+        }
+
+        List<List<Integer>> res = new ArrayList<>();
+
+        void dfs(int[] candidates, int target, int curSum, List<Integer> path, int curIndex) {
+            if (curSum > target) return;
+            if (curSum == target) {
+                res.add(new ArrayList<>(path));//List是引用类型。
+            }
+            for (int i = curIndex; i < candidates.length; i++) {
+                path.add(candidates[i]);
+                dfs(candidates, target, curSum + candidates[i], path, i);
+                path.remove(path.size() - 1);//路径回溯。
+            }
+        }
+    }
+
 
 }

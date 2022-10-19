@@ -1,6 +1,7 @@
 package com.feng.newline.backtracking;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ import java.util.List;
 public class L17电话号码的字母组合 {
 
 
-    class Solution {
+    class Solution1 {
         //初始对应所有的数字，为了直接对应2-9，新增了两个无效的字符串""；通过层数来下标获取九键字母。
         String[] numString = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
 
@@ -44,6 +45,38 @@ public class L17电话号码的字母组合 {
                 cur.append(chars[i]);//处理
                 backtracking(numIndex + 1);//进入下一层
                 cur.deleteCharAt(cur.length() - 1);//回溯
+            }
+        }
+    }
+
+    //回溯
+    class Solution {//2022年10月19日13:41:37复习
+
+        /**
+         * 参数：[digits]
+         * 返回值：java.util.List<java.lang.String>
+         * 作者： ladidol
+         * 描述：一眼很简单回溯模拟。
+         */
+        public List<String> letterCombinations(String digits) {
+            String[] strings = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+            int n = digits.length();
+            if (n == 0) return new ArrayList<>();
+            dfs(n, 0, strings, "", digits);
+            return res;
+        }
+
+        List<String> res = new LinkedList<>();
+
+        void dfs(int n, int curIndex, String[] strings, String path, String digits) {
+            if (curIndex == n) {
+                res.add(path);
+                return;
+            }
+            int index = digits.charAt(curIndex) - '0';
+            char[] chars = strings[index].toCharArray();
+            for (char c : chars) {
+                dfs(n, curIndex + 1, strings, path + c, digits);
             }
         }
     }
