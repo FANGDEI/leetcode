@@ -1,6 +1,5 @@
 package com.feng.newline.list;
 
-import java.util.List;
 
 /**
  * @projectName: leetcode
@@ -49,7 +48,7 @@ public class L19删除链表的倒数第N个结点 {
 
 
     //链表运用
-    class Solution {//2022年10月5日11:20:56再做。
+    class Solution1213123 {//2022年10月5日11:20:56再做。
 
         /**
          * 参数：[head, n]
@@ -59,7 +58,6 @@ public class L19删除链表的倒数第N个结点 {
          */
         public ListNode removeNthFromEnd(ListNode head, int n) {
             int size = 0;
-
 
 
             //增加一个虚拟头结点，方便删除头结点。
@@ -85,4 +83,35 @@ public class L19删除链表的倒数第N个结点 {
             return dumpHead.next;
         }
     }
+
+    //再复习一下，这里用之遍历一次的方法，之前廖dq老师教给我们的方法
+    //双指针
+    class Solution {//2022年10月18日13:45:19复习
+
+        /**
+         * 参数：[head, n]
+         * 返回值：com.feng.newline.list.ListNode
+         * 作者： ladidol
+         * 描述：
+         */
+        public ListNode removeNthFromEnd(ListNode head, int n) {
+            ListNode dummy = new ListNode(-1);
+            dummy.next = head;
+            ListNode fast = dummy;
+            ListNode slow = dummy;
+            while (n >= 0) {
+                n--;
+                fast = fast.next;
+            }
+            //这里的slow代表的删除节点前一个元素。
+            while (fast != null) {
+                fast = fast.next;
+                slow = slow.next;
+            }
+            slow.next = slow.next.next;
+            return dummy.next;
+        }
+    }
+
+
 }
