@@ -89,7 +89,7 @@ public class L142环形链表II {
     }
 
     //快慢指针，呜呜呜，数学证明
-    public class Solution {// 2022年10月7日13:09:46再来做一下。
+    public class Solution12341 {// 2022年10月7日13:09:46再来做一下。
 
         /**
          * 参数：[head]
@@ -114,6 +114,35 @@ public class L142环形链表II {
                 }
             }
             return null;//只能用null
+        }
+    }
+
+
+    //复习一下
+    public class Solution {
+        /**
+         * 参数：[head]
+         * 返回值：com.feng.newline.list.ListNode
+         * 作者： ladidol
+         * 描述：快慢指针
+         */
+        public ListNode detectCycle(ListNode head) {
+            if (head == null || head.next == null) return null;
+            ListNode fast = head;
+            ListNode slow = head;
+            //先遍历得到圈的接入点
+            while (fast != null && fast.next != null) {
+                fast = fast.next.next;
+                slow = slow.next;
+                if (fast == slow) break;
+            }
+            if (fast != slow) return null;
+            fast = head;
+            while (fast != slow) {
+                fast = fast.next;
+                slow = slow.next;
+            }
+            return fast;
         }
     }
 

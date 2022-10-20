@@ -28,7 +28,7 @@ import java.util.List;
  * pos 为 -1 或者链表中的一个 有效索引 。
  */
 public class L141环形链表 {
-    public class Solution {
+    public class Solution1 {
         /**
          * 参数：[head]
          * 返回值：boolean
@@ -52,4 +52,29 @@ public class L141环形链表 {
             return false;
         }
     }
+
+    //快慢指针
+    public class Solution {
+        /**
+         * 参数：[head]
+         * 返回值：boolean
+         * 作者： ladidol
+         * 描述：复习一下2022年10月18日13:08:17
+         */
+        public boolean hasCycle(ListNode head) {
+            if (head == null || head.next == null) return false;
+            ListNode fast = head;
+            ListNode slow = head;
+            slow = slow.next;
+            fast = fast.next.next;
+            while (fast != null && fast.next != null) {
+                slow = slow.next;
+                fast = fast.next.next;
+                if (slow == fast) return true;
+            }
+            return false;
+        }
+    }
+
+
 }
