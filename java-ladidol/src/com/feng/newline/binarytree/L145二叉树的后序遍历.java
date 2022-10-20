@@ -29,7 +29,8 @@ public class L145二叉树的后序遍历 {
             postorder(root, res);
             return res;
         }
-        void postorder(TreeNode root, List<Integer> res){
+
+        void postorder(TreeNode root, List<Integer> res) {
             if (root == null) return;
             postorder(root.left, res);//前
             postorder(root.right, res);//后
@@ -40,14 +41,14 @@ public class L145二叉树的后序遍历 {
     //和前序遍历有点瓜葛, 可以通过前序遍历演变而来
 
     // 后序遍历顺序 左-右-中 入栈顺序：中-左-右 出栈顺序：中-右-左， 最后翻转结果
-    class Solution {
+    class Solution12 {
         public List<Integer> postorderTraversal(TreeNode root) {
             List<Integer> res = new ArrayList<>();
             ArrayDeque<TreeNode> stack = new ArrayDeque<>();
             if (root == null) return res;
             stack.push(root);
 
-            while(!stack.isEmpty()){
+            while (!stack.isEmpty()) {
                 TreeNode cur = stack.pop();
                 res.add(cur.val);
                 if (cur.left != null) stack.push(cur.left);
@@ -59,5 +60,24 @@ public class L145二叉树的后序遍历 {
     }
 
     //有统一的前中后序遍历, 这里就先不写了, 有点难度.
+
+    //递归
+    class Solution {//2022年10月19日16:40:18复习
+
+        public List<Integer> postorderTraversal(TreeNode root) {
+            dfs(root);
+            return res;
+        }
+
+        List<Integer> res = new LinkedList<>();
+
+        void dfs(TreeNode root) {
+            if (root == null) return;
+            dfs(root.left);
+            dfs(root.right);
+            res.add(root.val);
+        }
+    }
+
 
 }

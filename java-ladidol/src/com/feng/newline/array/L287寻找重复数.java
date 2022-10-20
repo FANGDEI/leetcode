@@ -75,7 +75,7 @@ public class L287寻找重复数 {
     }
 
     //原地哈希（虽然不符合要求，但是帅就完事了。)
-    class Solution {
+    class Solution23 {
         /**
          * 参数：[nums]
          * 返回值：int
@@ -105,4 +105,36 @@ public class L287寻找重复数 {
             nums[b] = tmp;
         }
     }
+
+    //快慢指针
+    class Solution {//2022年10月20日11:12:20复习
+
+        /**
+         * 参数：[nums]
+         * 返回值：int
+         * 作者： ladidol
+         * 描述： 用数组的下标和值来模拟链表节点的value和next,通过当前value指向下一个next来连接
+         */
+        public int findDuplicate(int[] nums) {
+            int n = nums.length;
+            int fast = 0;
+            int slow = 0;
+            fast = nums[nums[fast]];
+            slow = nums[slow];
+            while (true) {
+                if (fast == slow) {//判断是否存在圈子，一定存在的。
+                    fast = 0;
+                    while (fast != slow) {//寻找圈的汇入点。
+                        fast = nums[fast];
+                        slow = nums[slow];
+                        if (fast == slow) return fast;
+                    }
+                }
+                fast = nums[nums[fast]];
+                slow = nums[slow];
+            }
+        }
+    }
+
+
 }

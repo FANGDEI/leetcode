@@ -1,9 +1,6 @@
 package com.feng.newline.binarytree;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 /**
  * @projectName: leetcode
@@ -47,7 +44,7 @@ public class L144二叉树的前序遍历 {
     为什么要先加入 右孩子，再加入左孩子呢？
     因为这样出栈的时候才是中左右的顺序。*/
     // 前序遍历顺序：中-左-右，入栈顺序：中-右-左，出栈顺序：中-左-右
-    class Solution {
+    class Solution1234 {
         public List<Integer> preorderTraversal(TreeNode root) {
             List<Integer> res = new ArrayList<>();
             ArrayDeque<TreeNode> stack = new ArrayDeque<>();
@@ -60,6 +57,30 @@ public class L144二叉树的前序遍历 {
                 if (cur.left != null) stack.push(cur.left);
             }
             return res;
+        }
+    }
+
+    //递归遍历
+    class Solution {//复习2022年10月19日16:29:35
+
+        /**
+         * 参数：[root]
+         * 返回值：java.util.List<java.lang.Integer>
+         * 作者： ladidol
+         * 描述：
+         */
+        public List<Integer> preorderTraversal(TreeNode root) {
+            dfs(root);
+            return res;
+        }
+
+        List<Integer> res = new LinkedList<>();
+
+        void dfs(TreeNode root) {
+            if (root == null) return;
+            res.add(root.val);
+            dfs(root.left);
+            dfs(root.right);
         }
     }
 

@@ -2,6 +2,7 @@ package com.feng.newline.binarytree;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 /**
@@ -19,24 +20,50 @@ import java.util.List;
  * @version: 1.0
  */
 public class L637二叉树的层平均值 {
-    class Solution {
+    class Solution123 {
         public List<Double> averageOfLevels(TreeNode root) {
             List<Double> res = new ArrayList<>();
             if (root == null) return res;
             ArrayDeque<TreeNode> queue = new ArrayDeque<>();
             queue.offer(root);
-            while(!queue.isEmpty()){
+            while (!queue.isEmpty()) {
                 int levelSize = queue.size();//注意放的位置
                 double sum = 0;
                 double fenMu = levelSize;
-                while(levelSize>0){
+                while (levelSize > 0) {
                     TreeNode cur = queue.poll();
                     sum += cur.val;
                     if (cur.left != null) queue.offer(cur.left);
                     if (cur.right != null) queue.offer(cur.right);
                     levelSize--;
                 }
-                res.add(sum/fenMu);
+                res.add(sum / fenMu);
+            }
+            return res;
+        }
+    }
+
+
+    //就是迭代法呜呜呜，简单到吐了。
+    class Solution {//2022年10月19日17:18:52复习
+
+        public List<Double> averageOfLevels(TreeNode root) {
+            Deque<TreeNode> deque = new ArrayDeque<>();
+            List<Double> res = new ArrayList<>();
+            if (root != null) deque.offer(root);
+
+            while (!deque.isEmpty()) {
+                int curSize = deque.size();
+                Double curSum = 0.0;//就用个指针来记录就行了。
+                Double fenMu = curSize * 1.0;
+                while (curSize > 0) {
+                    TreeNode cur = deque.poll();
+                    if (cur.left != null) deque.offer(cur.left);
+                    if (cur.right != null) deque.offer(cur.right);
+                    curSum += cur.val;
+                    curSize--;
+                }
+                res.add(curSum / fenMu);
             }
             return res;
         }

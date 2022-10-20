@@ -2,6 +2,7 @@ package com.feng.newline.binarytree;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 /**
@@ -30,7 +31,7 @@ import java.util.List;
  * @version: 1.0
  */
 public class L199二叉树的右视图 {
-    class Solution {
+    class Solution1 {
         public List<Integer> rightSideView(TreeNode root) {
             List<Integer> res = new ArrayList<>();
             ArrayDeque<TreeNode> queue = new ArrayDeque<>();
@@ -53,5 +54,30 @@ public class L199二叉树的右视图 {
             }
             return res;
         }
+    }
+
+    //迭代
+    class Solution {//2022年10月19日17:14:37复习
+
+        public List<Integer> rightSideView(TreeNode root) {
+            Deque<TreeNode> deque = new ArrayDeque<>();
+            List<Integer> res = new ArrayList<>();
+            if (root != null) deque.offer(root);
+
+            while (!deque.isEmpty()) {
+                int curSize = deque.size();
+                TreeNode theLastNode = new TreeNode();//就用个指针来记录就行了。
+                while (curSize > 0) {
+                    TreeNode cur = deque.poll();
+                    if (cur.left != null) deque.offer(cur.left);
+                    if (cur.right != null) deque.offer(cur.right);
+                    theLastNode = cur;
+                    curSize--;
+                }
+                res.add(theLastNode.val);
+            }
+            return res;
+        }
+
     }
 }

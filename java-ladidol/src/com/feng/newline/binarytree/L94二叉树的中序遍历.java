@@ -33,16 +33,16 @@ public class L94二叉树的中序遍历 {
     //通过栈实现迭代中序遍历
     //因为中序遍历的特殊性, 不是前序遍历简单就能转化过来的,需要多加修改.
     // 中序遍历顺序: 左-中-右 入栈顺序： 左-右
-    class Solution {
+    class Solution132 {
         public List<Integer> inorderTraversal(TreeNode root) {
             List<Integer> res = new ArrayList<>();
             ArrayDeque<TreeNode> stack = new ArrayDeque<>();
             TreeNode cur = root;
             while (cur != null || !stack.isEmpty()) {//判断条件多了一个当前节点不为空, 是因为可能左边最大子树遍历完后的情况
-                if (cur != null){
+                if (cur != null) {
                     stack.push(cur);//压栈
                     cur = cur.left;//继续深入   //左
-                }else{
+                } else {
                     //开始返回了
                     cur = stack.pop();// 从栈里弹出的数据，就是要处理的数据（放进result数组里的数据）
                     res.add(cur.val);//中
@@ -50,6 +50,24 @@ public class L94二叉树的中序遍历 {
                 }
             }
             return res;
+        }
+    }
+
+    //递归
+    class Solution {//2022年10月19日16:47:09复习
+
+        public List<Integer> inorderTraversal(TreeNode root) {
+            dfs(root);
+            return res;
+        }
+
+        List<Integer> res = new ArrayList<>();
+
+        void dfs(TreeNode root) {
+            if (root == null) return;
+            dfs(root.left);
+            res.add(root.val);
+            dfs(root.right);
         }
     }
 

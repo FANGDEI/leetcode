@@ -1,6 +1,8 @@
 package com.feng.newline.array;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -26,7 +28,7 @@ public class L448找到所有数组中消失的数字 {
 
 
     //巧方法
-    class Solution {
+    class Solution1 {
         /**
          * 参数：[nums]
          * 返回值：java.util.List<java.lang.Integer>
@@ -46,7 +48,59 @@ public class L448找到所有数组中消失的数字 {
             return res;
         }
     }
-    //原地哈希也能做，有空来做一下。
+
+
+    //类似原地哈希
+    class Solution232 {// 2022年10月20日11:44:28复习
+
+        /**
+         * 参数：[nums]
+         * 返回值：java.util.List<java.lang.Integer>
+         * 作者： ladidol
+         * 描述： 通过类似原地哈希的方法，这一次不用相反数转换，用取模运算，同时修改了值也能取模导致一样。
+         */
+        public List<Integer> findDisappearedNumbers(int[] nums) {
+            int n = nums.length;
+            for (int i = 0; i < n; i++) {
+                nums[(nums[i] - 1) % n] += n;
+            }
+            List<Integer> res = new LinkedList<>();
+            for (int i = 0; i < n; i++) {
+                if (nums[i] <= n) res.add(i + 1);//没有通过下标指引更改数字，其下标就是缺失的数字。
+            }
+            return res;
+        }
+    }
+
+
+    //原地哈希也能做
+    class Solution {
+        /**
+         * 参数：[nums]
+         * 返回值：java.util.List<java.lang.Integer>
+         * 作者： ladidol
+         * 描述： 对于num[i] != i+1的情况，就是不存在的数字，因为数字正常的话是1到n
+         */
+        public List<Integer> findDisappearedNumbers(int[] nums) {
+            for (int i = 0; i < nums.length; ) {
+                if (nums[i] != i + 1 && nums[nums[i] - 1] != nums[i]) swag(nums, i, nums[i] - 1);//换到当前i下：nums[i] = i + 1
+                else i++;
+            }
+            List<Integer> res = new LinkedList<>();
+            for (int i = 0; i < nums.length; i++) {
+                if (nums[i] != i + 1) {
+                    res.add(i + 1);
+                }
+            }
+            return res;
+        }
+
+        void swag(int[] nums, int i, int j) {
+            int tmp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = tmp;
+        }
+    }
 
 
 }

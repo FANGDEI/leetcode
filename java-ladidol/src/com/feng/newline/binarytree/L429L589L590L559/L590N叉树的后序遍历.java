@@ -16,7 +16,7 @@ import java.util.List;
  * @version: 1.0
  */
 public class L590N叉树的后序遍历 {
-    class Solution {
+    class Solution1 {
         public List<Integer> postorder(Node root) {
             List<Integer> res = new ArrayList<>();
             if (root == null) return res;
@@ -36,4 +36,25 @@ public class L590N叉树的后序遍历 {
             return res;
         }
     }
+
+    //递归
+    class Solution {//2022年10月19日16:43:20复习
+
+        public List<Integer> postorder(Node root) {
+            dfs(root);
+            return res;
+        }
+
+        List<Integer> res = new ArrayList<>();
+
+        void dfs(Node root) {
+            if (root == null) return;
+            for (Node child : root.children) {
+                dfs(child);
+            }
+            res.add(root.val);
+        }
+    }
+
+
 }
