@@ -32,11 +32,25 @@ public class List的一些骚操作 {
         // 如果要可变需要用ArrayList包装一下
         List<String> numbers = new ArrayList<>(Arrays.asList("1", "2", "3"));
 
-
-
     }
 
 
+
+    LinkedList<Integer> addListTmp = new LinkedList<>();
+
+    /**
+     * Inserts the specified element at the specified position in this list.
+     * Shifts the element currently at that position (if any) and any
+     * subsequent elements to the right (adds one to their indices).
+     * 在列表中的指定位置插入指定元素。将当前处于该位置的元素(如果有的话)和任何后续元素向右移动(将其添加到索引中)。
+     *
+     * @param index   index at which the specified element is to be inserted
+     * @param element element to be inserted
+     * @throws IndexOutOfBoundsException {@inheritDoc}
+     */
+    public void add(int index, int element) {
+        add(index,element);//
+    }
 
 
 }
