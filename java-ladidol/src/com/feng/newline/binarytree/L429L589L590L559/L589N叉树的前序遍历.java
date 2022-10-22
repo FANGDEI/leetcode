@@ -17,7 +17,7 @@ import java.util.List;
 public class L589N叉树的前序遍历 {
 
 
-    class Solution {
+    class Solution12342 {
         public List<Integer> preorder(Node root) {
             List<Integer> res = new ArrayList<>();
             if (root == null) return res;
@@ -27,8 +27,8 @@ public class L589N叉树的前序遍历 {
                 Node cur = stack.pop();
                 res.add(cur.val);
                 List<Node> children = cur.children;
-                for (int i = children.size()-1; i >=0 ; i--) {
-                    if (children.get(i)!= null){
+                for (int i = children.size() - 1; i >= 0; i--) {
+                    if (children.get(i) != null) {
                         stack.push(children.get(i));
                     }
                 }
@@ -36,6 +36,28 @@ public class L589N叉树的前序遍历 {
             return res;
         }
     }
+
+
+    //递归遍历
+    class Solution {//2022年10月19日17:13:49复习
+        public List<Integer> preorder(Node root) {
+            dfs(root);
+            return res;
+        }
+
+        List<Integer> res = new ArrayList<>();
+
+        void dfs(Node root) {
+            if (root == null) return;
+
+            res.add(root.val);
+            for (Node child : root.children) {
+                dfs(child);
+            }
+        }
+    }
+
+
 }
     /*
 // Definition for a Node.

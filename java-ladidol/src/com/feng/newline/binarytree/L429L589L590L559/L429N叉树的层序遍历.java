@@ -1,9 +1,7 @@
 package com.feng.newline.binarytree.L429L589L590L559;
 
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @projectName: leetcode
@@ -21,7 +19,7 @@ import java.util.List;
 public class L429N叉树的层序遍历 {
 
     //看题看了半天, 发现输入不是数组, 是已经成样子的root树.
-    class Solution {
+    class Solution1234 {
         public List<List<Integer>> levelOrder(Node root) {
             List<List<Integer>> res = new ArrayList<>();
             if (root == null) return res;
@@ -46,6 +44,31 @@ public class L429N叉树的层序遍历 {
             return res;
         }
     }
+
+    class Solution {//2022年10月19日17:14:02复习
+        public List<List<Integer>> levelOrder(Node root) {
+            Deque<Node> queue = new ArrayDeque<>();
+            List<List<Integer>> res = new LinkedList<>();
+            if (root != null) queue.offer(root);
+
+            while (!queue.isEmpty()) {
+                List<Integer> tmp = new LinkedList<>();
+                int curSize = queue.size();
+                while (curSize > 0) {
+                    Node cur = queue.poll();
+                    tmp.add(cur.val);
+                    for (Node child : cur.children) {
+                        queue.offer(child);
+                    }
+                    curSize--;
+                }
+                res.add(tmp);
+            }
+            return res;
+        }
+    }
+
+
 }
     /*
 // Definition for a Node.

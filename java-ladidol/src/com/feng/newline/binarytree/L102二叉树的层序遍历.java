@@ -2,6 +2,7 @@ package com.feng.newline.binarytree;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 /**
@@ -15,16 +16,16 @@ import java.util.List;
  */
 public class L102二叉树的层序遍历 {
     //BFS--迭代方式--借助队列
-    class Solution {
+    class Solution132 {
         public List<List<Integer>> levelOrder(TreeNode root) {
             List<List<Integer>> res = new ArrayList<>();
             if (root == null) return res;
             ArrayDeque<TreeNode> queue = new ArrayDeque<>();//一般都用LinkedList来做题，如果能做成功就换成ArrayDeque看看效率能不能提高一些
             queue.offer(root);
-            while(!queue.isEmpty()){//主要利用了每一层中queue都会增加的
+            while (!queue.isEmpty()) {//主要利用了每一层中queue都会增加的
                 int len = queue.size();
                 List<Integer> levelList = new ArrayList<>();
-                while(len>0){//这是上一层的遍历,用len就不会受当前queue的大小影响.
+                while (len > 0) {//这是上一层的遍历,用len就不会受当前queue的大小影响.
                     TreeNode cur = queue.poll();
                     levelList.add(cur.val);
                     if (cur.left != null) queue.offer(cur.left);//这里if判断是否存在需要看题中null节点对结果的影响情况
@@ -59,4 +60,29 @@ public class L102二叉树的层序遍历 {
             checkFun01(node.right, deep);
         }
     }
+
+    //迭代
+    class Solution {//2022年10月19日16:50:15复习
+
+        public List<List<Integer>> levelOrder(TreeNode root) {
+            Deque<TreeNode> deque = new ArrayDeque<>();
+            List<List<Integer>> res = new ArrayList<>();
+            if (root != null) deque.offer(root);
+            while (!deque.isEmpty()) {
+                List<Integer> tmp = new ArrayList<>();
+                int curSize = deque.size();//当前层父节点；
+                while (curSize > 0) {
+                    TreeNode cur = deque.poll();
+                    tmp.add(cur.val);
+                    if (cur.left != null) deque.offer(cur.left);
+                    if (cur.right != null) deque.offer(cur.right);
+                    curSize--;
+                }
+                res.add(tmp);
+            }
+            return res;
+        }
+    }
+
+
 }
