@@ -24,7 +24,7 @@ import java.util.PriorityQueue;
 public class L215数组中的第K个最大元素 {
 
     //优先级队列
-    class Solution {
+    class Solution1 {
         /**
          * 参数：[nums, k]
          * 返回值：int
@@ -44,15 +44,25 @@ public class L215数组中的第K个最大元素 {
         }
     }
 
+    // 堆again
+    class Solution {// 2022年10月22日14:53:57
 
+        public int findKthLargest(int[] nums, int k) {
+            PriorityQueue<Integer> queue = new PriorityQueue<>();
+            for (int num : nums) {
+                queue.offer(num);
+            }
+            int ans = -1;
+            k = nums.length - k + 1;
+            while (k-- > 0) {
+                ans = queue.poll();
+            }
+            return ans;
+        }
+    }
 
 
     //基于快排的快速排序，待做。
-
-
-
-
-
 
 
 }

@@ -51,7 +51,7 @@ public class L739每日温度 {
     }
 
     // 单调栈
-    class Solution {
+    class Solution12 {
         //2022年10月2日12:55:59再做。
         public int[] dailyTemperatures(int[] temperatures) {
             Deque<Integer> stack = new ArrayDeque<>();
@@ -64,6 +64,33 @@ public class L739每日温度 {
                 stack.push(i);
             }
             return res;
+        }
+    }
+
+    //always 单调栈
+    class Solution {//时间再复习一下
+
+        /**
+         * 参数：[temperatures]
+         * 返回值：int[]
+         * 作者： ladidol
+         * 描述：典型的单调栈应用：勋在一下一个更大数。
+         */
+        public int[] dailyTemperatures(int[] temp) {
+            Deque<Integer> stack = new ArrayDeque<>();
+            for (int i = 0; i < temp.length; i++) {
+                //栈内从底到顶是递减。
+                while (!stack.isEmpty() && temp[stack.peek()] < temp[i]) {
+                    int pre = stack.poll();
+                    temp[pre] = i - pre;
+                }
+                stack.push(i);
+            }
+            while (!stack.isEmpty()) {
+                temp[stack.pop()] = 0;
+            }
+
+            return temp;
         }
     }
 

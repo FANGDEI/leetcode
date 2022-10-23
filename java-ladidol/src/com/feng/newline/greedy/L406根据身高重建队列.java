@@ -32,7 +32,7 @@ import java.util.LinkedList;
  * @version: 1.0
  */
 public class L406根据身高重建队列 {
-    class Solution {
+    class Solution12 {
         //高的会影响矮的，但是矮的插入到前面是不会影响到高的咯。
         public int[][] reconstructQueue(int[][] people) {
             //先排序
@@ -47,6 +47,32 @@ public class L406根据身高重建队列 {
                 list.add(people[i][1], people[i]);
             }
             return list.toArray(new int[people.length][]);
+        }
+    }
+
+    //贪心
+    class Solution {//2022年10月22日15:10:02再做一遍
+
+        /**
+         * 参数：[people]
+         * 返回值：int[][]
+         * 作者： ladidol
+         * 描述：之前做的一个贪心，这次感觉有点陌生和难以理解了
+         * 主要是，这个乱序是一定可以还原成题目要的有序target的
+         * 所以：身高相同，k大的的站后面；
+         * 身高降序，每次从中拿出来保证先满足高身高的，小身高按照k插入会将先前的高身高同k的往后挤一下但是不影响后者k值。
+         * 上面通过LinkedList的add(index, value); 方法来实现。
+         */
+        public int[][] reconstructQueue(int[][] people) {
+            Arrays.sort(people, (a, b) -> {
+                if (a[0] == b[0]) return a[1] - b[1];//同身高，k小的站前面。
+                return b[0] - a[0];
+            });
+            LinkedList<int[]> list = new LinkedList<>();
+            for (int[] person : people) {
+                list.add(person[1], person);
+            }
+            return list.toArray(new int[list.size()][]);//太巧妙啦！
         }
     }
 }
