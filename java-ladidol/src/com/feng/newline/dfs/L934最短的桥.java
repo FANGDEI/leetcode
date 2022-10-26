@@ -90,7 +90,7 @@ public class L934最短的桥 {
                         if (x >= 0 && x < grid.length && y >= 0 && y < grid[0].length) {
                             if (grid[x][y] == 1) return ans;
                             else if (grid[x][y] == 0) {
-                                grid[x][y] = 2;
+                                grid[x][y] = 2;//这里需要染色。
                                 queue.offer(new int[]{x, y});
                             }
                         }
