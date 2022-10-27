@@ -29,7 +29,8 @@ package com.feng.newline.dp;
  * @version: 1.0
  */
 public class L213打家劫舍II {
-    class Solution {
+
+    class Solution1234 {
         // 因为围成了一个圈：考虑第一个不考虑最后一个，不考虑第一个考虑最后一个。
         public int rob(int[] nums) {
             if (nums.length == 1) return nums[0];
@@ -49,4 +50,39 @@ public class L213打家劫舍II {
             return Math.max(dpFirst[nums.length - 1], dpEnd[nums.length - 1]);
         }
     }
+
+    //dp
+    class Solution {
+        /**
+         * 参数：[nums]
+         * 返回值：int
+         * 作者： ladidol
+         * 描述：循环数组，应对方式，二线dp。2022年10月27日21:31:55
+         */
+        public int rob(int[] nums) {
+            int n = nums.length;
+            if (n == 0) return 0;
+            if (n == 1) return nums[0];
+            int[][] dp = new int[n][2];//0表示不考虑第一个但考虑最后一个，1则相反。
+
+            //初始化
+            dp[0][0] = 0;
+            dp[1][0] = Math.max(dp[0][0], nums[1]);
+            dp[0][1] = Math.max(0, nums[0]);
+            dp[1][1] = Math.max(dp[0][1], nums[1]);
+
+            for (int i = 2; i < n; i++) {
+                if (i == n - 1) {
+                    dp[i][0] = Math.max(dp[i - 1][0], dp[i - 2][0] + nums[i]);
+                    dp[i][1] = Math.max(dp[i - 1][1], dp[i - 2][1]);//不考虑最后一个
+                    continue;
+                }
+                dp[i][0] = Math.max(dp[i - 1][0], dp[i - 2][0] + nums[i]);
+                dp[i][1] = Math.max(dp[i - 1][1], dp[i - 2][1] + nums[i]);
+            }
+            return Math.max(dp[n - 1][0], dp[n - 1][1]);
+        }
+    }
+
+
 }

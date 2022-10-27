@@ -32,16 +32,42 @@ public class L198打家劫舍 {
     // 如果偷第i房间，那么dp[i] = dp[i - 2] + nums[i] ，即：第i-1房一定是不考虑的，找出 下标i-2（包括i-2）以内的房屋，最多可以偷窃的金额为dp[i-2] 加上第i房间偷到的钱。
     // 如果不偷第i房间，那么dp[i] = dp[i - 1]，即考虑i-1房，（注意这里是考虑，并不是一定要偷i-1房，这是很多同学容易混淆的点）
     // dp[i] = math.max(dp[i-1],dp[i-2]+ nums[i]);
-    class Solution {
+    class Solution123 {
         public int rob(int[] nums) {
             if (nums.length == 1) return nums[0];
             int[] dp = new int[nums.length];
             dp[0] = nums[0];
-            dp[1] = Math.max(nums[0],nums[1]);// 这里初始化留一个小心眼，要满足最大，才能装进dp数组。
+            dp[1] = Math.max(nums[0], nums[1]);// 这里初始化留一个小心眼，要满足最大，才能装进dp数组。
             for (int i = 2; i < nums.length; i++) {
                 dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
             }
             return dp[nums.length - 1];
         }
     }
+
+    //dp
+    class Solution {
+        /**
+         * 参数：[nums]
+         * 返回值：int
+         * 作者： ladidol
+         * 描述：主要是判断当前房屋考虑不。2022年10月27日20:58:35。好像用状态机dp多此一举了。
+         */
+        public int rob(int[] nums) {
+            int n = nums.length;
+            if (n == 0) return 0;
+            if (n == 1) return nums[0];
+            int[] dp = new int[n];
+            dp[0] = Math.max(nums[0], 0);//选与不选当前房屋。
+            dp[1] = Math.max(nums[1], dp[0]);
+
+            for (int i = 2; i < nums.length; i++) {
+                dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
+
+            }
+            return dp[n - 1];
+        }
+    }
+
+
 }

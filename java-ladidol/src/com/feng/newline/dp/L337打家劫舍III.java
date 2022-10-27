@@ -108,7 +108,7 @@ public class L337打家劫舍III {
     // root[0] = Math.max(rob(root.left)[0], rob(root.left)[1]) + Math.max(rob(root.right)[0], rob(root.right)[1])
     // 偷：左孩子不偷+ 右孩子不偷 + 当前节点偷
     // root[1] = rob(root.left)[0] + rob(root.right)[0] + root.val;
-    class Solution {
+    class Solution1234234 {
         public int rob(TreeNode root) {
             int[] res = treeDp(root);
             return Math.max(res[0], res[1]);
@@ -126,4 +126,34 @@ public class L337打家劫舍III {
             return res;
         }
     }
+
+
+    //树状dp
+    class Solution {
+        /**
+         * 参数：[root]
+         * 返回值：int
+         * 作者： ladidol
+         * 描述：2022年10月27日21:32:19，这里把每一个节点当成数组num的每一个元素就行了。我们用了状态机dp,这里要好理解状态的意思。
+         */
+        public int rob(TreeNode root) {
+            int[] res = treeDp(root);
+            return Math.max(res[0], res[1]);
+        }
+
+        int[] treeDp(TreeNode root) {
+            int[] cur = new int[2];//0表示未使用当前节点，1表示使用了。
+            if (root == null) return cur;
+            int[] left = treeDp(root.left);
+            int[] right = treeDp(root.right);
+
+            cur[0] = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);//这里要多留一个小心眼[4,1,null,2,null,3]
+            cur[1] = left[0] + right[0] + root.val;
+
+            
+            return cur;
+        }
+    }
+
+
 }
