@@ -156,7 +156,7 @@ public class L416分割等和子集 {
     }
 
     //简单背包问题，01背包问题
-    class Solution {//2022年10月17日13:53:46，再做一遍。
+    class Solution123 {//2022年10月17日13:53:46，再做一遍。
 
         /**
          * 参数：[nums]
@@ -189,5 +189,65 @@ public class L416分割等和子集 {
             return dp[n - 1][m] == m;
         }
     }
+
+    //简单的01背包问题再做一下
+    class Solution1232133 {
+        /**
+         * 参数：[nums]
+         * 返回值：boolean
+         * 作者： ladidol
+         * 描述：2022年10月27日23:05:08
+         */
+        public boolean canPartition(int[] nums) {
+            int n = nums.length;
+            int sum = Arrays.stream(nums).sum();
+            if ((sum & 1) == 1) return false;
+            int m = sum / 2;
+            int[][] dp = new int[n][m + 1];
+            //初始化dp数组
+            for (int j = nums[0]; j < m + 1; j++) {
+                dp[0][j] = nums[0];
+            }
+            for (int i = 1; i < n; i++) {
+                for (int j = 0; j < m + 1; j++) {
+                    int no = dp[i - 1][j];
+                    int yes = j >= nums[i] ? dp[i - 1][j - nums[i]] + nums[i] : 0;
+                    dp[i][j] = Math.max(no, yes);
+                }
+            }
+            return dp[n - 1][m] == m;
+        }
+    }
+
+    //简单的01背包，一维数组优化一下。
+    class Solution {
+        /**
+         * 参数：[nums]
+         * 返回值：boolean
+         * 作者： ladidol
+         * 描述：
+         */
+        public boolean canPartition(int[] nums) {
+            int n = nums.length;
+            int sum = Arrays.stream(nums).sum();
+            if ((sum & 1) == 1) return false;
+            int m = sum / 2;
+            int[] dp = new int[m + 1];
+            //初始化dp数组
+            for (int j = nums[0]; j < m + 1; j++) {
+                dp[j] = nums[0];
+            }
+
+            for (int i = 1; i < n; i++) {
+                for (int j = m; j >= nums[i]; j--) {
+                    dp[j] = Math.max(dp[j], dp[j - nums[i]] + nums[i]);
+                }
+            }
+
+
+            return dp[m] == m;
+        }
+    }
+
 
 }
