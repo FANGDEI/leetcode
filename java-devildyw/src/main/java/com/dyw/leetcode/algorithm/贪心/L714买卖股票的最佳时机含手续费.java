@@ -16,7 +16,7 @@ package com.dyw.leetcode.algorithm.贪心;
 public class L714买卖股票的最佳时机含手续费 {
 
     public static void main(String[] args) {
-        System.out.println(new L714买卖股票的最佳时机含手续费().maxProfit(new int[]{1, 3, 2, 8, 9, 11}, 2));
+        System.out.println(new L714买卖股票的最佳时机含手续费().maxProfit01(new int[]{1, 3, 2, 8, 9, 11}, 2));
     }
 
     /**
@@ -51,6 +51,22 @@ public class L714买卖股票的最佳时机含手续费 {
                 /*
                 因为如果还在收获利润的区间里，表示并不是真正的卖出，而计算利润每次都要减去手续费，所以要让minPrice = prices[i] - fee;，这样在明天收获利润的时候，才不会多减一次手续费！
                  */
+            }
+        }
+        return sum;
+    }
+
+
+    public int maxProfit01(int[] prices, int fee) {
+        int buy = prices[0] + fee;
+        int sum = 0;
+
+        for (int i = 0; i < prices.length; i++) {
+            if (prices[i]+fee<buy){
+                buy = prices[i]+fee;
+            } else if (prices[i] > buy) {
+                sum += prices[i]-buy;
+                buy = prices[i];
             }
         }
         return sum;
