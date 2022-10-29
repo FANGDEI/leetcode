@@ -72,8 +72,9 @@ public class L322零钱兑换 {
             return dp[amount] == INF ? -1 : dp[amount];
         }
     }
+
     //就是完全背包问题
-    class Solution {
+    class Solution345 {
         /**
          * 参数：[coins, amount]
          * 返回值：int
@@ -100,5 +101,34 @@ public class L322零钱兑换 {
             return dp[amount] == INF ? -1 : dp[amount];
         }
     }
+
+
+    //完全背包问题，可以背多个同样的元素。
+    class Solution {
+        /**
+         * 参数：[coins, amount]
+         * 返回值：int
+         * 作者： ladidol
+         * 描述：值得注意的是，这里是求得最少的硬币个数。2022年10月27日20:14:44
+         */
+        public int coinChange(int[] coins, int amount) {
+            int n = coins.length, m = amount;
+            int[] dp = new int[m + 1];
+            int INF = m + 1;
+            //初始化背包
+            for (int j = 0; j < m + 1; j++) {
+                dp[j] = INF;
+            }
+            dp[0] = 0;
+
+            for (int i = 0; i < n; i++) {
+                for (int j = coins[i]; j < m + 1; j++) {
+                    dp[j] = Math.min(dp[j], dp[j - coins[i]] + 1);
+                }
+            }
+            return dp[m] == INF ? -1 : dp[m];
+        }
+    }
+
 
 }

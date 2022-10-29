@@ -57,7 +57,7 @@ public class L907子数组的最小值之和 {
     }
 
     // 单调栈 (遍历顺序不一样，这里是代码随想录的遍历顺序)
-    class Solution {
+    class Solution12341234 {
         // A[i]∗(i−left+1)∗(right−i+1)：乘法原理。这里的left和right是边界。
         public int sumSubarrayMins(int[] arr) {
             Deque<Integer> stack = new ArrayDeque<>();
@@ -93,6 +93,53 @@ public class L907子数组的最小值之和 {
                 //这里取模很细节！！！！！！要注意
                 long tmp = ((long) (i - left[i]) * (long) (right[i] - i) * arr[i] % mod) % mod;
                 ans = (ans + tmp) % mod;
+            }
+            return (int) ans;
+        }
+    }
+
+    //单调栈
+    class Solution {
+        /**
+         * 参数：[arr]
+         * 返回值：int
+         * 作者： ladidol
+         * 描述：之前用的单调栈，今天就再用一下。2022年10月28日17:10:58
+         * <p>
+         * 用到乘法原理：看每一个数能作为最小值能影响器左右的范围，用乘法原理得出影响的子数组个数。
+         * 值得注意的就是这里尽量用下标来存，
+         * [3,1,2,4]，这样左右边界，就可以用默认值-1和n；
+         */
+        public int sumSubarrayMins(int[] arr) {
+            Deque<Integer> stack = new ArrayDeque<>();
+            int n = arr.length;
+            int[] left = new int[n];
+            int[] right = new int[n];
+            int MOD = (int) (1e9 + 7);
+
+            for (int i = 0; i < n; i++) {//默认左右边长度是到数组边界的距离。
+                left[i] = i + 1;
+                right[i] = n - i;
+            }
+            for (int i = 0; i < n; i++) {
+                while (!stack.isEmpty() && arr[stack.peek()] >= arr[i]) {//注意一个子数组中可能有相同的最小值元素，这里一边取得到相等，一边取不到相等，保证不会重复计算。
+                    right[stack.peek()] = i - stack.peek();
+                    stack.pop();
+                }
+                stack.push(i);
+            }
+
+            for (int i = n - 1; i >= 0; i--) {
+                while (!stack.isEmpty() && arr[stack.peek()] > arr[i]) {
+                    left[stack.peek()] = stack.peek() - i;
+                    stack.pop();
+                }
+                stack.push(i);
+            }
+            long ans = 0;
+            for (int i = 0; i < n; i++) {
+                //依旧是这里的取余操作比较神奇。
+                ans = (ans + (((long) right[i] * arr[i]) % MOD * left[i]) % MOD) % MOD;
             }
             return (int) ans;
         }

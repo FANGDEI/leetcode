@@ -158,7 +158,7 @@ public class L279完全平方数 {
     }
 
     //动态规划
-    class Solution { //2022年10月17日09:43:17再做
+    class Solution1223453 { //2022年10月17日09:43:17再做
         /**
          * 参数：[n]
          * 返回值：int
@@ -187,6 +187,42 @@ public class L279完全平方数 {
             }
             return dp[n];
         }
+
+        List<Integer> getSquares(int n) {
+            List<Integer> list = new ArrayList<>();
+            for (int i = 1; i * i <= n; i++) {//真就是这样写的捏。
+                list.add(i * i);
+            }
+            return list;
+        }
+    }
+
+    //完全背包
+    class Solution {
+        /**
+         * 参数：[n]
+         * 返回值：int
+         * 作者： ladidol
+         * 描述：先得到完全平方数数组捏，想要得到最少数量，有1的存在，就一定能保证每一个数都是完全平方数的和
+         * 2022年10月27日20:36:42
+         */
+        public int numSquares(int n) {
+            List<Integer> squares = getSquares(n);
+            int[] dp = new int[n + 1];
+            //背包初始化
+            int INF = n + 1;
+            Arrays.fill(dp, INF);
+            dp[0] = 0;
+            for (int i = 0; i < squares.size(); i++) {
+                for (int j = squares.get(i); j < n + 1; j++) {
+                    dp[j] = Math.min(dp[j], dp[j - squares.get(i)] + 1);
+                }
+            }
+            return dp[n];
+
+
+        }
+
 
         List<Integer> getSquares(int n) {
             List<Integer> list = new ArrayList<>();
