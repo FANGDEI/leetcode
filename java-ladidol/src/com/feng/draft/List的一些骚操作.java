@@ -1,9 +1,6 @@
 package com.feng.draft;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @projectName: leetcode
@@ -25,15 +22,38 @@ public class List的一些骚操作 {
     int[][] nums = list.toArray(new int[list.size()][]);
 
     public static void main(String[] args) {
-        // Integer.MAX_VALUE = 2147483647
-        System.out.println("Integer.MAX_VALUE = " + Integer.MAX_VALUE);
-        // 生成的list不可变
-        List<String> list = Arrays.asList("1", "2", "3");
-        // 如果要可变需要用ArrayList包装一下
-        List<String> numbers = new ArrayList<>(Arrays.asList("1", "2", "3"));
+//        // Integer.MAX_VALUE = 2147483647
+//        System.out.println("Integer.MAX_VALUE = " + Integer.MAX_VALUE);
+//        // 生成的list不可变
+//        List<String> list = Arrays.asList("1", "2", "3");
+//        // 如果要可变需要用ArrayList包装一下
+//        List<String> numbers = new ArrayList<>(Arrays.asList("1", "2", "3"));
+//
+
+
+        //test3
+        List<String[]> list3 = new ArrayList<>();
+        //["alice","bob","alice","chris"], ids = ["one","two","three","four"], views = [5,10,5,4]
+        list3.add(new String[]{"5","1abc","alice"});
+        list3.add(new String[]{"10","2abc","bob"});
+        list3.add(new String[]{"5","3abc","alice"});
+        list3.add(new String[]{"4","2abc","chris"});
+//        list3.add(new String[]{"0abc","1abc"});
+//        list3.add(new String[]{"1__abc","1abc"});
+
+
+
+        stringAdd(list3);
+
+        for (String[] strings : list3) {
+            System.out.println("strings = " + Arrays.toString(strings));
+        }
+
+
+
+
 
     }
-
 
 
     LinkedList<Integer> addListTmp = new LinkedList<>();
@@ -49,7 +69,25 @@ public class List的一些骚操作 {
      * @throws IndexOutOfBoundsException {@inheritDoc}
      */
     public void add(int index, int element) {
-        add(index,element);//
+        add(index, element);//
+    }
+
+    /**
+     * 参数：[list]
+     * 返回值：void
+     * 作者： ladidol
+     * 描述：尝试通过String[] 数组的不同的维度的指标来进行 比较排序。
+     */
+    public static void stringAdd(List<String[]> list) {
+        Collections.sort(list, new Comparator<String[]>() {
+            @Override
+            public int compare(String[] a, String[] b) {
+                if (a[0].equals(b[0])) return a[1].compareTo(b[1]);
+                return a[0].compareTo(b[0]);
+            }
+        });
+
+
     }
 
 
