@@ -1,5 +1,8 @@
 package com.feng.newline.greedy;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 /**
  * @projectName: leetcode
  * @package: com.feng.newline.greedy
@@ -26,7 +29,7 @@ public class L45跳跃游戏II {
     //因为当移动下标指向nums.size - 2时：
     //如果移动下标等于当前覆盖最大距离下标， 需要再走一步（即ans++），因为最后一步一定是可以到的终点。
     // （题目假设总是可以到达数组的最后一个位置）*****
-    class Solution {
+    class Solution1 {
         public int jump(int[] nums) {
             int maxCover = 0;//下一覆盖的最远下标
             int end = 0;//当前覆盖的最远距离下标
@@ -41,9 +44,59 @@ public class L45跳跃游戏II {
             return res;
         }
     }
-    //dp可能会更简单一些。
 
 
+    //听说dp可能会更简单一些。
+    // dp
+    class Solution2 {//2022年11月1日18:34:56
+
+        /**
+         * 参数：[nums]
+         * 返回值：int
+         * 作者： ladidol
+         * 描述：用dp[i]表示到达i下标所需要的最小步数。
+         */
+        public int jump(int[] nums) {
+//            int n = nums.length;
+//            int[] dp = new int[n];
+            // 先不做了。
+            return 0;
+        }
+    }
+
+    //听说了直接用bfs就行了
+    class Solution {//2022年11月1日18:45:25
+
+        /**
+         * 参数：[nums]
+         * 返回值：int
+         * 作者： ladidol
+         * 描述：注意配合剪枝。
+         */
+        public int jump(int[] nums) {
+            int n = nums.length;
+            if (n == 1) return 0;
+            Deque<Integer> queue = new ArrayDeque<>();
+            boolean[] came = new boolean[n];
+            queue.offer(0);
+            int ans = 1;
+            while (!queue.isEmpty()) {
+                int curSize = queue.size();
+                while (curSize > 0) {
+                    int cur = queue.poll();
+                    for (int i = cur + 1; i < n && i <= cur + nums[cur]; i++) {
+                        if (came[i]) continue;//表示走过，这里一定不是最优解，所以剪枝。
+                        if (i == n - 1) return ans;
+                        came[i] = true;
+                        queue.offer(i);
+                    }
+                    curSize--;
+                }
+                ans++;
+            }
+            return ans;
+        }
+    }
 
 
 }
