@@ -52,7 +52,7 @@ public class L213打家劫舍II {
     }
 
     //dp
-    class Solution {
+    class Solution12341 {
         /**
          * 参数：[nums]
          * 返回值：int
@@ -81,6 +81,43 @@ public class L213打家劫舍II {
                 dp[i][1] = Math.max(dp[i - 1][1], dp[i - 2][1] + nums[i]);
             }
             return Math.max(dp[n - 1][0], dp[n - 1][1]);
+        }
+    }
+
+
+    //dp
+    class Solution {//2022年11月2日08:44:22
+
+        /**
+         * 参数：[nums]
+         * 返回值：int
+         * 作者： ladidol
+         * 描述：背都背到了，用两个互相错位的dp。
+         */
+        public int rob(int[] nums) {
+            int n = nums.length;
+            if (n==1) return nums[0];
+
+            int[] leftDp = new int[n];
+            int[] rightDp = new int[n];
+
+            // 第一个dp考虑第一个元素。
+            leftDp[0] = Math.max(0, nums[0]);
+            leftDp[1] = Math.max(leftDp[0], nums[1]);
+
+            // 第二个dp考虑第二个元素。
+            rightDp[0] = 0;
+            rightDp[1] = Math.max(0, nums[1]);
+
+            for (int i = 2; i < n; i++) {
+                if (i != n - 1) {
+                    leftDp[i] = Math.max(leftDp[i - 1], leftDp[i - 2] + nums[i]);
+                } else {
+                    leftDp[i] = Math.max(leftDp[i - 1], leftDp[i - 2]);
+                }
+                rightDp[i] = Math.max(rightDp[i - 1], rightDp[i - 2] + nums[i]);
+            }
+            return Math.max(leftDp[n - 1], rightDp[n - 1]);
         }
     }
 
