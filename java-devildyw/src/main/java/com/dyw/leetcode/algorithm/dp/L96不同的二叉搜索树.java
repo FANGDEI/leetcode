@@ -24,7 +24,7 @@ public class L96不同的二叉搜索树 {
      * <p>
      * 所以dp[3] = dp[2] * dp[0] + dp[1] * dp[1] + dp[0] * dp[2]
      * <p>
-     * 递推公式：dp[i] += dp[j - 1] * dp[i - j];
+     * 递推公式：dp[i] += dp[j - 1] * dp[i - j]; dp[i] += dp[以j为头结点左子树节点数量] * dp[以j为头结点右子树节点数量]
      *
      * @param n
      * @return
