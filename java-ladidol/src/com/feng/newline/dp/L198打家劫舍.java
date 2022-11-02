@@ -46,7 +46,7 @@ public class L198打家劫舍 {
     }
 
     //dp
-    class Solution {
+    class Solution12341 {
         /**
          * 参数：[nums]
          * 返回值：int
@@ -64,6 +64,30 @@ public class L198打家劫舍 {
             for (int i = 2; i < nums.length; i++) {
                 dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
 
+            }
+            return dp[n - 1];
+        }
+    }
+
+
+    //dp
+    class Solution { //2022年11月2日08:39:07很巧，又碰到这题了
+        /**
+         * 参数：[nums]
+         * 返回值：int
+         * 作者： ladidol
+         * 描述：对以前的答案依稀还有记忆，只用一个一维dp就能做。
+         */
+        public int rob(int[] nums) {
+            int n = nums.length;
+
+            if (n==1)return nums[0];
+
+            int[] dp = new int[n];
+            dp[0] = Math.max(0, nums[0]);
+            dp[1] = Math.max(dp[0], nums[1]);//依旧是默认从当前位置的房屋考虑一下偷不偷。
+            for (int i = 2; i < n; i++) {
+                dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
             }
             return dp[n - 1];
         }
