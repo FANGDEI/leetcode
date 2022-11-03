@@ -81,4 +81,17 @@ public class L1620网络信号最好的坐标 {
             return (int) (power / (d + 1));
         }
     }
+
+
+    public static void main(String[] args) {
+
+        long num = 2020051035;
+        //其中K=13+学号mod 4，
+        System.out.println("(num % 4 + 13) = " + (num % 4 + 13));//16
+
+        //(学号mod 9 +1)*100
+        System.out.println("(num % 9 + 1) * 100 = " + (num % 9 + 1) * 100);//100
+    }
+
+
 }
