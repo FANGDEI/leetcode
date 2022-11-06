@@ -38,7 +38,6 @@ public class 完全背包 {
         /**
          * 可以看到与01背包的区别就只有遍历顺序的不同。
          */
-
         for (int maxValue : dp) {
             System.out.print(maxValue+" ");
         }
