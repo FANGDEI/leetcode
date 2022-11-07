@@ -23,7 +23,7 @@ public class L37解数独 {
     //对这个二维数组要理解一下。
     //当前层宽度————就是当前位置可填数字个数。
     //递归深度——————就是总共有多少个空位。
-    class Solution {
+    class Solution123421 {
         char[][] board;
 
         public void solveSudoku(char[][] board) {
@@ -81,6 +81,63 @@ public class L37解数独 {
                 }
             }
             return true;
+        }
+    }
+
+    //记忆性搜索，这一次使用了三个数组表示不同的维度的记忆性。
+    class Solution {
+
+        boolean[][] rowUsed = new boolean[9][10];//数字那一位要多开一个空间
+        boolean[][] colUsed = new boolean[9][10];
+        boolean[][][] boxUsed = new boolean[3][3][10];
+
+        public void solveSudoku(char[][] board) {
+            //初始化被使用数组
+            for (int i = 0; i < 9; i++) {
+                for (int j = 0; j < 9; j++) {
+                    char num = board[i][j];
+                    if (num != '.') {
+                        rowUsed[i][num - '0'] = true;
+                        colUsed[j][num - '0'] = true;
+                        boxUsed[i / 3][j / 3][num - '0'] = true;
+                    }
+                }
+            }
+            dfs(board);
+        }
+
+        boolean dfs(char[][] board) {
+            for (int i = 0; i < 9; i++) {
+                for (int j = 0; j < 9; j++) {
+                    if (board[i][j] == '.') {
+                        for (char k = '1'; k <= '9'; k++) {
+                            if (!isUsed(board, i, j, k)) {
+                                rowUsed[i][k - '0'] = true;
+                                colUsed[j][k - '0'] = true;
+                                boxUsed[i / 3][j / 3][k - '0'] = true;
+                                board[i][j] = k;
+                                if (dfs(board)) return true;//找到了就直接开始剪枝。
+                                board[i][j] = '.';
+                                rowUsed[i][k - '0'] = false;
+                                colUsed[j][k - '0'] = false;
+                                boxUsed[i / 3][j / 3][k - '0'] = false;
+                            }
+                        }
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        /**
+         * 判断棋盘是否合法有如下三个维度:
+         * 同行是否重复
+         * 同列是否重复
+         * 9宫格里是否重复
+         */
+        boolean isUsed(char[][] board, int row, int col, char num) {
+            return rowUsed[row][num - '0'] || colUsed[col][num - '0'] || boxUsed[row / 3][col / 3][num - '0'];
         }
     }
 }
