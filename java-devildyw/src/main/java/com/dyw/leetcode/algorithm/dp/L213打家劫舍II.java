@@ -40,7 +40,7 @@ public class L213打家劫舍II {
         }
 
         //两种情况
-        return Math.max(robAction(nums,0,nums.length-2),robAction(nums,1,nums.length-1))
+        return Math.max(robAction(nums,0,nums.length-2),robAction(nums,1,nums.length-1));
     }
 
     private int robAction(int[] nums, int start, int end) {
