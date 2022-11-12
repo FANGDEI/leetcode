@@ -17,6 +17,11 @@ public class L121买卖股票的最佳时机 {
         System.out.println(new L121买卖股票的最佳时机().maxProfit(new int[]{7, 1, 5, 3, 6, 4}));
     }
 
+    /**
+     * 通过动态规划 不断遍历更新得持有股票利润的最大值（即 买入最便宜的股票的价值） 以及最大不持有股票的利润（即卖出股票的最大利润） 最后返回不持有股票的最大利润
+     * @param prices
+     * @return
+     */
     public int maxProfit(int[] prices) {
         int n = prices.length;
         int[][] dp = new int[n][2];
