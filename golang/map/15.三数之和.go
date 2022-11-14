@@ -10,6 +10,9 @@ func threeSum(nums []int) [][]int {
 	})
 
 	for i := 0; i < len(nums)-1; i++ {
+		// 正确去重
+		// {-1, -1, 2}
+		// 若使用 if i > 0 && nums[i] == nums[i + 1] 则会漏掉
 		if i > 0 && nums[i] == nums[i-1] {
 			continue
 		}
