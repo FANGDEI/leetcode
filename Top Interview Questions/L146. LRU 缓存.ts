@@ -1,31 +1,31 @@
 class LRUCache {
-    capacity:number
-    map:Map<number,number>
+    capacity: number
+    map: Map<number, number>
     constructor(capacity: number) {
-        this.capacity= capacity
-        this.map = new Map< number, number >()
+        this.capacity = capacity
+        this.map = new Map<number, number>()
     }
 
     get(key: number): number {
-        if (this.map.has(key)) {
-            let value=this.map.get(key)
+        const value = this.map.get(key)
+        if (value !== undefined) {
             this.map.delete(key)
             this.map.set(key, value)
-            return this.map.get(key)
+            return value
         } else {
             return -1
         }
     }
 
     put(key: number, value: number): void {
-        if(this.map.get(key)){
+        if (this.map.get(key)) {
             this.map.delete(key)
             this.map.set(key, value)
-        }else{
+        } else {
             this.map.set(key, value)
         }
-        if(this.map.size>this.capacity){
-            let iter=this.map.keys()
+        if (this.map.size > this.capacity) {
+            let iter = this.map.keys()
             this.map.delete(iter.next().value)
         }
     }
