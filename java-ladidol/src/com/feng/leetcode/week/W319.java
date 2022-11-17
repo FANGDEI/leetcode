@@ -155,7 +155,7 @@ public class W319 {
                     continue;
                 }
                 int j = i;
-                while (!isVisited[j]) {
+                while (!isVisited[j]) {//把一个环里面的元素的标记一下。
                     isVisited[j] = true;
                     j = indexMap.get(nums[j]);
                 }
