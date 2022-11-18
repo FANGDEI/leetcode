@@ -89,7 +89,8 @@ bower_components
 !.vscode/launch.json
 !.vscode/extensions.json
 jsconfig.json
-
+Top Interview Questions/Solution.ts
+Top Interview Questions/Solution.java
 # misc
 .sass-cache
 connect.lock
