@@ -13,10 +13,10 @@ public class 二分 {
 
 
     public static void main(String[] args) {
-        int[] nums = {1, 3, 5, 6, 7, 8, 9, 15, 23, 25};
-        int value = 普通二分(nums, 0, nums.length, 16);
-        int lower_bound = lower_bound(nums, 0, nums.length, 16);
-        int upper_bound = upper_bound(nums, 0, nums.length, 0);
+        int[] nums = {4,9};
+        int value = 普通二分(nums, 0, nums.length, 5);
+        int lower_bound = lower_bound(nums, 0, nums.length, 5);
+        int upper_bound = upper_bound(nums, 0, nums.length, 5);
 
         System.out.println("value = " + value);
         System.out.println("lower_bound = " + lower_bound);
