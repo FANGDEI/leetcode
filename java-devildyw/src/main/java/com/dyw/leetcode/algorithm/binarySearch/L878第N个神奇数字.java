@@ -8,7 +8,7 @@ package com.dyw.leetcode.algorithm.binarySearch;
 public class L878第N个神奇数字 {
 
     public static void main(String[] args) {
-
+        System.out.println(new L878第N个神奇数字().nthMagicalNumber(4, 2, 3));
     }
 
     static final int MOD = 1000000007;
@@ -25,15 +25,22 @@ public class L878第N个神奇数字 {
         long l = Math.min(a,b);
         long r =(long) n* Math.min(a,b);
         int c = lcm(a,b);
+        //使用r来不断逼近第n个申请数字
         while (l<=r){
             long mid = l+(r-l)/2;
+            //计算mid处的申请数字数量
             long cnt = mid/a + mid/b - mid/c;
+            //如果数量大于等于n 则r = mid-1 逼近目标
             if (cnt>=n){
                 r = mid-1;
+                System.out.println("r:"+r);
             }else{
+                //如果小于则l=mid+1 收缩区间
                 l = mid+1;
+                System.out.println("l:"+l);
             }
         }
+        //最后返回结果
         return (int)((r+1)%MOD);
 
     }
