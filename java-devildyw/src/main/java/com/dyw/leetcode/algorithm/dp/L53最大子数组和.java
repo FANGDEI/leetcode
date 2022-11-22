@@ -8,19 +8,15 @@ package com.dyw.leetcode.algorithm.dp;
 public class L53最大子数组和 {
 
     public int maxSubArray(int[] nums) {
-         int ans = Integer.MIN_VALUE;
-         int sum = 0;
-
+        int max = Integer.MIN_VALUE;
+        int sum = 0;
         for (int i = 0; i < nums.length; i++) {
-            if (sum<=0){
-                sum = nums[i];
-            }else{
-                sum+=nums[i];
+            max = Math.max(max,sum+=nums[i]);
+            if (sum+nums[i]<0){
+                sum=0;
             }
-            ans = Math.max(sum,ans);
-
         }
-        return ans;
+        return max;
     }
 
 
