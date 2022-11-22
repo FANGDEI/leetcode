@@ -1,6 +1,9 @@
 package com.feng.draft;
 
+import sun.reflect.generics.tree.Tree;
+
 import java.util.Arrays;
+import java.util.TreeSet;
 import java.util.stream.IntStream;
 
 /**
@@ -14,7 +17,7 @@ import java.util.stream.IntStream;
  */
 public class Arrays的一些骚操作 {
     public static void main(String[] args) {
-        int[] nums = {1, 2, 3};
+        int[] nums = {1, 2, 4};
         int[] numsCopy = {1, 2, 3};
         int[][] erWei = {{1, 2}, {1, 3}, {4, 5}};
         char[][] chessBoard = {{'1', '2'}, {'2', '4'}};
@@ -83,6 +86,21 @@ public class Arrays的一些骚操作 {
         //看看数组是否相等。
         boolean equals = Arrays.equals(nums, numsCopy);
 
+        //需要求一个数在一个数组中的位置，没有就找到该包含该数的区间。floor和ceiling
+        //先用TreeSet来存入数组，然后：
+        TreeSet<Integer> treeSet = new TreeSet<>();
+        int query = 234;
+        Integer minI = treeSet.floor(query);//天花板
+        Integer maxI = treeSet.ceiling(query);//地板
+
+
+        //Arrays.binarySearch，这个挺稀奇的。
+        //[1] 搜索值不是数组元素，且在数组范围内，从1开始计数，得“ - 插入点索引值”；
+        //[2] 搜索值是数组元素，从0开始计数，得搜索值的索引值；
+        //[3] 搜索值不是数组元素，且小于数组内元素，索引值为 – 1；
+        //[4] 搜索值不是数组元素，且大于数组内元素，索引值为 – (length + 1);
+        int i = Arrays.binarySearch(nums, 3);
+        System.out.println("i = " + i);
 
     }
 }
