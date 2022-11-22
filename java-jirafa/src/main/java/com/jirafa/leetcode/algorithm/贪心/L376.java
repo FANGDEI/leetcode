@@ -1,4 +1,4 @@
-package com.jirafa.leetcode;
+package com.jirafa.leetcode.algorithm.贪心;
 
 public class L376 {
     public int wiggleMaxLength(int[] nums) {

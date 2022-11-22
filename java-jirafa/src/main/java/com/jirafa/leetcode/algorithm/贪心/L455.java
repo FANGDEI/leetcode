@@ -1,8 +1,6 @@
-package com.jirafa.leetcode;
+package com.jirafa.leetcode.algorithm.贪心;
 
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Scanner;
 
 public class L455 {
 

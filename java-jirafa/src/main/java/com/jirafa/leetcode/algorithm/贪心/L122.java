@@ -1,4 +1,4 @@
-package com.jirafa.leetcode;
+package com.jirafa.leetcode.algorithm.贪心;
 
 /**
  * https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/

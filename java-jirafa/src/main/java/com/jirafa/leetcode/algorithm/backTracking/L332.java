@@ -1,4 +1,4 @@
-package com.jirafa.leetcode;
+package com.jirafa.leetcode.algorithm.backTracking;
 
 import java.util.Arrays;
 import java.util.Collections;

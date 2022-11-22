@@ -1,6 +1,5 @@
-package com.jirafa.leetcode;
+package com.jirafa.leetcode.algorithm.backTracking;
 
-import java.lang.reflect.Constructor;
 import java.util.*;
 
 public class L40 {
