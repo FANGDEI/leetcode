@@ -43,8 +43,6 @@ public class L6247从链表中移除节点 {
                 node = node.next;
                 tail = tail.next;
             }
-
-
         }
 
         return newHead;

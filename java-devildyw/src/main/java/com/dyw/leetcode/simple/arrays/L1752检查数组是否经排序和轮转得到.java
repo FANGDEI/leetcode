@@ -30,6 +30,7 @@ public class L1752检查数组是否经排序和轮转得到 {
                 return false;
             }
         }
+
         return true;
     }
 }

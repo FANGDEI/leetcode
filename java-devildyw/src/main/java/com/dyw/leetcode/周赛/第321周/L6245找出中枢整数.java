@@ -31,6 +31,7 @@ public class L6245找出中枢整数 {
             if (sum1==sum2){
                 return i;
             }
+
             i++;
         }
         return -1;

@@ -34,6 +34,7 @@ public class L6246追加字符以获得子序列 {
                 break;
             }
         }
+
         //最后返回 n-cnt就是要添加在s末尾的字符串长度
         return n-cnt;
 
