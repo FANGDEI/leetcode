@@ -39,12 +39,14 @@ public class L11盛最多水的容器 {
         /**
          * 在每个状态下，无论长板或短板向中间收窄一格，都会导致水槽 底边宽度 -1 变短：
          *
-         * 若向内 移动短板（i 向右移动 i 变大） ，水槽的短板 min(h[i], h[j])min(h[i],h[j]) 可能变大，因此下个水槽的面积 可能增大 。
+         * 若向内 移动短板（i 向右移动 i 变大） ，水槽的短板 min(h[i], h[j])min(h[i],h[j]) 可能变大，因此下个水槽的面积 可能增大（注意是可能） 。
          * 若向内 移动长板（j 向左移动 j减小） ，水槽的短板 min(h[i], h[j])min(h[i],h[j]) 不变或变小，因此下个水槽的面积 一定变小 。
          *
          */
         while (i < j) {
-            res = height[i] < height[j] ? Math.max(res, (j - i) * height[i++]) : Math.max(res, (j - i) * height[j--]);
+            res = height[i] < height[j]
+                    ? Math.max(res, (j - i) * height[i++])
+                    : Math.max(res, (j - i) * height[j--]);
         }
         return res;
     }
