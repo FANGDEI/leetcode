@@ -1,3 +1,4 @@
+// 快速选择 。。。其实就是标志位一定会是第k大的数，它的位置是正确的。。。》》》我的理解
 const findKthLargest = (nums, k) => {
     const n = nums.length;
 
