@@ -12,32 +12,34 @@ package com.dyw.leetcode.TOP面试题;
 public class L4寻找两个正序数组的中位数 {
 
     public static void main(String[] args) {
-        System.out.println(new L4寻找两个正序数组的中位数().findMedianSortedArrays(new int[]{1, 3}, new int[]{2}));
+        System.out.println(new L4寻找两个正序数组的中位数().findMedianSortedArrays(new int[]{1, 2}, new int[]{3,4}));
     }
 
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        int n = nums2.length;
-        int m = nums1.length;
-        int[] array = new int[m + n];
+        //将两个正序数组 组装成一个有序数组来计算中位数。
+        int[] array = new int[nums1.length+nums2.length];
+
+        //遍历指针
         int i = 0, j = 0;
-        int index = 0;
-        while (i<m&&j<n){
-            if (nums1[i]<nums2[j]){
-                array[index++] = nums1[i++];
+        while (i<nums1.length&&j<nums2.length){
+            if (nums1[i]<=nums2[j]){
+                array[i+j] = nums1[i];
+                i++;
             }else{
-                array[index++] = nums2[j++];
+                array[i+j] = nums2[j];
+                j++;
             }
         }
-        while (i<m){
-            array[index++] = nums1[i++];
+        while (i<nums1.length){
+            array[i+j] = nums1[i++];
         }
-        while (j<n){
-            array[index++] = nums2[j++];
+        while (j<nums2.length){
+            array[i+j] = nums2[j++];
         }
 
         double mid = 0;
         if (array.length%2==0){
-            mid = (double)(array[array.length/2] + array[(array.length/2)-1])/2;
+            mid = (array[array.length/2]+array[(array.length/2)-1])/2.0;
         }else{
             mid = array[array.length/2];
         }
