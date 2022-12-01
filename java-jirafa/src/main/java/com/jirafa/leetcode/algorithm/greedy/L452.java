@@ -8,7 +8,8 @@ import java.util.Comparator;
  */
 public class L452 {
     public int findMinArrowShots(int[][] points) {
-        Arrays.sort(points, Comparator.comparingInt(a -> a[0]));
+//        Arrays.sort(points,Comparator.comparingInt(a->a[0]));
+        Arrays.sort(points,(a,b)-> a[0]>=b[0]?1:-1);
         int cnt=1;
         for (int i = 1; i < points.length; i++) {
             if(points[i][0]>points[i-1][1])
@@ -20,6 +21,8 @@ public class L452 {
     }
 
     public static void main(String[] args) {
-        new L452().findMinArrowShots(new int[][]{{2, 3}, {1, 3}});
+        L452 l452 = new L452();
+        int minArrowShots = l452.findMinArrowShots(new int[][]{{-2147483646, -2147483645}, {2147483646, 2147483647}});
+        System.out.println(minArrowShots);
     }
 }
