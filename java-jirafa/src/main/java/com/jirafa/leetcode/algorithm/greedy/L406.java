@@ -6,9 +6,7 @@ import java.util.Queue;
 
 public class L406 {
     public int[][] reconstructQueue(int[][] people) {
-        Arrays.sort(people, (a, b) -> {
-            return a[0] == b[0] ? a[1] - b[1] : b[0] - a[0];
-        });
+        Arrays.sort(people, (a, b) -> a[0] == b[0] ? a[1] - b[1] : b[0] - a[0]);
 
         LinkedList<int[]> nums = new LinkedList<>();
 
