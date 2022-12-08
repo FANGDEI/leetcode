@@ -57,4 +57,19 @@ public class L11盛最多水的容器 {
         }
         return res;
     }
+
+
+    /**
+     * 双指针
+     * @param height
+     * @return
+     */
+    public int maxArea02(int[] height) {
+        int i = 0,j=height.length-1,res = 0;
+
+        while (i<j){
+            res = height[i]<height[j] ? Math.max(res,(j-i)*height[i++]):Math.max(res,(j-i)*height[j--]);
+        }
+        return res;
+    }
 }
