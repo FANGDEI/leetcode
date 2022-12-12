@@ -20,6 +20,14 @@ public class BM2链表内指定区间反转 {
         }
     }
 
+    /**
+     * 反转核心代码
+     * <img src="https://ding-blog.oss-cn-chengdu.aliyuncs.com/images/image-20221212204225138.png">
+     * @param head
+     * @param m
+     * @param n
+     * @return
+     */
     public ListNode reverseBetween(ListNode head, int m, int n) {
         // write code here
 
