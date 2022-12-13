@@ -1,4 +1,4 @@
-package com.dyw.leetcode.simple.map;
+package com.dyw.leetcode.simple.hash;
 
 import java.util.HashSet;
 import java.util.Set;
