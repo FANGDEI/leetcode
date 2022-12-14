@@ -11,32 +11,14 @@ package com.feng.draft.template.rangesum;
  */
 public class 并查集 {
 
-    //*********************普遍版本******************************************************************
-    int n = 10000;
+    //*********************常用版本↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓******************************************************************
+    int n;
 
-    int[] father = new int[n];
+    int[] father;
 
     void init() {
         for (int i = 1; i < n; ++i)
             father[i] = i;
-    }
-
-    //find方法（朴素模样）
-    int find淘汰了(int x) {
-        if (father[x] == x)//根节点标志：其父节点就是自己本身；
-            return x;
-        else
-            return find淘汰了(father[x]);//往父节点方向寻找根节点
-    }
-
-    //find方法（路径压缩v1）
-    int find1(int x) {
-        if (x == father[x])
-            return x;
-        else {
-            father[x] = find1(father[x]);  //父节点设为根节点
-            return father[x];         //返回父节点
-        }
     }
 
     //find方法（路径压缩v2：简约版）
@@ -50,19 +32,75 @@ public class 并查集 {
         father[find(i)] = find(j);
     }
 
-    public void union1(int x, int y) {
-        int fatherX = find(x);
-        int fatherY = find(y);
-
-        if (fatherX != fatherY) {//去重，其实没有必要的
-            father[fatherX] = fatherY;
-        }
-    }
-
     //查询
     boolean query(int x, int y) {
         return find(x) == find(y);
     }
+    //*********************常用版本↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑******************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+    //*********************普遍版本******************************************************************
+//    int n = 10000;
+//
+//    int[] father = new int[n];
+//
+//    void init() {
+//        for (int i = 1; i < n; ++i)
+//            father[i] = i;
+//    }
+//
+//    //find方法（朴素模样）
+//    int find淘汰了(int x) {
+//        if (father[x] == x)//根节点标志：其父节点就是自己本身；
+//            return x;
+//        else
+//            return find淘汰了(father[x]);//往父节点方向寻找根节点
+//    }
+//
+//    //find方法（路径压缩v1）
+//    int find1(int x) {
+//        if (x == father[x])
+//            return x;
+//        else {
+//            father[x] = find1(father[x]);  //父节点设为根节点
+//            return father[x];         //返回父节点
+//        }
+//    }
+//
+//    //find方法（路径压缩v2：简约版）
+//    int find(int x) {
+//        return x == father[x] ? x : (father[x] = find(father[x]));
+//    }
+//
+//
+//    //合并
+//    void union(int i, int j) {
+//        father[find(i)] = find(j);
+//    }
+//
+//    public void union1(int x, int y) {
+//        int fatherX = find(x);
+//        int fatherY = find(y);
+//
+//        if (fatherX != fatherY) {//去重，其实没有必要的
+//            father[fatherX] = fatherY;
+//        }
+//    }
+//
+//    //查询
+//    boolean query(int x, int y) {
+//        return find(x) == find(y);
+//    }
 
 
 
