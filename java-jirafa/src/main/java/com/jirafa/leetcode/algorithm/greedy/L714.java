@@ -1,25 +1,28 @@
 package com.jirafa.leetcode.algorithm.greedy;
 
+import org.junit.Test;
+
 public class L714 {
     public int maxProfit(int[] prices, int fee) {
         int minPrice = prices[0];
         int result = 0;
-        for (int i = 0; i < prices.length; i++) {
-            if (prices[i] < minPrice) minPrice = prices[i];
+        for (int i = 1; i < prices.length; i++) {
+            //买入操作，买入后相当于真正的卖出
+            if(prices[i]<minPrice)
+                minPrice = prices[i];
 
-            // 情况三：保持原有状态（因为此时买则不便宜，卖则亏本）
-            if (prices[i] >= minPrice && prices[i] <= minPrice + fee) {
-                continue;
+            if(prices[i]>minPrice+fee){
+                result+=prices[i]-minPrice-fee;
+                //若未进行买入操作，多次计算result时fee会被抵消，相当于只计算最后一笔交易金额
+                minPrice = prices[i] - fee;
             }
-
-            // 计算利润，可能有多次计算利润，最后一次计算利润才是真正意义的卖出
-            if (prices[i] > minPrice + fee) {
-                result += prices[i] - minPrice - fee;
-                minPrice = prices[i] - fee; // 情况一，这一步很关键
-            }
-
         }
-
         return result;
+    }
+
+    @Test
+    public void test(){
+        int i = new L714().maxProfit(new int[]{1, 3, 7, 5, 10, 3}, 3);
+        System.out.println(i);
     }
 }
