@@ -7,7 +7,7 @@ public class L714 {
         int minPrice = prices[0];
         int result = 0;
         for (int i = 1; i < prices.length; i++) {
-            //买入操作，买入后相当于真正的卖出
+            //买入操作，买入后相当于完成真正的卖出
             if(prices[i]<minPrice)
                 minPrice = prices[i];
 
