@@ -25,7 +25,7 @@ public class L90 {
             if(i!=0&&nums[i]==nums[i-1]&&!used[i-1]){
                 path.add(nums[i]);
                 used[i]=true;
-                backTracking(nums,start);
+                backTracking(nums,i+1);
                 used[i]=false;
                 path.remove(path.size()-1);
             }
