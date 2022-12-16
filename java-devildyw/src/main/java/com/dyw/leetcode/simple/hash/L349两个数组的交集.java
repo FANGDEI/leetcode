@@ -1,7 +1,5 @@
-package com.dyw.leetcode.simple.map;
+package com.dyw.leetcode.simple.hash;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.HashSet;
 
 /**

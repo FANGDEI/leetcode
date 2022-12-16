@@ -1,9 +1,8 @@
-package com.dyw.leetcode.medium.map;
+package com.dyw.leetcode.medium.hash;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
 
 /**
  * 给定两个字符串s和 p，找到s中所有p的异位词的子串，返回这些子串的起始索引。不考虑答案输出的顺序。

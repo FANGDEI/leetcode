@@ -1,4 +1,4 @@
-package com.dyw.leetcode.medium.map;
+package com.dyw.leetcode.medium.hash;
 
 import java.util.*;
 
