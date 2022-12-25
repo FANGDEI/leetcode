@@ -1,4 +1,4 @@
-package com.dyw.leetcode.algorithm;
+package com.dyw.leetcode.algorithm.并查集;
 
 /**
  * @author Devil
