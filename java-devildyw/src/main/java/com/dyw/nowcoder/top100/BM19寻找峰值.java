@@ -19,7 +19,7 @@ public class BM19寻找峰值 {
          */
         while (left<right){
             int mid = (right-left)/2+left;
-            //右边往下 不一定有波峰 也可能自己就是波峰
+            //右边往下 后续不一定有波峰 波峰可能在左边也可能自己就是波峰
             if (nums[mid]>nums[mid+1]){
                 right = mid;
                 //右边往上一定能找到波峰
