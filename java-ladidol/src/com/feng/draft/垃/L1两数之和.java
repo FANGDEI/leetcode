@@ -1,4 +1,4 @@
-package com.feng.leetcode;
+package com.feng.draft.垃;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * @projectName: leetcode
  * @package: PACKAGE_NAME
- * @className: com.feng.leetcode.L1两数之和
+ * @className: com.feng.draft.垃.L1两数之和
  * @author: Ladidol
  * @description:
  * @date: 2022/5/3 14:28
