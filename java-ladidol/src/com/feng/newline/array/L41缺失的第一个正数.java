@@ -1,5 +1,7 @@
 package com.feng.newline.array;
 
+import java.util.Arrays;
+
 /**
  * @author: ladidol
  * @date: 2022/10/20 15:07
@@ -29,7 +31,7 @@ package com.feng.newline.array;
 public class L41缺失的第一个正数 {
 
     //原地哈希
-    class Solution {
+    class Solution1 {
         /**
          * 参数：[nums]
          * 返回值：int
@@ -51,6 +53,39 @@ public class L41缺失的第一个正数 {
                 if (nums[i] != i + 1) return i + 1;
             }
             //注意是寻找最小未出现的正整数。
+            return n + 1;
+        }
+
+        void swag(int[] nums, int i, int j) {
+            int tmp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = tmp;
+        }
+    }
+
+
+    class Solution {
+        /**
+         * 由题意可得的on+常数空间，就只能用原地哈希了
+         *
+         * @param nums
+         * @return
+         */
+        public int firstMissingPositive(int[] nums) {
+            int n = nums.length;
+            for (int i = 0; i < n; ) {
+                if (nums[i] >= 1 && nums[i] < n && nums[nums[i] - 1] != nums[i]) {
+                    swag(nums, nums[i] - 1, i);
+                } else {
+                    i++;
+                }
+            }
+
+            for (int i = 0; i < n; i++) {
+                if (nums[i] != i + 1) {
+                    return i + 1;
+                }
+            }
             return n + 1;
         }
 
