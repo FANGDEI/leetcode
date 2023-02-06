@@ -1,4 +1,4 @@
-package com.feng.leetcode;
+package com.feng.draft.垃;
 
 /**
  * @Description: 这里的多数元素, 有一个重要的条件, 就是个数一定是多余一半的
