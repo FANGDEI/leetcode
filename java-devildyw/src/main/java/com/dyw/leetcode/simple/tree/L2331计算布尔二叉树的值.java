@@ -20,6 +20,12 @@ public class L2331计算布尔二叉树的值 {
         return evaluateTreeHelper(root);
     }
 
+
+    /**
+     * 按照根左右的顺序来计算树的布尔值
+     * @param root
+     * @return
+     */
     private boolean evaluateTreeHelper(TreeNode root) {
         if (root==null){
             return true;
