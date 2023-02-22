@@ -20,6 +20,10 @@ public class Test3 {
         set.add(1);
         set.add(4);
         set.add(9);
+        //忘记算0了
+        set.add(0);
+
+
         int count = 0;
         for (int i = 100; i <= 999; i++) {
             count += isSquare(i) ? 1 : 0;
