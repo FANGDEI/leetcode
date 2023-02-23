@@ -18,7 +18,7 @@ import java.util.TreeSet;
  * 输入：head = [3,2,0,-4], (pos = 1)
  * 输出：返回索引为 1 的链表节点
  * 解释：链表中有一个环，其尾部连接到第二个节点。
- * @date: 2022/7/10 16:25
+ * @date: 2023年2月22日21:18:07
  * @version: 1.0
  */
 public class L142环形链表II {
@@ -52,99 +52,6 @@ public class L142环形链表II {
             return null;
         }
     }
-
-    //利用leetcode的小特性来取巧. 堆的地址从低到高，LeetCode的链表内存是顺序申请的，如果有环，head->next一定小于或等于head，哈哈哈哈哈
-    //遗憾的是, java中地址不是个数字.
-    //但是捏, 还可以通过递增赋值来做.
-    public class Solution_这是什么令人窒息的方法啊 {
-        public ListNode detectCycle(ListNode head) {
-            int value = 0;
-            while (head.next != null) {
-                head.val = value++;
-                if (head.next.val < head.val) {
-                    return head.next;
-                }
-                head = head.next;
-            }
-            return null;
-        }
-    }
-
-
-    public class Solution3 {
-        public ListNode detectCycle(ListNode head) {
-            if (head == null)
-                return null;
-
-            Set<ListNode> set = new HashSet<>();
-
-            while (head != null) {
-                if (!set.add(head)) {
-                    return head;
-                }
-                head = head.next;
-            }
-            return null;
-        }
-    }
-
-    //快慢指针，呜呜呜，数学证明
-    public class Solution12341 {// 2022年10月7日13:09:46再来做一下。
-
-        /**
-         * 参数：[head]
-         * 返回值：com.feng.newline.list.ListNode
-         * 作者： ladidol
-         * 描述：快指针的速度是慢指针的两倍速度，只要链表中有环就一定会于环中相遇。
-         */
-        public ListNode detectCycle(ListNode head) {
-            ListNode fast = head;
-            ListNode slow = head;
-            while (fast != null && fast.next != null) {//跳出条件注意事项：可能不是双倍个数，所以这里。
-                fast = fast.next.next;
-                slow = slow.next;
-                if (fast == slow) {
-                    //相遇了，现在开始找环在链表中的接入点。
-                    fast = head;
-                    while (fast != slow) {
-                        fast = fast.next;
-                        slow = slow.next;
-                    }
-                    return fast;
-                }
-            }
-            return null;//只能用null
-        }
-    }
-
-
-    //复习一下
-    public class Solution {
-        /**
-         * 参数：[head]
-         * 返回值：com.feng.newline.list.ListNode
-         * 作者： ladidol
-         * 描述：快慢指针
-         */
-        public ListNode detectCycle(ListNode head) {
-            if (head == null || head.next == null) return null;
-            ListNode fast = head;
-            ListNode slow = head;
-            //先遍历得到圈的接入点
-            while (fast != null && fast.next != null) {
-                fast = fast.next.next;
-                slow = slow.next;
-                if (fast == slow) break;
-            }
-            if (fast != slow) return null;
-            fast = head;
-            while (fast != slow) {
-                fast = fast.next;
-                slow = slow.next;
-            }
-            return fast;
-        }
-    }
-
+    //有一些取巧的方法，这里就不一一指出来了
 
 }

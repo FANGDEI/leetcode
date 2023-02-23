@@ -10,7 +10,7 @@ import java.util.Set;
  * @description: {
  * 27个
  * 通过新建一个isSquare(int num) 方法判断num的每一位是不是都是平方数，满足要求返回true；不满足返回false；
- *
+ * <p>
  * }
  */
 public class Test3 {
@@ -30,13 +30,14 @@ public class Test3 {
         }
         System.out.println("count = " + count);
     }
+
     static Set<Integer> set = new HashSet<>();
 
     public static boolean isSquare(int num) {
         int bai = num / 100;
         int shi = num / 10 - bai * 10;
         int ge = num - bai * 100 - shi * 10;
-        if (set.contains(bai)&& set.contains(shi)&&set.contains(ge)) {
+        if (set.contains(bai) && set.contains(shi) && set.contains(ge)) {
             return true;
         }
         return false;
