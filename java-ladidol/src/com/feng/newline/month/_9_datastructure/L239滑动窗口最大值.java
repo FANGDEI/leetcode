@@ -1,6 +1,7 @@
 package com.feng.newline.month._9_datastructure;
 
 import java.util.ArrayDeque;
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.PriorityQueue;
 
@@ -98,9 +99,9 @@ public class L239滑动窗口最大值 {
      * 单调队列类似 （tail -->） 3 --> 2 --> 1 --> 0 (--> head) (右边为头结点，元素存的是下标)
      */
 
-    class Solution3 {
+    static class Solution3 {
         public int[] maxSlidingWindow(int[] nums, int k) {
-            ArrayDeque<Integer> monotoneDeque = new ArrayDeque<>();//单调队列-递减.
+            ArrayDeque<Integer> stack = new ArrayDeque<>();//单调队列-递减.
             int n = nums.length;
             int[] res = new int[n - k + 1];
             int index = 0;
@@ -108,22 +109,29 @@ public class L239滑动窗口最大值 {
                 //遍历途中维护一下单调队列
                 // 根据题意，i为nums下标，是要在[i - k + 1, i] 中选到最大值，只需要保证两点
                 // 1.队列头结点需要在[i - k + 1, i]范围内，不符合则要弹出    头结点一定是下标最小的捏.
-                if (!monotoneDeque.isEmpty() && monotoneDeque.peek() < i - k + 1) {
-                    monotoneDeque.poll();
+                if (!stack.isEmpty() && stack.peek() < i - k + 1) {
+                    stack.poll();
                 }
                 // 2.既然是单调，就要保证每次放进去的数字要不大于末尾，否则也弹出
-                while (!monotoneDeque.isEmpty() && nums[monotoneDeque.peekLast()] < nums[i]) {
-                    monotoneDeque.pollLast();
+                while (!stack.isEmpty() && nums[stack.peekLast()] < nums[i]) {
+                    stack.pollLast();
                 }
-                monotoneDeque.offer(i);//将下标放入
+                stack.offer(i);//将下标放入
                 if (i >= k - 1) {
-                    res[index++] = nums[monotoneDeque.peek()];//这里不用清理最大值的原因是, 可能这个最大值也是后面的最大值, 他要多用几次.
+                    res[index++] = nums[stack.peek()];//这里不用清理最大值的原因是, 可能这个最大值也是后面的最大值, 他要多用几次.
 //                    res[index++] = nums[monotoneDeque.pop()];//×
                 }
             }
             return res;
         }
+
     }
 
+    public static void main(String[] args) {
+        Solution3 solution3 = new Solution3();
+        int[] nums = {1,3,1,2,0,5};
+        int[] ints = solution3.maxSlidingWindow(nums, 3);
+        System.out.println("ints = " + Arrays.toString(ints));
+    }
 
 }
