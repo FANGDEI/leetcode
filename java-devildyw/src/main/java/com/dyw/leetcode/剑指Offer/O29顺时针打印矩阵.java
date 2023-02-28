@@ -7,7 +7,7 @@ package com.dyw.leetcode.剑指Offer;
  * 输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。
  */
 @SuppressWarnings("all")
-public class L29顺时针打印矩阵 {
+public class O29顺时针打印矩阵 {
     public static void main(String[] args) {
 
     }

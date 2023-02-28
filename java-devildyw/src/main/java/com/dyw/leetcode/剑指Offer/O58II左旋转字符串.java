@@ -9,9 +9,9 @@ package com.dyw.leetcode.剑指Offer;
  * @since 2022-09-11-10:59
  */
 @SuppressWarnings("all")
-public class L58II左旋转字符串 {
+public class O58II左旋转字符串 {
     public static void main(String[] args) {
-        System.out.println(new L58II左旋转字符串().reverseLeftWords("abcdefg", 2));
+        System.out.println(new O58II左旋转字符串().reverseLeftWords("abcdefg", 2));
     }
 
     /**

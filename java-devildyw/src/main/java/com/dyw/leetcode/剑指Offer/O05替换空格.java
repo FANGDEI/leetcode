@@ -7,7 +7,7 @@ package com.dyw.leetcode.剑指Offer;
  * @since 2022-09-10-11:33
  */
 @SuppressWarnings("all")
-public class L05替换空格 {
+public class O05替换空格 {
 
     public static void main(String[] args) {
 

@@ -31,19 +31,19 @@ package com.dyw.leetcode.剑指Offer;
  * @since 2022-10-18-11:09
  */
 @SuppressWarnings("all")
-public class 比较版本号 {
+public class O比较版本号 {
 
     public static void main(String[] args) {
         String version1 = "2.0.1";
         String version2 = "2";
-        比较版本号 solution = new 比较版本号();
+        O比较版本号 solution = new O比较版本号();
         System.out.println(solution.compare(version1, version2));
     }
 
     /**
      * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
      * <p>
-     * 比较版本号
+     * O比较版本号
      *
      * @param version1 string字符串
      * @param version2 string字符串
