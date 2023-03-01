@@ -1,8 +1,4 @@
-package com.feng.面试题.第六题;
-
-import javafx.util.Pair;
-
-import java.util.ArrayList;
+package com.feng.面试题.新希望六和.第六题;
 
 /**
  * @author: Xiaoqiang-Ladidol

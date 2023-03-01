@@ -1,7 +1,4 @@
-package com.feng.面试题.第二题;
-
-import java.util.HashSet;
-import java.util.Set;
+package com.feng.面试题.新希望六和.第二题;
 
 /**
  * @author: Xiaoqiang-Ladidol

@@ -1,4 +1,4 @@
-package com.feng.面试题.第一题;
+package com.feng.面试题.新希望六和.第一题;
 
 /**
  * @author: Xiaoqiang-Ladidol
