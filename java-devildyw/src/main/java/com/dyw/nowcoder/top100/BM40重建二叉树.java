@@ -36,7 +36,7 @@ public class BM40重建二叉树 {
         int leftNum = i_root_index - vstart;
 
         root.left = reConstructBinaryTreeHelper(pre,pstart+1, pstart+leftNum,vin,vstart,i_root_index-1);
-        root.right=reConstructBinaryTreeHelper(pre,pstart+leftNum+1,pend,vin,i_root_index+1,pend);
+        root.right=reConstructBinaryTreeHelper(pre,pstart+leftNum+1,pend,vin,i_root_index+1,vend);
 
         return root;
 
