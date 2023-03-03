@@ -52,35 +52,36 @@ public class L239滑动窗口最大值 {
          * @param k
          * @return
          */
-        public int[] maxSlidingWindow(int[] nums, int k) {
-            ArrayDeque<Integer> queue = new ArrayDeque<>();
-            int[] res = new int[nums.length - k + 1];
-            int index = 0;
-            for (int i = 0; i < nums.length; i++) {
-                //1.维护队列中的数都在k区间中
-                if (!queue.isEmpty() && queue.peekLast() < i - k + 1) {
-                    queue.pollLast();
-                }
-                //2.维护队列最大值（维护k区间的最大值）
-                while (!queue.isEmpty() && nums[queue.peekFirst()] < nums[i]) {
-                    queue.pollFirst();
-                }
-                queue.offerFirst(i);//从队列前面添加
-                //第2步到此结束
-
-                //维护队列末尾的最大值咯
-                if (i >= k - 1) {
-                    res[index++] = nums[queue.peekLast()];
-                }
-            }
-            return res;
-        }
+//        public int[] maxSlidingWindow(int[] nums, int k) {
+            //这边建议不要用单调队列，直接用优先级队列就行。
+//            ArrayDeque<Integer> queue = new ArrayDeque<>();
+//            int[] res = new int[nums.length - k + 1];
+//            int index = 0;
+//            for (int i = 0; i < nums.length; i++) {
+//                //1.维护队列中的数都在k区间中
+//                if (!queue.isEmpty() && queue.peekLast() < i - k + 1) {
+//                    queue.pollLast();
+//                }
+//                //2.维护队列最大值（维护k区间的最大值）
+//                while (!queue.isEmpty() && nums[queue.peekFirst()] < nums[i]) {
+//                    queue.pollFirst();
+//                }
+//                queue.offerFirst(i);//从队列前面添加
+//                //第2步到此结束
+//
+//                //维护队列末尾的最大值咯
+//                if (i >= k - 1) {
+//                    res[index++] = nums[queue.peekLast()];
+//                }
+//            }
+//            return res;
+//        }
     }
     public static void main(String[] args) {
         Solution solution = new Solution();
         int[] nums = {1,3,1,2,0,5};
-        int[] ints = solution.maxSlidingWindow(nums, 3);
-        System.out.println("ints = " + Arrays.toString(ints));
+//        int[] ints = solution.maxSlidingWindow(nums, 3);
+//        System.out.println("ints = " + Arrays.toString(ints));
     }
 
 
