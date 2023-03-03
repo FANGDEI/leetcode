@@ -10,7 +10,7 @@ package com.dyw.leetcode.剑指Offer;
 public class O05替换空格 {
 
     public static void main(String[] args) {
-
+        System.out.println(new O05替换空格().replaceSpace02("We are happy."));
     }
 
     /**
@@ -80,5 +80,18 @@ public class O05替换空格 {
         }
 
         return new String(chars);
+    }
+
+    public String replaceSpace02(String s) {
+        int n = s.length();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            if (s.charAt(i)==' '){
+                sb.append("%20");
+            }else{
+                sb.append(s.charAt(i));
+            }
+        }
+        return sb.toString();
     }
 }
