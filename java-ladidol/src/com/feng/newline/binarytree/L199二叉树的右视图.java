@@ -57,7 +57,7 @@ public class L199二叉树的右视图 {
     }
 
     //迭代
-    class Solution {//2022年10月19日17:14:37复习
+    class Solution {//2022年10月19日17:14:37复习 you are always right
 
         public List<Integer> rightSideView(TreeNode root) {
             Deque<TreeNode> deque = new ArrayDeque<>();
