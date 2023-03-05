@@ -41,4 +41,31 @@ public class O04二维数组中的查找 {
         }
         return false;
     }
+
+
+    public boolean findNumberIn2DArray01(int[][] matrix, int target) {
+        if (matrix == null|| matrix.length==0||matrix[0].length==0){
+            return false;
+        }
+
+        int n = matrix.length, m = matrix[0].length;
+
+        for (int i = 0; i < n; i++) {
+            int left = 0, right = m-1;
+            while (left<=right){
+                int mid = left+(right-left)/2;
+                if (matrix[i][mid]<target){
+                    left = mid + 1;
+                }else if (matrix[i][mid]>target){
+                    right = mid-1;
+                }else{
+                    return true;
+                }
+            }
+        }
+
+        return false;
+
+
+    }
 }

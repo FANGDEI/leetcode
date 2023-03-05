@@ -10,7 +10,7 @@ import java.util.Map;
 public class O11旋转数组的最小数字 {
 
     public static void main(String[] args) {
-
+        System.out.println(new O11旋转数组的最小数字().minArray01(new int[]{3, 4, 5, 1, 2}));
     }
 
     /**
@@ -46,6 +46,25 @@ public class O11旋转数组的最小数字 {
                 left = mid+1;
             }else{//如果nums[mid] == nums[right] 有可能是当前right为最终结果，但也有可能是数组中有重复的值，有因为是有序递增的，所以最小值在右边，这里就通过right来逼近
                 //因为有可能最小值就在mid和right的中间，是一个凹下去的区间.
+                right--;
+            }
+        }
+        return numbers[left];
+    }
+
+    public int minArray02(int[] numbers) {
+        if (numbers == null||numbers.length==0){
+            return -1;
+        }
+
+        int left = 0, right = numbers.length-1;
+        while (left<=right){
+            int mid = left+(right-left)/2;
+            if (numbers[mid]<numbers[right]){
+                right = mid;
+            }else if (numbers[mid]>numbers[right]){
+                left = mid+1;
+            }else{
                 right--;
             }
         }
