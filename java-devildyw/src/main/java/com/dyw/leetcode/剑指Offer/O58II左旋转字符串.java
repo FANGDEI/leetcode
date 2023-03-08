@@ -11,7 +11,7 @@ package com.dyw.leetcode.剑指Offer;
 @SuppressWarnings("all")
 public class O58II左旋转字符串 {
     public static void main(String[] args) {
-        System.out.println(new O58II左旋转字符串().reverseLeftWords("abcdefg", 2));
+        System.out.println(new O58II左旋转字符串().reverseLeftWords01("abcdefg", 2));
     }
 
     /**
@@ -35,12 +35,29 @@ public class O58II左旋转字符串 {
     }
 
     private void reverseString(StringBuilder sb, int start, int end) {
-        while (start<end){
+        while (start < end) {
             char temp = sb.charAt(start);
-            sb.setCharAt(start,sb.charAt(end));
-            sb.setCharAt(end,temp);
+            sb.setCharAt(start, sb.charAt(end));
+            sb.setCharAt(end, temp);
             start++;
             end--;
         }
+    }
+
+    public String reverseLeftWords01(String s, int n) {
+        char[] chars = s.toCharArray();
+        int length = s.length();
+        while (n-- > 0) {
+            char temp = chars[0];
+            for (int i = 1; i < length; i++) {
+                chars[i - 1] = chars[i];
+            }
+            chars[length - 1] = temp;
+        }
+        return new String(chars);
+    }
+
+    public String reverseLeftWords02(String s, int n) {
+        return s.substring(n)+s.substring(0, n);
     }
 }
