@@ -1,4 +1,7 @@
 ## 不同数据的差异
+
+![image-20230308170756572](https://figurebed-ladidol.oss-cn-chengdu.aliyuncs.com/img/202303081707678.png)
+
 大致曲线：
 
 ![时间复杂度，不同数据规模的差异](https://figurebed-ladidol.oss-cn-chengdu.aliyuncs.com/img/202205161029620.png)
@@ -14,6 +17,10 @@ c++
 
 2022年6月24日22:43:13
 注意面试的时候，面试官可能会让你手写，一些基本的数据结构哈！
+
+
+
+
 
 单链表：
 ```java
