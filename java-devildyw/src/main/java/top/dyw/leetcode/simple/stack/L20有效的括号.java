@@ -1,5 +1,6 @@
 package top.dyw.leetcode.simple.stack;
 
+import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -85,5 +86,25 @@ public class L20有效的括号 {
         }
         //最后返回栈是否为空
         return deque.isEmpty();
+    }
+
+    public boolean isValid02(String s) {
+        char[] charArray = s.toCharArray();
+        Deque<Character> stack = new ArrayDeque<>();
+
+        for (int i = 0; i < charArray.length; i++) {
+            if (charArray[i]=='{')
+                stack.push('}');
+            else if (charArray[i]=='[')
+                stack.push(']');
+            else if (charArray[i]=='(')
+                stack.push(')');
+            else if (stack.isEmpty()||stack.peek()!=charArray[i])
+                return false;
+            else
+                stack.pop();
+        }
+        return stack.isEmpty();
+
     }
 }

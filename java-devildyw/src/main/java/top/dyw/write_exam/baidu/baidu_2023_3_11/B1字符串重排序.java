@@ -1,4 +1,4 @@
-package top.dyw.write_exam.baidu_2023_3_11;
+package top.dyw.write_exam.baidu.baidu_2023_3_11;
 
 import java.io.BufferedReader;
 import java.io.IOException;
