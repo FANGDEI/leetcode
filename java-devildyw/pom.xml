@@ -20,6 +20,36 @@
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.70</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>21.0</version>
+        </dependency>
 
+        <dependency>
+            <groupId>io.github.ljwlgl</groupId>
+            <artifactId>common-util</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.gitee.yongzhuzl</groupId>
+            <artifactId>commonutil</artifactId>
+            <version>4.1.9</version>
+        </dependency>
     </dependencies>
 </project>
