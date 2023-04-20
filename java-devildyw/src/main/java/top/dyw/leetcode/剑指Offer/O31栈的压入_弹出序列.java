@@ -14,9 +14,6 @@ public class O31栈的压入_弹出序列 {
     }
 
     public boolean validateStackSequences(int[] pushed, int[] popped) {
-        if (pushed==null||pushed.length==0){
-            return false;
-        }
 
         Stack<Integer> stack = new Stack<>();
         int n = pushed.length;
