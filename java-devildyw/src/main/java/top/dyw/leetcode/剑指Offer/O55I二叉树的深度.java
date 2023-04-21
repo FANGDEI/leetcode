@@ -15,6 +15,7 @@ public class O55I二叉树的深度 {
         if (root==null){
             return 0;
         }
+        //由下到上
         return Math.max(maxDepth(root.left),maxDepth(root.right))+1;
     }
 
