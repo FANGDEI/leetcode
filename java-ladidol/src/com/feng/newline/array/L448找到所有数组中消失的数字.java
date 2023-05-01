@@ -1,7 +1,6 @@
 package com.feng.newline.array;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -83,7 +82,9 @@ public class L448找到所有数组中消失的数字 {
          */
         public List<Integer> findDisappearedNumbers(int[] nums) {
             for (int i = 0; i < nums.length; ) {
-                if (nums[i] != i + 1 && nums[nums[i] - 1] != nums[i]) swag(nums, i, nums[i] - 1);//换到当前i下：nums[i] = i + 1
+                if (nums[i] != i + 1 && nums[nums[i] - 1] != nums[i]) {
+                    swag(nums, i, nums[i] - 1);//换到当前i下：nums[i] = i + 1
+                }
                 else i++;
             }
             List<Integer> res = new LinkedList<>();
@@ -101,6 +102,7 @@ public class L448找到所有数组中消失的数字 {
             nums[j] = tmp;
         }
     }
+
 
 
 }
