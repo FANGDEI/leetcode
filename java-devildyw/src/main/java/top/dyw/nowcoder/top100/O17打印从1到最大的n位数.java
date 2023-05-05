@@ -32,11 +32,40 @@ public class O17打印从1到最大的n位数 {
             String s = String.valueOf(num).substring(start);
             if (!s.equals("0")) res[count++] = Integer.parseInt(s);
             if (n-start==nine) start--;
+            return;
         }
         for (char i:loop){
             if (i=='9') nine++;
             num[x] = i;
             dfs(x+1);
+        }
+        nine--;
+    }
+
+
+
+    public int[] printNumbers01(int n) {
+        this.n = n;
+        res = new int[(int)Math.pow(10,n)-1];
+        char[] num = new char[n];
+        start = n-1;
+        dfs01(0);
+        return res;
+    }
+
+    //回溯
+    private void dfs01(int x) {
+        if (x==n){
+            String sub = String.valueOf(num).substring(start);
+            if (!sub.equals("0")) res[count++] = Integer.parseInt(sub);
+            if (n-start==nine) start--;
+            return;
+        }
+
+        for (char l : loop) {
+            if (l=='9') nine++;
+            num[x] = l;
+            dfs01(x+1);
         }
         nine--;
     }
