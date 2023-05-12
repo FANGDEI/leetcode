@@ -7,6 +7,7 @@ package com.feng.leetcode.offerII._02数组;
  */
 public class 剑指OfferII010和为k的子数组 {
 
+    //这是朴素做法
     class Solution {
         public int subarraySum(int[] nums, int k) {
             int ans = 0;
@@ -24,4 +25,7 @@ public class 剑指OfferII010和为k的子数组 {
             return ans;
         }
     }
+
+    //还有一种前缀和+哈希的做法 https://leetcode.cn/problems/QTMn0o/solutions/1764672/by-ac_oier-hr6k/
+
 }
