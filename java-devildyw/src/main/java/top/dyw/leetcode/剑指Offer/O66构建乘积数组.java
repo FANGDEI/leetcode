@@ -18,6 +18,8 @@ public class O66构建乘积数组 {
      * @return
      */
     public int[] constructArr(int[] a) {
+        if (a==null||a.length==0) return new int[0];
+
         int length = a.length;
 
         //L 和 R 是两个左右两侧的乘积列表
