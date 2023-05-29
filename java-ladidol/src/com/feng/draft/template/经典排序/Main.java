@@ -1,6 +1,6 @@
-package com.feng.draft.template.排序;
+package com.feng.draft.template.经典排序;
 
-import com.feng.draft.template.排序.排序的应用.寻找n中的第k大数字;
+import com.feng.draft.template.经典排序.排序的应用.寻找n中的第k大数字;
 
 /**
  * @author: Xiaoqiang-Ladidol

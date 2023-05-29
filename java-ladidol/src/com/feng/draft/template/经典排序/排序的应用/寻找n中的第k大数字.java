@@ -1,4 +1,4 @@
-package com.feng.draft.template.排序.排序的应用;
+package com.feng.draft.template.经典排序.排序的应用;
 
 /**
  * @author: Xiaoqiang-Ladidol

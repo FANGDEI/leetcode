@@ -1,4 +1,4 @@
-package com.feng.draft.template.排序;
+package com.feng.draft.template.经典排序;
 
 /**
  * @author: Xiaoqiang-Ladidol
