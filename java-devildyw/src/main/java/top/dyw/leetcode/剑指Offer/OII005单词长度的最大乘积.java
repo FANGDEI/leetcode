@@ -17,7 +17,7 @@ public class OII005单词长度的最大乘积 {
         int[] bitSum = new int[words.length];
         for (int i = 0; i < words.length; i++) {
             for (char c : words[i].toCharArray()) {
-                // 用位运算记录每个单词中出现的字母
+                // 用位运算记录每个单词中出现的字母 计算得到字符串的二进制位
                 bitSum[i] |= 1 << (c - 'a');
             }
         }
