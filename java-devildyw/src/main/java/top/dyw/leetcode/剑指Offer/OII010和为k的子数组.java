@@ -27,7 +27,9 @@ public class OII010和为k的子数组 {
         for (int num : nums) {
             sum+=num;
             //具体来说，如果当前累加和 sum 减去目标值 k 的结果已经在 map 中出现过，则说明从上一个出现该结果的位置到当前位置的子数组和为 k
+            //这里map对应的count指的是下次出现sum-k的时候
             //如果出现了map中某个值对应的值大于1 可能是中间出现了减的操作
+            //参考这个序列 3 4 7 2 -3 1 4 -3 -1
             if (map.containsKey(sum-k)){
                 result+=map.get(sum-k);
             }
@@ -35,4 +37,5 @@ public class OII010和为k的子数组 {
         }
         return result;
     }
+
 }
