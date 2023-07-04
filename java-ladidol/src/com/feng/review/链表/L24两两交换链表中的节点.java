@@ -2,8 +2,6 @@ package com.feng.review.链表;
 
 import com.feng.newline.list.ListNode;
 
-import java.util.List;
-
 /**
  * @projectName: leetcode
  * @package: com.feng.newline.list
@@ -51,7 +49,7 @@ public class L24两两交换链表中的节点 {
     }
 
     //画图显然
-    class Solution {
+    class Solution2 {
         //更换当前cur和cur.next节点，注意总共有四个节点的参与
         public ListNode swapPairs(ListNode head) {
             ListNode dummy = new ListNode();
@@ -63,12 +61,39 @@ public class L24两两交换链表中的节点 {
                 ListNode tmp = cur.next.next;
                 pre.next = cur.next;
                 cur.next.next = cur;
-                cur.next  = tmp;
+                cur.next = tmp;
                 //维护cur和pre；
                 pre = cur;
                 cur = cur.next;
             }
             return dummy.next;
+        }
+    }
+
+
+    //画图显然（腾讯云智，手撕算法）
+    class Solution {
+        //更换当前cur和cur.next节点，注意总共有四个节点的参与
+        //我们需要换位置的是第二个节点和第三个节点
+        public ListNode swapPairs(ListNode head) {
+            ListNode dummyNode = new ListNode(-1, head);
+            ListNode cur = head;
+            ListNode pre = dummyNode;
+            while (cur != null && cur.next != null) {
+                //先保存第四个节点
+                ListNode tmp = cur.next.next;
+
+                cur.next.next = cur;
+                pre.next = cur.next;
+//                pre.next = cur.next;
+//                cur.next.next = cur;
+                cur.next = tmp;
+
+                pre = cur;
+                cur = cur.next;
+
+            }
+            return dummyNode.next;
         }
     }
 

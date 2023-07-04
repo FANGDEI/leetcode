@@ -1,8 +1,6 @@
 package com.feng.newline.binarytree;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @projectName: leetcode
@@ -68,6 +66,31 @@ public class L94二叉树的中序遍历 {
             dfs(root.left);
             res.add(root.val);
             dfs(root.right);
+        }
+    }
+
+    //栈模拟 迭代
+    class Solution12 {//2023年4月27日15:48:22复习
+
+        public List<Integer> inorderTraversal(TreeNode root) {
+            List<Integer> res = new LinkedList<>();
+            Deque<TreeNode> stack =  new ArrayDeque<>();
+            TreeNode cur = root;
+            //注意遍历到null的节点，就表示到一条线的底部了
+            while (cur != null || !stack.isEmpty()) {
+                if (cur!=null){
+                    //往左边深入
+                    stack.push(cur);
+                    cur = cur.left;//【左】
+                }else{
+                    //如果当前为空就证明dfs到底了
+                    TreeNode pop = stack.pop();
+
+                    res.add(pop.val);//【中】
+                    cur = pop.right;//【右】
+                }
+            }
+            return res;
         }
     }
 

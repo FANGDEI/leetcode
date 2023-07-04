@@ -5,19 +5,22 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static com.feng.draft.消费者and生产者.阻塞队列实现.BlockProductConsumer.queueSize;
+
 public class BlockProductConsumer {
+    static int queueSize = 100000;
     public static void main(String[] args) {
-        MyResouce resouce = new MyResouce(new ArrayBlockingQueue(5));
+        MyResouce resouce = new MyResouce(new ArrayBlockingQueue(queueSize));
         //生产者线程
         new Thread(() -> {
-            for (int i = 1; i <= 10; i++) {
+            for (int i = 1; i <= 10000; i++) {
                 resouce.product();
             }
         }, "生产者").start();
 
         //消费者线程
         new Thread(() -> {
-            for (int i = 1; i <= 10; i++) {
+            for (int i = 1; i <= 1; i++) {
                 try {
                     resouce.consumer();
                 } catch (InterruptedException e) {
@@ -28,7 +31,7 @@ public class BlockProductConsumer {
 
         try {
             //执行时间控制
-            TimeUnit.MILLISECONDS.sleep(1000);
+            TimeUnit.MILLISECONDS.sleep(10000);
             resouce.stop();
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -57,7 +60,7 @@ class MyResouce {
         try {
             while (FLAG) {
                 blockingQueue.put(String.valueOf(atomicInteger.incrementAndGet()));
-                System.out.println("生产者生产第" + blockingQueue.size() + "个产品");
+                System.out.println("向队列取中插入一个元素，队列剩余空间：" + (queueSize - blockingQueue.size()));
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -68,7 +71,7 @@ class MyResouce {
     public void consumer() throws InterruptedException {
         while (FLAG) {
             blockingQueue.take();
-            System.out.println("消费者消费第" + (blockingQueue.size() + 1) + "个产品");
+            System.out.println("从队列取走一个元素，队列剩余" + blockingQueue.size() + "个元素");
         }
     }
 
