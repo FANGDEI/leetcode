@@ -25,9 +25,9 @@ public class OII029排序的循环链表 {
             return head;
         }
 
-        Node cur = head, next = head.next.next;
-        //如果元素都相同则直接进入插入操作 因为插入到哪里都是ok的不需要选择插入位置
-        while (cur!=head){
+        Node cur = head, next = head.next;
+        //如果元素都相同则直接进入插入操作 因为插入到哪里都是ok的不需要选择插入位置 另一个含义也就是循环一圈
+        while (next!=head){
             //适用于 1 3 4 insertVal 为 2 的情况
             if (insertVal>=cur.val&&insertVal<=next.val){
                 break;
@@ -39,11 +39,12 @@ public class OII029排序的循环链表 {
                 }
             }
             cur = cur.next;
-            next = next.next.next;
+            next = next.next;
         }
 
+        //插入操作
         cur.next = node;
-        next = next.next;
+        node.next = next;
 
         return head;
     }
