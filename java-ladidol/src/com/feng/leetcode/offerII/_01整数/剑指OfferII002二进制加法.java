@@ -18,7 +18,7 @@ public class 剑指OfferII002二进制加法 {
         public String addBinary(String a, String b) {
             char[] numA = a.toCharArray();
             char[] numB = b.toCharArray();
-            int idxA = numA.length - 1;
+            int idxA = numA.length - 1;//倒着来
             int idxB = numB.length - 1;
             int up = 0;
             StringBuilder res = new StringBuilder();

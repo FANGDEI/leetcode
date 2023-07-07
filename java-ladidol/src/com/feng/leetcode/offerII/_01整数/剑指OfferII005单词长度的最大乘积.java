@@ -19,7 +19,7 @@ public class 剑指OfferII005单词长度的最大乘积 {
             int[] mask = new int[words.length];
             for (int i = 0; i < words.length; i++) {
                 for (int j = 0; j < words[i].length(); j++) {
-                    mask[i] |= 1 << words[i].charAt(j) - 'a';
+                    mask[i] |= 1 << words[i].charAt(j) - 'a';//必须按位or，不等于相加
                 }
             }
             int ans = 0;

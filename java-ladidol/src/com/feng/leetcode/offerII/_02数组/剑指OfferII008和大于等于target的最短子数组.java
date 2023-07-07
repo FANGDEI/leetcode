@@ -7,7 +7,7 @@ package com.feng.leetcode.offerII._02数组;
  */
 public class 剑指OfferII008和大于等于target的最短子数组 {
 
-    //滑动窗口
+    //标准的滑动窗口
     class Solution {
         /**
          * 维护一个窗口，当窗口值大于等于target时就进行ans更新
