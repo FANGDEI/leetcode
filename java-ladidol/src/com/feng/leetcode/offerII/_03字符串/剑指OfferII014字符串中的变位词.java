@@ -23,7 +23,7 @@ public class 剑指OfferII014字符串中的变位词 {
             }
             char[] standard = new char[26];
             char[] subChars = new char[26];
-            for (int i = 0; i < s1.length(); i++) {
+            for (int i = 0; i < s1.length(); i++) {//需要注意这里
                 standard[s1.charAt(i) - 'a']++;
                 subChars[s2.charAt(i) - 'a']++;
             }
