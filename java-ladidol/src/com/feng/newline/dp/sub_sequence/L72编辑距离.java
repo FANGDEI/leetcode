@@ -1,7 +1,5 @@
 package com.feng.newline.dp.sub_sequence;
 
-import java.util.Arrays;
-
 /**
  * @author: ladidol
  * @date: 2022/10/2 20:36
@@ -52,7 +50,7 @@ public class L72编辑距离 {
          * dp[i][j]：表示以word1[i-1]和word2[j-1]结尾的字母转换需要的最少操作数。
          * <p>
          * word1[i-1]和word2[j-1]相等：不变
-         * word1[i-1]和word2[j-1]不相等：去最小的可能数dp[i][j]
+         * word1[i-1]和word2[j-1]不相等：取最小的可能数dp[i][j]
          * * 插入一个字符 等价于word2删除一个
          * * 删除一个字符 就是删除后的状态+1
          * * 替换一个字符 就是不管最新的两个元素，直接被替换
@@ -73,8 +71,19 @@ public class L72编辑距离 {
 
             for (int i = 1; i <= word1.length(); i++) {
                 for (int j = 1; j <= word2.length(); j++) {
-                    if (word1.charAt(i - 1) == word2.charAt(j - 1)) dp[i][j] = dp[i - 1][j - 1];//就不需要操作。
-                    else dp[i][j] = Math.min(dp[i - 1][j] + 1, Math.min(dp[i][j - 1] + 1, dp[i - 1][j - 1] + 1));//三种可能。
+                    if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
+                        dp[i][j] = dp[i - 1][j - 1];//就不需要操作。
+                    }
+                    else {
+                        //三种可能：
+                        dp[i][j] = Math.min(
+                                dp[i - 1][j] + 1,//word1串新增一个字符
+                                Math.min(
+                                        dp[i][j - 1] + 1, //word2串删除一个字符
+                                        dp[i - 1][j - 1] + 1//其中一个字符串替换一个字符
+                                )
+                        );
+                    }
                 }
             }
 
