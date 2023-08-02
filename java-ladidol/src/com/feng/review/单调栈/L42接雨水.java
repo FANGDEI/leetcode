@@ -29,7 +29,7 @@ public class L42接雨水 {
                         int hight = Math.min(height[stack.peek()], height[i]) - height[end];
                         int width = i - stack.peek() - 1;
                         int area = hight * width;
-                        System.out.println("area = " + area);
+//                        System.out.println("area = " + area);
                         ans += area;
                     }
                 }
