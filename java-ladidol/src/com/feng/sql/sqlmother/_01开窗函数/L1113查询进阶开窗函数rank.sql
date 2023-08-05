@@ -16,6 +16,6 @@ SELECT id,
        class_id,
        rank() OVER (PARTITION BY class_id order by score desc) AS ranking -- 有并列第一、并列第二的情况；会出现不连续排名的情况
 FROM student;
-
+-- 紧密排序还可以用dense_rank()
 
 
