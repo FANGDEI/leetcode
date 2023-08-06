@@ -1,5 +1,7 @@
 package top.dyw.leetcode.medium.list;
 
+import java.util.List;
+
 /**
  * @author Devil
  * @since 2022-08-07-12:48
@@ -89,5 +91,25 @@ public class L24两两交换链表中的节点 {
 
         //返回交换后的节点
         return next;
+    }
+
+    public ListNode swapPairs03(ListNode head) {
+        ListNode dummyNode = new ListNode(0, head);
+
+        ListNode cur = dummyNode;
+        while (cur.next!=null&&cur.next.next!=null){
+            ListNode l1 = cur.next;
+            ListNode l2 = l1.next;
+            ListNode l3 = l2.next;
+
+            cur.next = l2;
+            l2.next = l1;
+            l1.next = l3;
+
+            cur = cur.next.next;
+        }
+
+
+        return dummyNode.next;
     }
 }
