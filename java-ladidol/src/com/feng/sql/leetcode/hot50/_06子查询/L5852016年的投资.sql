@@ -54,7 +54,7 @@
 select round(sum(tiv_2016), 2) tiv_2016
 from (select tiv_2016,
              count(*) over(partition by tiv_2015) cnt_2015,
-             count(*) over(partition by concat(lat,lon)) lat_lon_cnt
+             count(*) over(partition by concat(lat,lon)) lat_lon_cnt -- concat 字符串拼接
       from Insurance
       ) a
 where cnt_2015!=1 and lat_lon_cnt=1;
