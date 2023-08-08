@@ -78,6 +78,7 @@ public class L1749任意子数组和的绝对值的最大值 {
     public int maxAbsoluteSumDP(int[] nums) {
         //ans 记录全局最大连续子数组和绝对值，fmax记录以当前元素结尾的子数组和的最大值，fmin记录以当前元素结尾的子数组最小值
         int ans = 0, fMax = 0, fMin = 0;
+
         for (int num : nums) {
             //与0做比较如果小于0则舍弃之前 这里是找最大的
             fMax = Math.max(fMax,0) + num;
