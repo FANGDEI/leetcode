@@ -21,4 +21,23 @@ public class 剑指Offer17打印从1到最大的n位数 {
             return null;
         }
     }
+
+    public static void main(String[] args) {
+        System.out.println(add(5));
+    }
+
+    private static String add(float i) {
+        return "float";
+    }
+    private static String add(double i) {
+        return "double";
+    }
+    private static String add(short i) {
+        return "short";
+    }
+    private static String add(long i) {
+        return "long";
+    }
+
+
 }

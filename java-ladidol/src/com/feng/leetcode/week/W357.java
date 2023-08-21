@@ -1,6 +1,5 @@
 package com.feng.leetcode.week;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -69,28 +68,6 @@ public class W357 {
             return false;
         }
 
-
-        public static boolean dfs(int[] nums, int m, int count, int sum) {
-            if (nums.length == 0) {
-                return count == m;
-            }
-            if (nums.length == 1) {
-                return sum >= m;
-            }
-            for (int i = 0; i < nums.length; i++) {
-                int leftSum = 0;
-                for (int j = 0; j <= i; j++) {
-                    leftSum += nums[j];
-                }
-                //分割两半，看看两半是不是符合题意
-                if (dfs(Arrays.copyOfRange(nums, 0, i + 1), m, count + 1, 0)
-                        && dfs(Arrays.copyOfRange(nums, i + 1, nums.length), m, count + 1, leftSum)) {
-                    return true;
-                }
-            }
-            //这里分割显示index = 1，继续拆分后面的数组
-            return dfs(Arrays.copyOfRange(nums, 1, nums.length), m, count + 1, 0);
-        }
     }
 
 

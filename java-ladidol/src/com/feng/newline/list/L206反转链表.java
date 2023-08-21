@@ -1,7 +1,5 @@
 package com.feng.newline.list;
 
-import java.util.List;
-
 /**
  * @projectName: leetcode
  * @package: com.feng.newline.list
@@ -15,6 +13,38 @@ public class L206反转链表 {
     public static void main(String[] args) {
 
     }
+
+    class Solution {
+
+        // public ListNode reverseList(ListNode head) {
+        //     ListNode preNode = new ListNode(-1);
+        //     ListNode next;
+        //     while(head!=null){
+        //         next = head.next;//先暂存 下一个节点
+        //         head.next = preNode.next;//改变指引方向
+        //         preNode.next = head;
+        //         head = next;
+
+        //     }
+
+        //     return preNode.next;
+        // }
+
+        public ListNode reverseList(ListNode head) {
+            ListNode preNode=null;
+            ListNode next;
+            while(head!=null){
+                next = head.next;//先暂存 下一个节点
+                head.next = preNode;//改变指引方向
+                preNode = head;
+                head = next;
+
+            }
+
+            return preNode;
+        }
+    }
+
 
     //双指针法
     public ListNode reverseList1(ListNode head) {
