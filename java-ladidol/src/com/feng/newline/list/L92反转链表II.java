@@ -63,6 +63,8 @@ public class L92反转链表II {
             reversePre.next = reverseTail;
             reverseHead.next = reverseNext;
 
+            Integer nihao = 1;
+
 
             return dummy.next;
 
