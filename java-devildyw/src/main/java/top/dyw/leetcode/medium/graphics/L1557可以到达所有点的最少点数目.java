@@ -1,6 +1,5 @@
 package top.dyw.leetcode.medium.graphics;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import java.util.ArrayList;
 import java.util.HashSet;

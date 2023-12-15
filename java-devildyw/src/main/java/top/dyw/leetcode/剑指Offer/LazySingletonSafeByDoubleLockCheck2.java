@@ -6,8 +6,8 @@ package top.dyw.leetcode.剑指Offer;
  */
 @SuppressWarnings("all")
 public class LazySingletonSafeByDoubleLockCheck2 {
-    class Singleton{
-        private volatile Singleton instance = null;//volatile 防止指令重排 初始化对象的步骤 1. 分配内存空间，2. 初始化对象 3. 将对象指向分配的空间
+    static class Singleton {
+        private volatile static Singleton instance = null;//volatile 防止指令重排 初始化对象的步骤 1. 分配内存空间，2. 初始化对象 3. 将对象指向分配的空间
 
         private Singleton(){}
 
