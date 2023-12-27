@@ -1,4 +1,4 @@
-package top.dyw.leetcode.simple.arrays;
+package top.dyw.leetcode.medium.arrays;
 
 /**
  * @author Devildyw
@@ -9,7 +9,7 @@ package top.dyw.leetcode.simple.arrays;
 public class L1041困于环中的机器人 {
 
     public static void main(String[] args) {
-
+        System.out.println(new L1041困于环中的机器人().isRobotBounded("GGLLGG"));
     }
 
     /**
