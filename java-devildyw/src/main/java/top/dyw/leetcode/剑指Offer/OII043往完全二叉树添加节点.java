@@ -18,13 +18,15 @@ public class OII043往完全二叉树添加节点 {
 
         TreeNode root;
 
-        Deque<TreeNode> queue;
+        //存储待插入的节点
+        Deque<TreeNode> candidate;
 
         boolean flag = true;
         public CBTInserter(TreeNode root) {
             this.root = root;
-            queue = new ArrayDeque<>();
+            candidate = new ArrayDeque<>();
 
+            Deque<TreeNode> queue = new ArrayDeque<>();
             queue.push(root);
             while (!queue.isEmpty()){
                 TreeNode node = queue.poll();
@@ -34,8 +36,9 @@ public class OII043往完全二叉树添加节点 {
                 if (node.right!=null){
                     queue.offer(node.right);
                 }
+
                 if (!(node.left!=null&&node.right!=null)){ //存在有一个子节点为null就将其添加到queue 等待后续的插入节点
-                    queue.offer(node);
+                    candidate.offer(node);
                 }
             }
 
@@ -48,15 +51,15 @@ public class OII043往完全二叉树添加节点 {
          */
         public int insert(int v) {
             TreeNode child = new TreeNode(v);
-            TreeNode node = queue.peek();
+            TreeNode node = candidate.peek();
             int ret = node.val;
             if (node.left==null){
                 node.left = child;
             }else{
                 node.right = child;
-                queue.poll(); //右节点被填充说该节点已经是完全二叉树节点了所以剔除
+                candidate.poll(); //右节点被填充说该节点已经是完全二叉树节点了所以剔除
             }
-            queue.offer(child); //加入新节点
+            candidate.offer(child); //加入新节点
             return ret;
         }
 

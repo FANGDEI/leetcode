@@ -115,4 +115,12 @@ public class L459重复的子字符串 {
         }
         return false;
     }
+
+
+    public boolean repeatedSubstringPattern_re(String s) {
+        String newStr = s+s;
+        return newStr.substring(1,newStr.length()-1).contains(s);
+    }
 }
+
+

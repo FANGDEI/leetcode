@@ -1,6 +1,7 @@
 package top.dyw.leetcode.medium.tree;
 
-import javafx.util.Pair;
+
+import cn.hutool.core.lang.Pair;
 
 import java.util.ArrayList;
 

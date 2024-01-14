@@ -49,6 +49,7 @@ public class L213打家劫舍II {
         }
         int[] dp = new int[nums.length];
         dp[start] = nums[start];
+        //选择当前房屋还是不偷取当前房屋选择第i-1个房屋的金额
         dp[start+1] = Math.max(nums[start],nums[start+1]);
         for (int i = start+2; i <= end; i++) {
             dp[i] = Math.max(dp[i-2]+nums[i],dp[i-1]);

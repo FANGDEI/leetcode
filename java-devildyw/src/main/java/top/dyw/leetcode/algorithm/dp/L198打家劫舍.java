@@ -42,4 +42,18 @@ public class L198打家劫舍 {
 
 
     }
+
+    public int robDP(int[] nums) {
+        int n = nums.length;
+        int[] dp = new int[n+1]; //dp表示到第i个房屋时能偷窃到的最大金额
+        dp[0] = 0; //第0家 一家都没偷肯定为0
+        dp[1] = nums[0]; //第1家 只有这一家最大就为nums[0]
+
+        for (int i = 2; i <= nums.length; i++) {
+            //状态转移方程，要么偷这家要么偷上一家
+            dp[i] = Math.max(dp[i-2]+nums[i-1], dp[i-1]);
+        }
+
+        return dp[n];
+    }
 }

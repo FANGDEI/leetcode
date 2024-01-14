@@ -28,4 +28,16 @@ public class L709转换成小写字母 {
     public String toLowerCase01(String s) {
         return s.toLowerCase();
     }
+
+    public String toLowerCase_re(String s) {
+        char[] charArray = s.toCharArray();
+
+        for (int i = 0; i < charArray.length; i++) {
+            if (Character.isLetter(charArray[i])){
+                charArray[i] = Character.toLowerCase(charArray[i]);
+            }
+        }
+
+        return new String(charArray);
+    }
 }
