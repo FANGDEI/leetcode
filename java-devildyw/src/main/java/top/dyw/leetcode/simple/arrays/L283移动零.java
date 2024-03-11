@@ -11,6 +11,11 @@ package top.dyw.leetcode.simple.arrays;
  */
 @SuppressWarnings("all")
 public class L283移动零 {
+
+    public static void main(String[] args) {
+        new L283移动零().moveZeroes_re(new int[]{0,1,0,3,12});
+    }
+
     /**
      * <p>
      * 通过第一次遍历将非零元素将非零元素覆盖整个数组 再通过第二次遍历将index(覆盖后的数组中非零元素的下一个下标)后的元素全部变为0
@@ -60,6 +65,21 @@ public class L283移动零 {
 
         for (; slow < nums.length; slow++) {
             nums[slow] = 0;
+        }
+
+    }
+
+    public void moveZeroes_re(int[] nums) {
+
+        int index = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i]!=0){
+                nums[index++] = nums[i];
+            }
+        }
+
+        for (int i = index; i < nums.length; i++) {
+            nums[i] = 0;
         }
 
     }

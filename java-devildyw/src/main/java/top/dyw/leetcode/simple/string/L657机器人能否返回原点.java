@@ -40,4 +40,29 @@ public class L657机器人能否返回原点 {
         }
         return height == 0 && lenght == 0;
     }
+
+    public boolean judgeCircle_re(String moves) {
+        int heng = 0, zong = 0;
+
+        for (int i = 0; i < moves.length(); i++) {
+            switch (moves.charAt(i)){
+                case 'U':
+                    zong++;
+                    break;
+                case 'D':
+                    zong--;
+                    break;
+                case 'L':
+                    heng++;
+                    break;
+                case 'R':
+                    heng--;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return heng==0&&zong==0;
+    }
 }

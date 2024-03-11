@@ -1,9 +1,6 @@
 package top.dyw.leetcode.simple.tree;
 
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * 给定一个 n叉树的根节点 root，返回 其节点值的 前序遍历 。
@@ -34,6 +31,65 @@ public class L589N叉树的前序遍历 {
     }
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        HashMap<Integer, String> map = new HashMap<>();
+        HashMap<Integer, Integer> tempMap = new HashMap<>();
+        while (true) {
+            String line = scanner.nextLine();
+            if (line.equals("END")) {
+                break;
+            }
+            String[] split = line.split("#");
+            Integer jinzhi = Integer.valueOf(split[0]);
+            String num = split[1];
+
+
+            int sum = 0;
+            for (int i = num.length() - 1; i >= 0; i--) {
+                char c = num.charAt(i);
+                int temp = 0;
+                switch (c) {
+                    case 'A':
+                        temp = 10;
+                        break;
+                    case 'B':
+                        temp = 11;
+                        break;
+                    case 'C':
+                        temp = 12;
+                        break;
+                    case 'D':
+                        temp = 13;
+                        break;
+                    case 'E':
+                        temp = 14;
+                        break;
+                    case 'F':
+                        temp = 15;
+                        break;
+                    default:
+                        temp = c - '0';
+                        break;
+                }
+                sum += temp * Math.pow(jinzhi, num.length() - i - 1);
+            }
+
+            map.put(sum, line);
+            tempMap.put(sum, tempMap.getOrDefault(sum, 0) + 1);
+        }
+
+        Set<Integer> set = tempMap.keySet();
+        boolean flag = true;
+        for (Integer i : set) {
+            if (tempMap.get(i).equals(1)) {
+                flag = false;
+                System.out.println(map.get(i));
+            }
+        }
+
+        if (flag) {
+            System.out.println("None");
+        }
 
     }
 

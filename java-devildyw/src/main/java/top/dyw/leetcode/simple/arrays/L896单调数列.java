@@ -42,4 +42,20 @@ public class L896单调数列 {
         return (flag == 0) || (flag == 1);
     }
 
+    public boolean isMonotonic_re(int[] nums) {
+        boolean isIncrease = true;
+        boolean isDecrease = true;
+
+        for (int i = 0; i < nums.length-1; i++) {
+            if (nums[i+1]>=nums[i]){
+                isDecrease = false;
+            }
+
+            if (nums[i+1]<=nums[i]){
+                isIncrease = false;
+            }
+        }
+
+        return isIncrease||isDecrease;
+    }
 }

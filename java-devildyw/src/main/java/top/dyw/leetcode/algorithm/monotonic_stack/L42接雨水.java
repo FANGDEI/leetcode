@@ -1,5 +1,7 @@
 package top.dyw.leetcode.algorithm.monotonic_stack;
 
+import cn.hutool.jwt.JWTHeader;
+
 import java.util.Random;
 import java.util.Stack;
 
@@ -103,5 +105,44 @@ public class L42接雨水 {
             }
         }
         return sum;
+    }
+
+
+    public int trap02(int[] height) {
+        int size = height.length;
+
+        if (height.length<=2) return 0;
+
+        Stack<Integer> stack = new Stack<>();
+        stack.push(0);
+        int sum = 0;
+
+        for (int i = 1; i < size; i++) {
+            if (height[stack.peek()]>height[i]){
+                stack.push(i);
+            }
+            else if (height[stack.peek()]==height[i]){
+                stack.pop();
+                stack.push(i);
+            }else {
+                int rightIdex = i;
+                while (!stack.isEmpty()&&height[stack.peek()]<height[rightIdex]){
+                    //获取mid
+                    Integer mid = stack.pop();
+                    if (!stack.isEmpty()){
+                        //left
+                        int left = stack.peek();
+                        //获取高
+                        int h = Math.min(height[left],height[i]) - height[mid];
+                        //宽
+                        int w = rightIdex - left - 1;
+                        sum += h*w;
+                    }
+                }
+
+            }
+        }
+        return sum;
+
     }
 }
