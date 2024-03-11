@@ -2,86 +2,31 @@ package com.feng.面试题.同程;
 
 import java.util.Arrays;
 
-/**
- * @author: Xiaoqiang-Ladidol
- * @date: 2023/9/14 19:21
- * @description: {}
- */
-public class Solution {
-    /**
-     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
-     *
-     * @param envelopes int整型二维数组
-     * @return int整型
-     */
-    public int maxEnvelopes(int[][] envelopes) {
-        // write code here
-        int n = envelopes.length;
-        if (n == 0) {
-            return 0;
-        }
-        Arrays.sort(envelopes, (a, b) -> a[0] - b[0]);
-        int[] dp = new int[n];
+class Solution {
+    boolean check(int[][] es, int mid, int i) {
+        return es[mid][0] < es[i][0] && es[mid][1] < es[i][1];
+    }
+
+    public int maxEnvelopes(int[][] es) {
+        int n = es.length;
+        if (n == 0) return n;
+        // 因为我们在找第 i 件物品的前一件物品时，会对前面的 i - 1 件物品都遍历一遍，因此第二维（高度）排序与否都不影响
+        Arrays.sort(es, (a, b)->a[0]-b[0]);
+        int[] f = new int[n]; // f(i) 为考虑前 i 个物品，并以第 i 个物品为结尾的最大值
         int ans = 1;
         for (int i = 0; i < n; i++) {
-            dp[i] = 1;
+            // 对于每个 f[i] 都满足最小值为 1
+            f[i] = 1; 
+            // 枚举第 i 件物品的前一件物品，
             for (int j = i - 1; j >= 0; j--) {
-                if (check(envelopes, j, i)) {
-                    dp[i] = Math.max(dp[i], dp[j] + 1);
+                // 只要有满足条件的前一件物品，我们就尝试使用 f[j] + 1 更新 f[i]
+                if (check(es, j, i)) {
+                    f[i] = Math.max(f[i], f[j] + 1);
                 }
             }
-            ans = Math.max(ans, dp[i]);
+            // 在所有的 f[i] 中取 max 作为 ans
+            ans = Math.max(ans, f[i]);
         }
         return ans;
-
     }
-
-    private boolean check(int[][] envelopes, int mid, int i) {
-        return envelopes[mid][0] < envelopes[i][0] && envelopes[mid][1] < envelopes[i][1];
-    }
-
-
-    /**
-     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
-     * <p>
-     * 快速排序
-     *
-     * @param arr int整型一维数组 到各城市的距离
-     * @return int整型一维数组
-     */
-    public int[] quickSort(int[] arr) {
-        // write code here
-        sort(0,arr.length-1,arr);
-        return arr;
-    }
-
-    public void sort(int p, int r, int[] nums) {
-        if (p >= r) {
-            return;
-        }
-        int q = partition(p, r, nums);
-        sort(p, q - 1, nums);
-        sort(q + 1, r, nums);
-
-
-    }
-
-    private int partition(int start, int end, int[] nums) {
-        int pivot = end;
-        int i = start;
-        for (int j = start; j < end; j++) {
-            if (nums[j] > nums[pivot]) {
-                swap(i++, j, nums);
-            }
-        }
-        swap(i, pivot, nums);
-        return i;
-    }
-
-    private void swap(int a, int b, int[] nums) {
-        int tmp = nums[a];
-        nums[a] = nums[b];
-        nums[b] = tmp;
-    }
-
 }

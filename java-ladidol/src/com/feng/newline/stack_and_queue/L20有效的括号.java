@@ -1,8 +1,7 @@
 package com.feng.newline.stack_and_queue;
 
-import java.util.Deque;
-import java.util.LinkedList;
 import java.util.Stack;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 /**
  * @projectName: leetcode
@@ -48,6 +47,7 @@ public class L20有效的括号 {
         public boolean isValid(String s) {
             Stack<Character> stack = new Stack<>();
 //            Deque<Character> stack = new LinkedList<>();
+            ConcurrentSkipListSet<Integer> integers = new ConcurrentSkipListSet<>();
             for (char ch : s.toCharArray()) {
                 //碰到左括号，就把相应的右括号入栈
                 if (ch == '(') {

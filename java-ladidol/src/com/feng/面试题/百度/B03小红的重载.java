@@ -1,6 +1,9 @@
 package com.feng.面试题.百度;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author: Xiaoqiang-Ladidol
@@ -34,6 +37,11 @@ public class B03小红的重载 {
     }
 
     public static void main(String[] args) {
+
+        ReentrantLock lock = new ReentrantLock();
+        ConcurrentLinkedQueue concurrentLinkedQueue = new ConcurrentLinkedQueue();
+        LinkedBlockingQueue linkedBlockingQueue = new LinkedBlockingQueue();
+
         Scanner scan = new Scanner(System.in);
         Set<XiaoHong> set = new HashSet<>();
         int n = scan.nextInt();

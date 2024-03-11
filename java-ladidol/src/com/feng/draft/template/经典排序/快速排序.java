@@ -47,7 +47,7 @@ public class 快速排序 {
     public int partition(int start, int end, int[] nums) {
         //默认取最后一个元素作为pivot；
         int pivot = end;
-        //通过i来遍历增加小于pivot的值：左边小于pivot，右边大于pivot
+        //通过i来遍历增加小于pivot的值：i的左边小于pivot，i的右边大于pivot
         int i = start;
         for (int j = start; j < end; j++) {
             if (nums[j] < nums[pivot]) {//求升序

@@ -3,16 +3,42 @@ package com.feng.leetcode.week;
 import java.util.*;
 import java.util.regex.Pattern;
 
+
+class Student {
+    static int a = 0;
+    class Inner{
+        int a = 1;
+        void function(){
+            int a = 2;
+            System.out.println("a = " + a);
+
+        }
+    }
+
+
+
+}
+
 public class Solution {
 
     static int mod = (int) (1e9 + 7);
 
+
     public static void main(String[] args) {
         Solution solution = new Solution();
+
+//        int[] ints = Solution.countPrime(100);
+//        System.out.println(ints[100]);
+        Student.Inner inner = new Student().new Inner();
+        inner.function();
+
+
     }
+
 
     /**
      * 这只是一个例题
+     *
      * @param words
      * @param separator
      * @return
