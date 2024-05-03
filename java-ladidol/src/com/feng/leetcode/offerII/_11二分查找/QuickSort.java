@@ -38,7 +38,7 @@ public class QuickSort {
             left++;
             right--;
         }
-        swap(l, left, nums)
+        swap(l, left, nums);
         return left;
     }
 
