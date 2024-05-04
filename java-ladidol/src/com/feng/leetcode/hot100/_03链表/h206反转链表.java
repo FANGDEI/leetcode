@@ -3,7 +3,7 @@ package com.feng.leetcode.hot100._03链表;
 
 public class h206反转链表 {
 
-    class Solution {
+    class Solution1 {
         public ListNode reverseList(ListNode head) {
             return reverseListNode(null, head);
 
@@ -19,6 +19,23 @@ public class h206反转链表 {
             cur = tmp;
             return reverseListNode(pre, cur);
 
+        }
+
+
+    }
+
+
+    class Solution {
+        public ListNode reverseList(ListNode head) {
+            ListNode pre = null;
+            ListNode next;
+            while (head!=null){
+                next = head.next;
+                head.next = pre;
+                pre = head;
+                head = next;
+            }
+            return pre;
         }
 
 
