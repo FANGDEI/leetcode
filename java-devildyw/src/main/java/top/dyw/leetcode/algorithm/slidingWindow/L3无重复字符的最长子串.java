@@ -43,4 +43,22 @@ public class L3无重复字符的最长子串 {
         return ans;
     }
 
+    public int lengthOfLongestSubstring01(String s) {
+        int length = s.length();
+
+        HashSet<Character> set = new HashSet<>();
+        int result = 0, rk = -1;
+        for (int i = 0; i < length; i++) {
+            if (i!=0){
+                set.remove(s.charAt(i - 1));
+            }
+            while (rk + 1 < length && !set.contains(s.charAt(rk + 1))){
+                set.add(s.charAt(rk + 1));
+                ++rk;
+            }
+            result = Math.max(result, rk - i + 1);
+        }
+        return result;
+    }
+
 }

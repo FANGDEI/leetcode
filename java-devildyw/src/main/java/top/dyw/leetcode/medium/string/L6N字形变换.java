@@ -1,6 +1,7 @@
 package top.dyw.leetcode.medium.string;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Devildyw
@@ -39,6 +40,32 @@ public class L6N字形变换 {
             res.append(row);
         }
         return res.toString();
+    }
+
+    public String convert02(String s, int numRows) {
+        if (numRows<2){
+            return s;
+        }
+
+        List<StringBuilder> sbList = new ArrayList<>();
+        for (int i = 0; i < numRows; i++) {
+            sbList.add(new StringBuilder());
+        }
+
+        int i = 0, flag = -1;
+        for (char c : s.toCharArray()) {
+            sbList.get(i).append(c);
+            if (i==0 || i==numRows - 1){
+                flag = -flag;
+            }
+            i+=flag;
+        }
+
+        StringBuilder result = new StringBuilder();
+        for (StringBuilder sb : sbList) {
+            result.append(sb.toString());
+        }
+        return result.toString();
     }
 }
 

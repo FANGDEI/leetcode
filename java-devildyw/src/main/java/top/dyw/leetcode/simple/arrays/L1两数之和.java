@@ -1,5 +1,7 @@
 package top.dyw.leetcode.simple.arrays;
 
+import com.google.common.collect.Maps;
+
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -27,9 +29,13 @@ public class L1两数之和 {
         for (int i = 0; i < nums.length; i++) {
             if (map.containsKey(target-nums[i])){
                 return new int[]{i,map.get(target-nums[i])};
+            } else {
+                map.put(nums[i], i);
             }
-            map.put(nums[i],i);
         }
         return new int[]{};
     }
+
+
+
 }
