@@ -9,30 +9,36 @@ package top.dyw.leetcode.medium.string;
 public class L8字符串转换整数 {
 
     public static void main(String[] args) {
-        int i = new L8字符串转换整数().myAtoi("+000001564001");
+        System.out.println(new L8字符串转换整数().myAtoi("-21474836482"));
     }
 
     public int myAtoi(String s) {
-        int res = 0, sign = 1, i = 0;
+        int ans = 0, sign = 1, index = 0;
 
         char[] charArray = s.toCharArray();
-        while (i < charArray.length && charArray[i] == ' '){
-            i++;
+        while (index < charArray.length && charArray[index] == ' ') {
+            index++;
         }
 
-        if (i < charArray.length && (charArray[i] == '-' || charArray[i] == '+')){
-            sign = charArray[i++] == '-' ? -1 : 1;
+        if (index < charArray.length && (charArray[index] == '-' || charArray[index] == '+')) {
+            sign = charArray[index++] == '-' ? -1 : 1;
         }
 
-        while (i<charArray.length && charArray[i] <= '9' && charArray[i] >= '0'){
-            int temp = charArray[i++] - '0';
-            if (res > ((Integer.MAX_VALUE - temp) / 10)) {
-                return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+        while (index < charArray.length && charArray[index] >= '0' && charArray[index] <= '9') {
+            int temp = charArray[index++] - '0';
+            if (sign == 1){
+                if (ans > 214748364 || (ans == 214748364 && temp >= 7)){
+                    return Integer.MAX_VALUE;
+                }
+            }else {
+                if (ans > 214748364 || (ans == 214748364 && temp >= 8)){
+                    return Integer.MIN_VALUE;
+                }
             }
-            res = res * 10 + temp;
-
+            ans = ans * 10 + temp;
         }
-        return res * sign;
+
+        return ans * sign;
     }
 
 }
