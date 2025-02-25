@@ -13,7 +13,7 @@ package top.dyw.leetcode.medium.arrays;
 @SuppressWarnings("all")
 public class L34在排序数组中查找元素的第一个和最后一个位置 {
     public static void main(String[] args) {
-        System.out.println(new L34在排序数组中查找元素的第一个和最后一个位置().searchRange01(new int[]{2,2}, 3));
+        System.out.println(new L34在排序数组中查找元素的第一个和最后一个位置().searchRange02(new int[]{1,3,4}, 2));
     }
 
     /**
@@ -113,5 +113,56 @@ public class L34在排序数组中查找元素的第一个和最后一个位置 
             }
         }
         return leftBorder;
+    }
+
+    public int[] searchRange02(int[] nums, int target) {
+        //1. 分析边界条件（三种情况）
+        // 寻找左右边界
+        int rightBorder = searchRangeRight(nums, target);
+        int leftBorder = searchRangeLeft(nums, target);
+        System.out.println(leftBorder+" "+ rightBorder);
+        if (leftBorder == -2 || rightBorder == -2) {
+            return new int[]{-1, -1};
+        }
+
+        if (rightBorder - leftBorder > 1){
+            return new int[]{leftBorder + 1, rightBorder - 1};
+        }
+
+        return new int[]{-1, -1};
+    }
+
+    private int searchRangeLeft(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        int leftBorder = -2;
+
+        while (left <= right) {
+            int mid = left + ((right - left) / 2);
+            if (nums[mid] >= target){
+                right = mid - 1;
+                leftBorder = right;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return leftBorder;
+    }
+
+    private int searchRangeRight(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        int rightBorder = -2;
+
+        while (left <= right) {
+            int mid = left + ((right - left) / 2);
+            if (nums[mid] > target){
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+                rightBorder = left;
+            }
+        }
+        return rightBorder;
     }
 }
