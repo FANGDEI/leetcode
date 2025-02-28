@@ -38,4 +38,21 @@ public class L27移除元素 {
         //最后返回覆盖后数组的长度即slow的长度 因为传入的数组是以引用的方式 所以到时以slow为长度的数组能够输出正确结果
         return slow;
     }
+
+    /**
+     * 双指针  两层for循环也能做但是时间复杂度是O(n*n)
+     * @param nums
+     * @param val
+     * @return
+     */
+    public int removeElement01(int[] nums, int val) {
+        int slow = 0;
+        int n = nums.length;
+        for (int i = 0; i < n; i++) {
+            if (nums[i]!=val){
+                nums[slow++] = nums[i];
+            }
+        }
+        return slow;
+    }
 }
