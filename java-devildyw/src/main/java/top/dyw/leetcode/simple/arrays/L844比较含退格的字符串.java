@@ -11,7 +11,7 @@ package top.dyw.leetcode.simple.arrays;
 @SuppressWarnings("all")
 public class L844比较含退格的字符串 {
     public static void main(String[] args) {
-
+        System.out.println(new L844比较含退格的字符串().backspaceCompare01("a", "aa#a"));
     }
 
     /**
@@ -75,5 +75,53 @@ public class L844比较含退格的字符串 {
             i--;
         }
         return true;
+    }
+
+    public boolean backspaceCompare01(String s, String t) {
+        int sCount = s.length() - 1, tCount= t.length() - 1;
+        boolean flag = true;
+        int sSkip = 0, tSkip = 0;
+        // 循环内已经处理了边界条件了 所以这里需要放开才能得到正确答案
+        while (sCount >=0 || tCount >=0){
+            while (sCount >= 0) {
+                if (s.charAt(sCount)=='#'){
+                    sCount--;
+                    sSkip++;
+                } else if (sSkip != 0){
+                    sCount--;
+                    sSkip--;
+                } else {
+                    break;
+                }
+            }
+
+            while (tCount >= 0) {
+                if (t.charAt(tCount) == '#'){
+                    tCount--;
+                    tSkip++;
+                } else if (tSkip != 0){
+                    tCount--;
+                    tSkip--;
+                } else {
+                    break;
+                }
+
+            }
+
+            if (tCount >= 0 && sCount >= 0){
+                if (s.charAt(sCount) != t.charAt(tCount)){
+                    flag = false;
+                    break;
+                }
+            } else {
+                if (sCount >= 0 || tCount >= 0){
+                    flag = false;
+                    break;
+                }
+            }
+            sCount--;
+            tCount--;
+        }
+        return flag;
     }
 }
