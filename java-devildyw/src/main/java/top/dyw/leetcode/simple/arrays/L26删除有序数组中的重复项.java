@@ -39,4 +39,14 @@ public class L26删除有序数组中的重复项 {
         }
         return ++slow;
     }
+
+    public int removeDuplicates01(int[] nums) {
+        int slow = 0;
+        for (int fast = 1; fast < nums.length; fast++) {
+            if (nums[fast]!=nums[slow]){
+                nums[++slow] = nums[fast];
+            }
+        }
+        return slow + 1;
+    }
 }

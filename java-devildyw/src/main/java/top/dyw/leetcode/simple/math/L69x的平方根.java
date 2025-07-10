@@ -9,7 +9,7 @@ package top.dyw.leetcode.simple.math;
 public class L69x的平方根 {
 
     public static void main(String[] args) {
-        System.out.println(new L69x的平方根().mySqrt(4));
+        System.out.println(new L69x的平方根().mySqrt01(4));
     }
 
     /**
@@ -32,5 +32,27 @@ public class L69x的平方根 {
             }
         }
         return res;
+    }
+
+    /**
+     *
+     * @param x
+     * @return
+     */
+    public int mySqrt01(int x) {
+        int left = 0;
+        int right = x;
+        int result = -1;
+
+        while (left <= right){
+            int mid  = left + ((right - left) / 2);
+            if ((long) mid * mid > x) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+                result = mid;
+            }
+        }
+        return result;
     }
 }

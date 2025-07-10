@@ -96,4 +96,16 @@ public class L283移动零 {
             nums[slow] = 0;
         }
     }
+
+    public void moveZeroes04(int[] nums) {
+        int k = 0;
+        for (int fast = 0; fast < nums.length; fast++) {
+            if (nums[fast] != 0) {
+                nums[k++] = nums[fast];
+            }
+        }
+        for (; k < nums.length; k++) {
+            nums[k] = 0;
+        }
+    }
 }

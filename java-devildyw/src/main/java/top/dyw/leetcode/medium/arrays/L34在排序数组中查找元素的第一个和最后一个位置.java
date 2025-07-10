@@ -165,4 +165,54 @@ public class L34在排序数组中查找元素的第一个和最后一个位置 
         }
         return rightBorder;
     }
+
+
+    public int[] searchRange03(int[] nums, int target) {
+        int leftRange = searchRangeLeft01(nums, target);
+        int rightRange = searchRangeRight01(nums, target);
+
+        if (leftRange == -2 || rightRange == -2) {
+            return new int[]{-1, -1};
+        }
+
+        if (rightRange - leftRange > 1) {
+            return new int[]{leftRange + 1, rightRange - 1};
+        }
+
+        // 如果rightRange - leftRange <= 1，说明target不在数组中或者target的大小在数组的范围内
+        return new int[]{-1, -1};
+    }
+
+    private int searchRangeRight01(int[] nums, int target) {
+        int rightRange = -2;
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left <= right) {
+            int mid = left + ((right - left) / 2);
+            if (nums[mid] > target){
+                right = mid - 1;
+            } else {
+                left = mid + 1; //target在mid的右侧
+                rightRange = left;
+            }
+        }
+        return rightRange;
+    }
+
+    private int searchRangeLeft01(int[] nums, int target) {
+        int leftRange = -2;
+        int left = 0;
+        int right = nums.length - 1;
+        while (left <= right) {
+            int mid = left + ((right - left) / 2);
+            if (nums[mid] >= target) {
+                right = mid - 1;
+                leftRange = right; //target在mid的左侧
+            } else { //nums[mid] <= target
+                left = mid + 1; //target在mid的右侧
+            }
+        }
+        return  leftRange;
+    }
 }

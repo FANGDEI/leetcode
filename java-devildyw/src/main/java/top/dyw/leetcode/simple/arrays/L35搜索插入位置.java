@@ -28,4 +28,21 @@ public class L35搜索插入位置 {
         //如果不存在相等的元素的话，right就会在小于target的最大元素哪个位置不动 left 收缩直至与right 相等，那么此时插入的位置就在right的下一个位置
         return right + 1;
     }
+
+
+    public int searchInsert01(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] > target) {
+                right = mid - 1;
+            } else if (nums[mid] < target) {
+                left = mid + 1;
+            } else {
+                return mid;
+            }
+        }
+        return right + 1;
+    }
 }

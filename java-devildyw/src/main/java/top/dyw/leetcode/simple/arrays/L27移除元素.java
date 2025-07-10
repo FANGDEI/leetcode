@@ -15,7 +15,7 @@ package top.dyw.leetcode.simple.arrays;
 public class L27移除元素 {
     public static void main(String[] args) {
         int[] ints = {3, 2, 2, 3};
-        new L27移除元素().removeElement(ints,2);
+        new L27移除元素().removeElement02(ints,2);
         for (int anInt : ints) {
             System.out.println(anInt);
         }
@@ -54,5 +54,16 @@ public class L27移除元素 {
             }
         }
         return slow;
+    }
+
+
+    public int removeElement02(int[] nums, int val) {
+        int slow = 0;
+        for (int fast = 0; fast < nums.length; fast++) {
+            if (nums[fast]!=val){
+                nums[slow++] = nums[fast];
+            }
+        }
+        return  slow;
     }
 }
