@@ -1,5 +1,9 @@
 package top.dyw.leetcode.simple.arrays;
 
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Stack;
+
 /**
  * @author Devil
  * @since 2022-08-29-11:41
@@ -11,7 +15,7 @@ package top.dyw.leetcode.simple.arrays;
 @SuppressWarnings("all")
 public class L844比较含退格的字符串 {
     public static void main(String[] args) {
-        System.out.println(new L844比较含退格的字符串().backspaceCompare01("a", "aa#a"));
+        System.out.println(new L844比较含退格的字符串().backspaceCompare02("y#fo##f", "y#f#o##f"));
     }
 
     /**
@@ -123,5 +127,37 @@ public class L844比较含退格的字符串 {
             tCount--;
         }
         return flag;
+    }
+
+    public boolean backspaceCompare02(String s, String t) {
+        Deque<Character> stack1 = new LinkedList<>();
+        Deque<Character> stack2 = new LinkedList<>();
+
+        for (int i = 0; i < s.toCharArray().length; i++) {
+            if (s.charAt(i) == '#') {
+                if (stack1.size() > 0) {
+                    stack1.pop();
+                }
+            } else {
+                stack1.push(s.charAt(i));
+            }
+        }
+
+        for (int i = 0; i < t.toCharArray().length; i++) {
+            if (t.charAt(i) == '#') {
+                if (stack2.size() > 0){
+                    stack2.pop();
+                }
+            } else {
+                stack2.push(t.charAt(i));
+            }
+        }
+
+        StringBuilder sNew =  new StringBuilder();
+        stack1.descendingIterator().forEachRemaining(sNew::append);
+        StringBuilder tNew =  new StringBuilder();
+        stack2.descendingIterator().forEachRemaining(tNew::append);
+
+        return sNew.toString().equals(tNew.toString());
     }
 }
