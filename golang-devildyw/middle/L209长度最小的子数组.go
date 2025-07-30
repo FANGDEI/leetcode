@@ -1,4 +1,4 @@
-package middle
+package main
 
 func MinSubArrayLen(target int, nums []int) int {
 	//滑动窗口

@@ -1,4 +1,4 @@
-package middle
+package main
 
 func TotalFruit(fruits []int) int {
 	// 找到最长的子串 这个子串里面只有两种数字
