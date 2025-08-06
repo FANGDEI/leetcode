@@ -1,7 +1,8 @@
 package com.feng.newline.binarytree;
 
-import javafx.util.Pair;
 
+
+import com.feng.leetcode.hot100._01哈希.Pair;
 import java.util.*;
 
 /**
