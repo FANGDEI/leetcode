@@ -11,7 +11,7 @@ public class h739每日温度 {
 
   static class Solution {
 
-    // 单调栈中存入当前位置最大的数，保证栈从下到上单调递减
+    // 保证栈从下到上单调递减
     public int[] dailyTemperatures(int[] temperatures) {
 
       int[] answer = new int[temperatures.length];
