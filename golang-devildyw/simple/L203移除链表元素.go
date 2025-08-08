@@ -48,8 +48,3 @@ func removeElements(head *ListNode, val int) *ListNode {
 	}
 	return dummyNode.Next
 }
-
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
