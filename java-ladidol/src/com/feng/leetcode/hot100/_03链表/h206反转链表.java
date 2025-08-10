@@ -29,6 +29,21 @@ public class h206反转链表 {
         public ListNode reverseList(ListNode head) {
             ListNode pre = null;
             ListNode next;
+            while (head != null) {
+                next = head.next;
+                head.next = pre;
+                pre = head;
+                head = next;
+            }
+            return pre;
+        }
+    }
+
+
+    class Solution2 {
+        public ListNode reverseList(ListNode head) {
+            ListNode pre = null;
+            ListNode next;
             while (head!=null){
                 next = head.next;
                 head.next = pre;
