@@ -1,9 +1,9 @@
 package com.feng.leetcode.hot100._03链表;
 
-public class h142环形链表 {
+public class h142环形链表II {
 
     //复习一下
-    public class Solution {
+    public class Solution1 {
         /**
          * 参数：[head]
          * 返回值：com.feng.newline.list.ListNode
@@ -31,6 +31,26 @@ public class h142环形链表 {
         }
     }
 
+  // 经过数学推导，快慢指针相遇后，head和slow再相遇就是环口
+  public class Solution {
+
+    public ListNode detectCycle(ListNode head) {
+      ListNode fast = head;
+      ListNode slow = head;
+      while (fast != null && fast.next != null) {
+        fast = fast.next.next;
+        slow = slow.next;
+        if (fast == slow) {
+          while (slow != head) {
+            slow = slow.next;
+            head = head.next;
+          }
+          return slow;
+        }
+      }
+      return null;
+    }
+  }
 
 
 }
