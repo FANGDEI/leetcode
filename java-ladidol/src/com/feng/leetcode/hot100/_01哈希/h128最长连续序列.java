@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class h128最长连续序列 {
 
-    class Solution {
+    class Solution1 {
         public int longestConsecutive(int[] nums) {
             Set<Integer> num_set = new HashSet<>();
             for (int num : nums) {
@@ -28,6 +28,31 @@ public class h128最长连续序列 {
             return ans;
         }
     }
+
+  class Solution {
+    public int longestConsecutive(int[] nums) {
+      Set<Integer> set = new HashSet<>();
+      for (int num : nums) {
+        set.add(num);
+      }
+      int ans = 0;
+      for (int num : nums) {
+        if (set.contains(num-1)){
+          continue;
+        }
+        int last = num;
+        while (set.contains(last)){
+          last++;
+        }
+        ans = Math.max(ans, last-num);
+        if (ans * 2 > set.size()){
+          break;
+        }
+      }
+      return ans;
+    }
+  }
+
 
 
 }
