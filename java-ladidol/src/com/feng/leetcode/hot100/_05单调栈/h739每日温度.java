@@ -1,4 +1,4 @@
-package com.feng.leetcode.hot100._05_单调栈;
+package com.feng.leetcode.hot100._05单调栈;
 
 import java.util.Arrays;
 import java.util.Stack;

@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2025. 贝壳找房（北京）科技有限公司
  */
-package com.feng.leetcode.hot100._05_单调栈;
+package com.feng.leetcode.hot100._05单调栈;
 
 import java.util.Stack;
 
