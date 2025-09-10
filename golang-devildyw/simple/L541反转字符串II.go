@@ -5,23 +5,22 @@ func main() {
 }
 
 func reverseStr(s string, k int) string {
-
 	bytes := []byte(s)
-	for start := 0; start < len(s); start += 2 * k {
-		if start+k <= len(s) {
-			reverseStrHelper(bytes, start, start+k-1)
+	len := len(bytes)
+
+	for i := 0; i < len; i += 2 * k {
+		if i+k <= len {
+			reverseStrHelper(bytes[i : i+k])
 		} else {
-			reverseStrHelper(bytes, start, len(s)-1)
+			reverseStrHelper(bytes[i:len])
 		}
 	}
-
 	return string(bytes)
 }
 
-func reverseStrHelper(bytes []byte, start, end int) {
-	for start < end {
-		bytes[start], bytes[end] = bytes[end], bytes[start]
-		start++
-		end--
+// 反转切片内的字符 切片是引用类型 修改的是结构体里面相同的数组指针
+func reverseStrHelper(bytes []byte) {
+	for i, j := 0, len(bytes)-1; i < j; i, j = i+1, j-1 {
+		bytes[i], bytes[j] = bytes[j], bytes[i]
 	}
 }
