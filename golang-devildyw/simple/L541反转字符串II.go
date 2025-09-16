@@ -6,21 +6,21 @@ func main() {
 
 func reverseStr(s string, k int) string {
 	bytes := []byte(s)
-	len := len(bytes)
-
-	for i := 0; i < len; i += 2 * k {
-		if i+k <= len {
-			reverseStrHelper(bytes[i : i+k])
+	n := len(bytes)
+	for i := 0; i < n; i += 2 * k {
+		if i+k <= n {
+			// 反转前k个
+			reverseStrHelper(bytes, i, i+k-1)
 		} else {
-			reverseStrHelper(bytes[i:len])
+			// 最后不足k个字符了 反转到最后一个字符
+			reverseStrHelper(bytes, i, n-1)
 		}
 	}
 	return string(bytes)
 }
 
-// 反转切片内的字符 切片是引用类型 修改的是结构体里面相同的数组指针
-func reverseStrHelper(bytes []byte) {
-	for i, j := 0, len(bytes)-1; i < j; i, j = i+1, j-1 {
-		bytes[i], bytes[j] = bytes[j], bytes[i]
+func reverseStrHelper(bytes []byte, left int, right int) {
+	for ; left < right; left, right = left+1, right-1 {
+		bytes[left], bytes[right] = bytes[right], bytes[left]
 	}
 }
