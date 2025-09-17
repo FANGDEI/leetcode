@@ -18,3 +18,18 @@ func reverseList(head *ListNode) *ListNode {
 	}
 	return pre
 }
+
+func reverseList_TwoPointer(head *ListNode) *ListNode {
+	var (
+		cur *ListNode = nil
+		pre           = head
+	)
+
+	for pre != nil {
+		next := pre.Next
+		pre.Next = cur
+		cur = pre
+		pre = next
+	}
+	return cur
+}
