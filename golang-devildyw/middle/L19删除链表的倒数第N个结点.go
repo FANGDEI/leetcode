@@ -13,20 +13,20 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
 		dummyHead = &ListNode{
 			Next: head,
 		}
-		cur = dummyHead
-		pre = dummyHead
+		pre, cur = dummyHead, dummyHead
 	)
-	// cur.Next!=null 代表遍历到最后一个节点上 cur!=nil 代表遍历到最后一个next 也就是会多一个节点
-	for cur.Next != nil && n > 0 {
-		cur = cur.Next
+
+	for pre != nil && n > 0 {
+		pre = pre.Next
 		n--
 	}
 
-	for cur.Next != nil {
+	for pre != nil && pre.Next != nil {
 		pre = pre.Next
 		cur = cur.Next
 	}
-	pre.Next = pre.Next.Next
+
+	cur.Next = cur.Next.Next
 
 	return dummyHead.Next
 }
