@@ -46,3 +46,22 @@ func getIntersectionNode(headA, headB *ListNode) *ListNode {
 
 	return nil
 }
+
+func getIntersectionNode_01(headA, headB *ListNode) *ListNode {
+	var (
+		set map[*ListNode]bool = make(map[*ListNode]bool)
+	)
+
+	for headA != nil {
+		set[headA] = true
+		headA = headA.Next
+	}
+
+	for headB != nil {
+		if _, ok := set[headB]; ok {
+			return headB
+		}
+		headB = headB.Next
+	}
+	return nil
+}

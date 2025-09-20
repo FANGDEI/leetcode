@@ -3,7 +3,7 @@ package main
 import "strings"
 
 func main() {
-	println(reverseWords("a good   example"))
+	println(reverseWords_01("the sky is blue"))
 }
 
 func reverseWords(s string) string {
@@ -92,4 +92,43 @@ func reverseStr(b []byte) {
 		left++
 		right--
 	}
+}
+
+func reverseWords_01(s string) string {
+	s = strings.Trim(s, " ")
+
+	// 通过快慢双指针清空单词之间的空格
+	bytes := []byte(s)
+	var fast, slow int = 0, 0
+	for ; fast < len(bytes); fast++ {
+		if fast-1 > 0 && bytes[fast-1] == bytes[fast] && bytes[fast] == ' ' {
+			continue
+		}
+		bytes[slow] = bytes[fast]
+		slow++
+	}
+
+	// 清除末尾的空格
+	if slow-1 > 0 && bytes[slow-1] == ' ' {
+		bytes = bytes[:slow-1]
+	} else {
+		bytes = bytes[:slow]
+	}
+
+	// 开始反转
+
+	// 反转整个字符串
+	reverseStr(bytes[:])
+	// 反转反转后的每一个单词
+	start := 0
+	for i := 0; i < len(bytes); i++ {
+		if bytes[i] == ' ' {
+			reverseStr(bytes[start:i])
+			start = i + 1
+		}
+	}
+	if start < len(bytes) {
+		reverseStr(bytes[start:])
+	}
+	return string(bytes[:])
 }
