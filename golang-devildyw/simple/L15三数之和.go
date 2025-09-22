@@ -29,21 +29,18 @@ func threeSum(nums []int) [][]int {
 			sum := nums[i] + nums[l] + nums[r]
 			if sum == 0 {
 				res = append(res, []int{nums[i], nums[l], nums[r]})
-				// 跳过重复的 l
 				for l < r && nums[l] == nums[l+1] {
 					l++
 				}
-				// 跳过重复的 r
 				for l < r && nums[r] == nums[r-1] {
 					r--
 				}
-				// 两个指针都得移动 如果不移动可能会得到相同的值
 				l++
 				r--
-			} else if sum < 0 {
-				l++
+			} else if sum > 0 {
+				r--
 			} else {
-				r--
+				l++
 			}
 		}
 	}
