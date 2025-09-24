@@ -6,7 +6,7 @@ func main() {
 
 func removeElement(nums []int, val int) int {
 	var (
-		fast, slow int = 0, 0
+		fast, slow = 0, 0
 	)
 
 	for ; fast < len(nums); fast++ {
@@ -15,6 +15,5 @@ func removeElement(nums []int, val int) int {
 			slow++
 		}
 	}
-
 	return slow
 }
