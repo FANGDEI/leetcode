@@ -1,7 +1,7 @@
 package main
 
 func main() {
-	var myLinkedList = Constructor()
+	var myLinkedList = Constructor1()
 	myLinkedList.DeleteAtIndex(0)
 }
 
@@ -10,7 +10,7 @@ type MyLinkedList struct {
 	Next *MyLinkedList
 }
 
-func Constructor() MyLinkedList {
+func Constructor1() MyLinkedList {
 	dummyNode := MyLinkedList{
 		Val:  0,
 		Next: nil,
