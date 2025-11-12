@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	result := strStr("aaa", "aaaa")
+	result := strStr("hello", "ll")
 	fmt.Printf("Result: %d\n", result)
 
 	// 测试更多用例
@@ -14,17 +14,15 @@ func main() {
 }
 
 func strStr(haystack string, needle string) int {
-	n, m := len(haystack), len(needle)
-	// 索引走到 n - m 即可 因为过了这个范围 haystack 残余的字符没法完全匹配needle
-	for i := 0; i+m <= n; i++ {
+	for i := 0; i < len(haystack); i++ {
 		if haystack[i] == needle[0] {
 			j := 0
-			for ; j < m; j++ {
+			for ; j < len(needle) && i+j < len(haystack); j++ {
 				if haystack[i+j] != needle[j] {
 					break
 				}
 			}
-			if j == m {
+			if j == len(needle) {
 				return i
 			}
 		}
