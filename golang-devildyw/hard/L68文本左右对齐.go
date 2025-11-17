@@ -98,6 +98,7 @@ func buildLine(words []string, maxWidth, wordsLen int, isLastLine bool) string {
 	line := ""
 	for i, word := range words {
 		line += word
+		// 不是最后一个单词 需要增加空格
 		if i < len(words)-1 {
 			// 添加基本空格
 			for j := 0; j < spacePerGap; j++ {
