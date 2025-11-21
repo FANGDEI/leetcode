@@ -1,23 +1,24 @@
 package main
 
-func MinSubArrayLen(target int, nums []int) int {
-	//滑动窗口
-	l := 0
-	r := len(nums)
-	var result = r + 1
-	var sum = 0
-	for j := 0; j < r; j++ {
-		sum += nums[j]
+import "math"
+
+func minSubArrayLen(target int, nums []int) int {
+	result := math.MaxInt32
+	sum := 0
+	left := 0
+
+	for i := 0; i < len(nums); i++ {
+		sum += nums[i]
 		for sum >= target {
-			result = min(result, j-l+1)
-			sum -= nums[l]
-			l++
+			result = min(result, i-left+1)
+			sum -= nums[left]
+			left++
 		}
 	}
 
-	if result == r+1 {
+	if result == math.MaxInt32 {
 		return 0
 	}
-	return result
 
+	return result
 }
