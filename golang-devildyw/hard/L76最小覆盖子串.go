@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 /*
 给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 "" 。
@@ -98,5 +101,50 @@ func minWindow(s string, t string) string {
 }
 
 func main() {
-	fmt.Println(minWindow("ADOBECODEBANC", "ABC"))
+	fmt.Println(minWindow1("aa", "aa"))
+}
+
+func minWindow1(s string, t string) string {
+	if len(t) > len(s) {
+		return ""
+	}
+
+	targetFreq := make(map[byte]int)
+	for i := 0; i < len(t); i++ {
+		targetFreq[t[i]]++
+	}
+
+	// 滑动窗口
+	left, right := 0, 0
+	result := ""
+	minLen := math.MaxInt32
+	matchCount := 0
+	currentFreq := make(map[byte]int)
+	for ; right < len(s); right++ {
+		rightWord := s[right]
+
+		if value, exist := targetFreq[rightWord]; exist {
+			currentFreq[rightWord]++
+			if currentFreq[rightWord] == value {
+				matchCount++
+			}
+
+			for matchCount == len(targetFreq) {
+				if minLen >= (right - left + 1) {
+					minLen = right - left + 1
+					result = s[left : right+1]
+				}
+				leftWord := s[left]
+				if value, e := targetFreq[leftWord]; e {
+					if currentFreq[leftWord] == value {
+						matchCount--
+					}
+					currentFreq[leftWord]--
+
+				}
+				left++
+			}
+		}
+	}
+	return result
 }

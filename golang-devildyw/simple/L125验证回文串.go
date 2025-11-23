@@ -1,35 +1,28 @@
 package main
 
 func main() {
-	isPalindrome("0P")
+
 }
 
 func isPalindrome(s string) bool {
-	// 快慢指针先把非字母数字给去掉
-	bytes := []byte(s)
-	slow := 0
-	for fast := 0; fast < len(bytes); fast++ {
-		if s[fast] >= 'A' && s[fast] <= 'Z' {
-			bytes[slow] = s[fast] + 'a' - 'A'
-			slow++
-		} else if s[fast] >= 'a' && s[fast] <= 'z' {
-			bytes[slow] = s[fast]
-			slow++
-		} else if s[fast] >= '0' && s[fast] <= '9' {
-			bytes[slow] = s[fast]
-			slow++
+	var filterArr = make([]byte, 0)
+
+	for i := 0; i < len(s); i++ {
+		if s[i] >= 'A' && s[i] <= 'Z' {
+			filterArr = append(filterArr, s[i]+32)
+		}
+		if s[i] >= 'a' && s[i] <= 'z' || s[i] >= '0' && s[i] <= '9' {
+			filterArr = append(filterArr, s[i])
 		}
 	}
+	s1 := string(filterArr)
+	return s1 == reverseStringHelper(filterArr)
+}
 
-	bytes = bytes[0:slow]
+func reverseStringHelper(bytes []byte) string {
 
-	i, j := 0, len(bytes)-1
-	for i < j {
-		if bytes[i] != bytes[j] {
-			return false
-		}
-		i++
-		j--
+	for i, j := 0, len(bytes)-1; i < j; i, j = i+1, j-1 {
+		bytes[i], bytes[j] = bytes[j], bytes[i]
 	}
-	return true
+	return string(bytes)
 }
