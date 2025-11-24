@@ -22,40 +22,41 @@ func spiralOrder(matrix [][]int) []int {
 	}
 
 	var (
-		rows, columns            = len(matrix), len(matrix[0])
-		order                    = make([]int, rows*columns)
-		index                    = 0
-		left, right, top, bottom = 0, columns - 1, 0, rows - 1
+		result      = make([]int, len(matrix)*len(matrix[0]))
+		top, bottom = 0, len(matrix) - 1
+		left, right = 0, len(matrix[0]) - 1
+		index       = 0
 	)
-	for left <= right && top <= bottom {
-		for column := left; column <= right; column++ {
-			order[index] = matrix[top][column]
+
+	for top <= bottom && left <= right {
+		for col := left; col <= right; col++ {
+			result[index] = matrix[top][col]
 			index++
 		}
 
 		for row := top + 1; row <= bottom; row++ {
-			order[index] = matrix[row][right]
+			result[index] = matrix[row][right]
 			index++
 		}
 
-		// 遍历 左下角的限制条件 边界条件 只有一行或者一列的时候重复遍历
-		if left < right && top < bottom {
-			for column := right - 1; column >= left; column-- {
-				order[index] = matrix[bottom][column]
+		// 当剩余区域退化成单行或单列时，前两步已经遍历完所有元素，如果继续执行后两步会重复遍历。
+		if top < bottom && left < right {
+			for col := right - 1; col >= left; col-- {
+				result[index] = matrix[bottom][col]
 				index++
 			}
 
 			for row := bottom - 1; row > top; row-- {
-				order[index] = matrix[row][left]
+				result[index] = matrix[row][left]
 				index++
 			}
 		}
 
-		left++
-		right--
 		top++
 		bottom--
+		left++
+		right--
 	}
 
-	return order
+	return result
 }
