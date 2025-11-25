@@ -26,7 +26,7 @@ func setZeroes(matrix [][]int) {
 		}
 	}
 
-	// 根据map的内容进行遍历
+	// 根据map的内容进行遍历 。
 	for row := range rowMap {
 		setZeroesRowHelper(matrix[row])
 	}
