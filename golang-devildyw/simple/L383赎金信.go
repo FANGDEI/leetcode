@@ -5,25 +5,19 @@ func main() {
 }
 
 func canConstruct(ransomNote string, magazine string) bool {
-
 	var (
-		nums [26]int = [26]int{}
+		hash = make([]int, 26)
 	)
 
-	for _, c := range ransomNote {
-		nums[c-'a']++
+	for i := 0; i < len(magazine); i++ {
+		hash[magazine[i]-'a']++
 	}
 
-	for _, c := range magazine {
-		if nums[c-'a'] > 0 {
-			nums[c-'a']--
-		}
-	}
-
-	for _, num := range nums {
-		if num > 0 {
+	for i := 0; i < len(ransomNote); i++ {
+		if hash[ransomNote[i]-'a'] <= 0 {
 			return false
 		}
+		hash[ransomNote[i]-'a']--
 	}
 	return true
 }
