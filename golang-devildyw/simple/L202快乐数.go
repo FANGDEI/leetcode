@@ -1,32 +1,26 @@
 package main
 
 func main() {
-	println(isHappy(7))
+	println(isHappy(19))
 }
 
 func isHappy(n int) bool {
-	// 使用一个map来记录 如果没到1之前出现循环 那么这个数就不可能快乐数
-	var (
-		set map[int]struct{} = make(map[int]struct{})
-	)
-	for n != 1 {
-		// 对n进行拆分
-		sum := 0
-		for n != 0 {
-			i := n % 10
-			sum += i * i
-			n = n / 10
-		}
+	// 通过set记录中间过程数 防止出现循环
+	m := make(map[int]struct{})
 
-		// 如果 n 已经在 set里面存在了 那么代表循环了 永远不可能等于1
-		if _, ok := set[sum]; ok {
+	for n != 1 {
+		temp := 0
+		for n != 0 {
+			mod := n % 10
+			temp += mod * mod
+			n /= 10
+		}
+		if _, exist := m[temp]; exist {
 			return false
 		}
-		// 不存在先存到 set 里面
-		set[sum] = struct{}{}
-		// 更新n的值
-		n = sum
+		n = temp
+		m[temp] = struct{}{}
 	}
-	// 跳出循环 代表这n已经等于1了
+
 	return true
 }

@@ -1,20 +1,18 @@
 package main
 
 func main() {
-
+	twoSum([]int{3, 2, 4}, 6)
 }
 
 func twoSum(nums []int, target int) []int {
-	var (
-		// 使用 map 记录找过的元素以及对应的下标
-		targetMap map[int]int = make(map[int]int)
-	)
-
-	for i := 0; i < len(nums); i++ {
-		if _, ok := targetMap[target-nums[i]]; ok {
-			return []int{targetMap[target-nums[i]], i}
+	m := make(map[int]int)
+	for i, num := range nums {
+		if value, exist := m[target-num]; exist {
+			return []int{i, value}
+		} else {
+			m[num] = i
 		}
-		targetMap[nums[i]] = i
 	}
+
 	return []int{}
 }
