@@ -4,18 +4,29 @@ func main() {
 
 }
 
-func hasCycle(head *ListNode) bool {
+func hasCycleTwoPoint(head *ListNode) bool {
 	if head == nil || head.Next == nil {
 		return false
 	}
-
-	fast, slow := head, head
+	slow, fast := head, head.Next
 	for fast != nil && fast.Next != nil {
-		fast = fast.Next.Next
-		slow = slow.Next
-		if fast == slow {
+		if slow == fast {
 			return true
 		}
+		slow, fast = slow.Next, fast.Next.Next
 	}
+	return false
+}
+func hasCycleHash(head *ListNode) bool {
+	m := make(map[*ListNode]bool)
+
+	for head != nil {
+		if exist := m[head]; exist {
+			return true
+		}
+		m[head] = true
+		head = head.Next
+	}
+
 	return false
 }

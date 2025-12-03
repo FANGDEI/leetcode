@@ -1,9 +1,12 @@
 package main
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
-
+	fmt.Println(calculateTest("(1+(4+5+2)-3)+(6+8)"))
 }
 
 func calculate(s string) int {
@@ -103,4 +106,84 @@ func calculate(s string) int {
 
 func isNum(c byte) bool {
 	return c >= '0' && c <= '9'
+}
+
+func calculateTest(s string) int {
+	// 第一个栈用来存放过程中的数字
+	nums := make([]int, 0)
+	// 防止第一个数字是负数 所以前置一个0 0减一个数不就是负数吗
+	nums = append(nums, 0)
+	// 第二个栈用来存放操作符
+	ops := make([]byte, 0)
+	// 清空 s中的空格
+	s = strings.ReplaceAll(s, " ", "")
+	//开始遍历
+	for i := 0; i < len(s); i++ {
+		c := s[i]
+		if c == '(' {
+			ops = append(ops, c)
+		} else if c == ')' {
+			// 计算括号内的内容 直到遇到'('
+			for len(ops) > 0 {
+				op := ops[len(ops)-1]
+				if op != '(' {
+					calc(&nums, &ops)
+				} else {
+					ops = ops[:len(ops)-1]
+					break
+				}
+			}
+		} else {
+			if isNum(c) {
+				u := 0
+				j := i
+				for j < len(s) && isNum(s[j]) {
+					u = u*10 + int(s[j]-'0')
+					j++
+				}
+				nums = append(nums, u)
+				i = j - 1
+			} else {
+				// 这里也是这样处理
+				if i > 0 && s[i-1] == '(' {
+					nums = append(nums, 0)
+				}
+
+				for len(ops) > 0 && ops[len(ops)-1] != '(' {
+					calc(&nums, &ops)
+				}
+				ops = append(ops, c)
+			}
+		}
+	}
+
+	for len(ops) > 0 {
+		calc(&nums, &ops)
+	}
+
+	return nums[len(nums)-1]
+}
+
+func calc(nums *[]int, ops *[]byte) {
+	if len(*nums) == 0 || len(*nums) < 2 {
+		return
+	}
+	if len(*ops) == 0 {
+		return
+	}
+
+	//取出元素
+	b := (*nums)[len(*nums)-1]
+	*nums = (*nums)[:len(*nums)-1]
+	a := (*nums)[len(*nums)-1]
+	*nums = (*nums)[:len(*nums)-1]
+	op := (*ops)[len(*ops)-1]
+	var res int
+	if op == '+' {
+		res = a + b
+	} else {
+		res = a - b
+	}
+	*nums = append(*nums, res)
+	*ops = (*ops)[:len(*ops)-1]
 }
