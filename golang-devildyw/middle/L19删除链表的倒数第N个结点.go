@@ -9,24 +9,24 @@ func main() {
 }
 
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
-	var (
-		dummyHead = &ListNode{
-			Next: head,
-		}
-		pre, cur = dummyHead, dummyHead
-	)
-
-	for pre != nil && n > 0 {
-		pre = pre.Next
-		n--
+	// 虚拟节点搞起来
+	dummyHead := &ListNode{
+		Val:  -1,
+		Next: head,
 	}
+	cur := dummyHead
+	pre := dummyHead
 
-	for pre != nil && pre.Next != nil {
-		pre = pre.Next
+	for i := 0; i < n; i++ {
 		cur = cur.Next
 	}
+	// 一定是 cur.Next !=nil 这样遍历下去 pre就会停在需要删除节点的前一个位置 这样刚好方便删除
+	for cur.Next != nil {
+		cur = cur.Next
+		pre = pre.Next
+	}
 
-	cur.Next = cur.Next.Next
+	pre.Next = pre.Next.Next
 
 	return dummyHead.Next
 }
