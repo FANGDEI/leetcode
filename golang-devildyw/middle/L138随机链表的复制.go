@@ -4,12 +4,6 @@ func main() {
 
 }
 
-type Node struct {
-	Val    int
-	Next   *Node
-	Random *Node
-}
-
 // 笨方法
 func copyRandomListOn2(head *Node) *Node {
 	m1 := make(map[*Node][]*Node)
