@@ -1,8 +1,10 @@
 package main
 
+import "fmt"
+
 func main() {
 
-	trap([]int{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1})
+	fmt.Println(trap1([]int{4, 2, 0, 3, 2, 5}))
 
 }
 
@@ -39,4 +41,33 @@ func trap(height []int) int {
 	}
 
 	return totalArea - pillarArea
+}
+
+func trap1(height []int) int {
+	// 我还是使用 总面积-柱子面积的方式做吧
+	h := 0
+	l, r := 0, len(height)-1
+	total := 0
+
+	for l <= r {
+		for l <= r && height[l] <= h {
+			l++
+		}
+		for l <= r && height[r] <= h {
+			r--
+		}
+
+		if l <= r {
+			newH := min(height[l], height[r])
+			total += (newH - h) * (r - l + 1)
+			h = newH
+		}
+	}
+	zArea := 0
+	// 计算柱子的面积
+	for i := 0; i < len(height); i++ {
+		zArea += height[i]
+	}
+
+	return total - zArea
 }
