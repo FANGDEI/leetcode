@@ -32,11 +32,14 @@ func sortList(head *ListNode) *ListNode {
 			for i := 1; i < sublength && cur.Next != nil; i++ {
 				cur = cur.Next
 			}
+
+			// cur.Next !=nil 是因为下面新的头节点需要取 cur.Next
 			// 分开两个链表
 			head2 := cur.Next
 			cur.Next = nil
 			cur = head2
-			for i := 1; i < sublength && cur != nil && cur.Next != nil; i++ {
+			//可能是因为cur.Next == nil 退出的 所以下面的循环需要判断 cur != nil
+			for i := 1; i < sublength && cur != nil; i++ {
 				cur = cur.Next
 			}
 
