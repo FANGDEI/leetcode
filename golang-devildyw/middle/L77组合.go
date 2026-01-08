@@ -5,25 +5,23 @@ func main() {
 }
 
 func combine(n int, k int) [][]int {
-	var res [][]int = make([][]int, 0)
+	result := make([][]int, 0)
+	path := make([]int, 0)
 
-	var backtrack func(index int, current []int)
-	backtrack = func(index int, current []int) {
-		if len(current) == k {
-			temp := make([]int, len(current))
-			copy(temp, current)
-			res = append(res, temp)
-			return
-		}
-		if index >= n+1 {
-			return
+	var dfs func(index int)
+	dfs = func(index int) {
+		if len(path) == k {
+			temp := make([]int, len(path))
+			copy(temp, path)
+			result = append(result, temp)
 		}
 
 		for i := index; i <= n; i++ {
-			backtrack(i+1, append(current, i))
+			path = append(path, i)
+			dfs(i + 1)
+			path = path[:len(path)-1]
 		}
 	}
-
-	backtrack(1, make([]int, 0, k))
-	return res
+	dfs(1)
+	return result
 }

@@ -3,26 +3,32 @@ package main
 func main() {}
 
 func permute(nums []int) [][]int {
-	var res [][]int = make([][]int, 0)
+	result := make([][]int, 0)
+	path := make([]int, 0)
+	n := len(nums)
 
-	var backtrack func(nums, current []int)
-	backtrack = func(nums, current []int) {
-		if len(nums) == 0 {
-			temp := make([]int, len(current))
-			copy(temp, current)
-			res = append(res, temp)
+	set := make(map[int]bool)
+	var dfs func()
+	dfs = func() {
+		if len(path) == n {
+			tempResult := make([]int, len(path))
+			copy(tempResult, path)
+			result = append(result, tempResult)
 			return
 		}
 
 		for i := 0; i < len(nums); i++ {
-			// 防止切片污染
-			nextNums := make([]int, 0, len(nums)-1)
-			nextNums = append(nextNums, nums[:i]...)
-			nextNums = append(nextNums, nums[i+1:]...)
-
-			backtrack(nextNums, append(current, nums[i]))
+			if set[nums[i]] {
+				continue
+			}
+			set[nums[i]] = true
+			path = append(path, nums[i])
+			dfs()
+			path = path[:len(path)-1]
+			set[nums[i]] = false
 		}
 	}
-	backtrack(nums, []int{})
-	return res
+
+	dfs()
+	return result
 }
