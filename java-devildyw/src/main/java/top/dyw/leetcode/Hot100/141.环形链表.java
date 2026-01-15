@@ -18,12 +18,12 @@
  */
 public class Solution {
     public boolean hasCycle(ListNode head) {
-        if (head == null || head.next == null) {
+        if (head==null || head.next == null) {
             return false;
         }
-        // 快慢指针
+
         ListNode slow = head, fast = head.next;
-        while (fast!=null && fast.next!=null) {
+        while(fast != null && fast.next!=null) {
             if (slow == fast) {
                 return true;
             }
