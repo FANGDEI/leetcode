@@ -2,17 +2,24 @@ package top.dyw.leetcode.Hot100;
 
 import java.util.*;
 
-public class L139单词拆分 {
+public class L287寻找重复数 {
     public int findDuplicate(int[] nums) {
-        int n = nums.length;
-        int[] hash = new int[n+1];
+        // 实际上是一个环形连表 判断是否有环
+        int slow = 0;
+        int fast = 0;
 
-        for (int i=0; i<n; i++) {
-            hash[nums[i]]++;
-            if (hash[nums[i]]>1) {
-                return nums[i];
-            }
+        do{
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        } while(slow!=fast);
+        // 找到入口
+        fast = 0;
+        while(slow!=fast) {
+            slow = nums[slow];
+            fast = nums[fast];
         }
-        return -1;
+
+        return fast;
+
     }
 }
