@@ -2,31 +2,29 @@ package top.dyw.leetcode.Hot100;
 import java.util.*;
 public class L295数据流的中位数 {
     class MedianFinder {
-        // 大顶堆
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a,b) -> (b - a));
-        // 小顶堆
+        //维护两个堆 默认小顶堆
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a,b)->{
+            return b-a;
+        });
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
         public MedianFinder() {
 
         }
 
         public void addNum(int num) {
-            // 先往大顶堆里面放
             maxHeap.offer(num);
             minHeap.offer(maxHeap.poll());
 
-            while(minHeap.size() > maxHeap.size()) {
+            while(minHeap.size()> maxHeap.size()) {
                 maxHeap.offer(minHeap.poll());
             }
-
         }
 
         public double findMedian() {
-            if ((minHeap.size() + maxHeap.size())%2 == 1 ) {
-                return (double) maxHeap.peek();
-            } else {
-                return (maxHeap.peek() + minHeap.peek()) / 2.0;
+            if ((maxHeap.size() + minHeap.size()) % 2 == 1) {
+                return (double)maxHeap.peek();
             }
+            return (maxHeap.peek() + minHeap.peek()) / 2.0;
         }
     }
 
