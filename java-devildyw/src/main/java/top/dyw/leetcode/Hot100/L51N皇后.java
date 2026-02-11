@@ -2,9 +2,9 @@ package top.dyw.leetcode.Hot100;
 
 public class L51N皇后 {
     HashSet<Integer> cols = new HashSet<>();
-    HashSet<Integer> mDiagonal = new HashSet<>();
-    HashSet<Integer> sDiagonal = new HashSet<>();
-    List<List<String>> result = new ArrayList();
+    HashSet<Integer> d1 = new HashSet<>();
+    HashSet<Integer> d2 = new HashSet<>();
+    List<List<String>> result = new ArrayList<>();
     public List<List<String>> solveNQueens(int n) {
         char[][] path = new char[n][n];
         for (int i=0; i<n; i++) {
@@ -12,40 +12,43 @@ public class L51N皇后 {
                 path[i][j] = '.';
             }
         }
-        dfs(0, n, path);
+
+        dfs(path, 0, n);
         return result;
     }
-    public void dfs(int row, int n, char[][] path) {
+
+    public void dfs(char[][] path, int row, int n) {
         if (row == n) {
-            List<String> tempResult = new ArrayList<>();
+            List<String> temp = new ArrayList<>();
             for (int i=0; i<n; i++) {
-                StringBuilder sb =new StringBuilder();
+                StringBuilder sb = new StringBuilder();
                 for (int j=0; j<n; j++) {
                     sb.append(path[i][j]);
                 }
-                tempResult.add(sb.toString());
+                temp.add(sb.toString());
             }
-            result.add(tempResult);
+            result.add(temp);
         }
 
+        for (int col=0; col < n; col++) {
+            int d1V = row - col;
+            int d2V = row + col;
 
-        for (int col = 0; col<n; col++) {
-            int d1 = row+col;
-            int d2 = row-col;
-
-            if (cols.contains(col) || mDiagonal.contains(d1) || sDiagonal.contains(d2)) {
+            if (cols.contains(col) || d1.contains(d1V) || d2.contains(d2V)) {
                 continue;
             }
 
             cols.add(col);
-            mDiagonal.add(d1);
-            sDiagonal.add(d2);
+            d1.add(d1V);
+            d2.add(d2V);
             path[row][col] = 'Q';
-            dfs(row+1, n, path);
-            path[row][col] = '.';
+
+            dfs(path, row+1, n);
+
             cols.remove(col);
-            mDiagonal.remove(d1);
-            sDiagonal.remove(d2);
+            d1.remove(d1V);
+            d2.remove(d2V);
+            path[row][col] = '.';
         }
     }
 }
