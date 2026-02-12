@@ -1,22 +1,26 @@
 package top.dyw.leetcode.Hot100;
 
 public class L124二叉树中的最大路径和 {
-    int result = Integer.MIN_VALUE;
-    public int maxPathSum(TreeNode root) {
-        maxPathSumHelper(root);
-        return result;
-    }
-
-    public int maxPathSumHelper(TreeNode root) {
-        if (root == null) {
-            return 0;
+    class Solution {
+        int maxSum = Integer.MIN_VALUE;
+        public int maxPathSum(TreeNode root) {
+            maxPathSumHelper(root);
+            return maxSum;
         }
-        // 子路径是负的 那么我宁愿不选
-        int left = Math.max(0, maxPathSumHelper(root.left));
-        int right = Math.max(0, maxPathSumHelper(root.right));
 
-        result = Math.max(result, left + right + root.val);
+        public int maxPathSumHelper(TreeNode root) {
+            if (root==null) {
+                return 0;
+            }
 
-        return Math.max(left, right) + root.val;
+
+
+            int leftVal = Math.max(0, maxPathSumHelper(root.left));
+            int rightVal = Math.max(0, maxPathSumHelper(root.right));
+
+            maxSum = Math.max(root.val + leftVal + rightVal, maxSum);
+
+            return Math.max(leftVal, rightVal) + root.val;
+        }
     }
 }
