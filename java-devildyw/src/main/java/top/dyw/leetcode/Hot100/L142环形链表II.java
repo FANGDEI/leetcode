@@ -20,7 +20,7 @@ public class L142环形链表II {
         }
 
         fast = head;
-
+        // todo
         while (fast != slow) {
             fast = fast.next;
             slow = slow.next;
