@@ -7,9 +7,9 @@ public class L142环形链表II {
         }
 
         ListNode slow = head, fast = head;
-        while(fast!=null && fast.next != null) {
-            fast=fast.next.next;
-            slow=slow.next;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
             if (fast == slow) {
                 break;
             }
@@ -20,13 +20,13 @@ public class L142环形链表II {
         }
 
         fast = head;
-        while(fast!=slow) {
-            fast=fast.next;
-            slow=slow.next;
+
+        while (fast != slow) {
+            fast = fast.next;
+            slow = slow.next;
         }
 
-        return slow;
-
+        return fast;
     }
 
 }
