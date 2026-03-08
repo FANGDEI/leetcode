@@ -17,32 +17,31 @@
  */
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        if (list1 == null && list2 == null) {
-            return null;
-        }
+        ListNode newHead = new ListNode();
+        ListNode p = newHead;
 
-        ListNode dummyNode = new ListNode(-1, null);
-        ListNode cur = dummyNode;
-        ListNode p1 = list1, p2 = list2;
-        while(p1!=null && p2!=null){
-            if (p1.val <= p2.val) {
-                cur.next = p1;
-                p1 = p1.next;
+        while (list1!=null && list2!=null) {
+            if (list1.val < list2.val) {
+                p.next = new ListNode(list1.val);
+                list1 = list1.next;
+
             } else {
-                cur.next = p2;
-                p2 = p2.next;
+                p.next = new ListNode(list2.val);
+                list2 = list2.next;
             }
 
-            cur = cur.next;
+            p = p.next;
         }
 
-        if (p1!=null){
-            cur.next = p1;
+        if (list1!=null) {
+            p.next = list1;
         }
-        if (p2!=null) {
-            cur.next = p2;
+
+        if (list2!=null) {
+            p.next = list2;
         }
-        return dummyNode.next;
+
+        return newHead.next;
     }
 }
 // @lc code=end
