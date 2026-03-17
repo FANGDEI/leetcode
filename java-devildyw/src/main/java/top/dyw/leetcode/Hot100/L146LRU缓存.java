@@ -11,76 +11,79 @@ public class L146LRU缓存 {
         DLinkedNode head;
         DLinkedNode tail;
 
-        public LRUCache(int capacity) {
-            this.size = 0;
-            this.capacity = capacity;
-            this.map = new HashMap<Integer, DLinkedNode>(capacity);
-            this.head = new DLinkedNode(-1, -1, null, null);
-            this.tail = new DLinkedNode(-1,-1, null, null);
-            this.head.next = tail;
-            this.tail.prev = head;
-        }
-
-        public int get(int key) {
-            // get 去map里面找 如果找到了就就放到双向链表末尾
-            if (map.containsKey(key)) {
-                DLinkedNode node = map.get(key);
-                // 断开 并接到末尾
-                node.prev.next = node.next;
-                node.next.prev = node.prev;
-                node.prev = tail.prev;
-                node.next = tail;
-                tail.prev.next = node;
-                tail.prev = node;
-                return node.value;
-            } else {
-                return -1;
-            }
-        }
-
-        public void put(int key, int value) {
-            // 先判断是否存在
-            if (map.containsKey(key)) {
-                DLinkedNode node = map.get(key);
-                // 断开 并接到末尾
-                node.prev.next = node.next;
-                node.next.prev = node.prev;
-                node.prev = tail.prev;
-                node.next = tail;
-                tail.prev.next = node;
-                tail.prev = node;
-                node.value = value;
-            } else {
-                // 不存在直接接到末尾
-                DLinkedNode newNode = new DLinkedNode(key, value, null, null);
-                newNode.prev = tail.prev;
-                newNode.next = tail;
-                tail.prev.next = newNode;
-                tail.prev = newNode;
-                map.put(key, newNode);
-                size++;
-                if (size > capacity) {
-                    //剔除节点
-                    DLinkedNode deleteNode = head.next;
-                    map.remove(deleteNode.key);
-                    head.next = deleteNode.next;
-                    deleteNode.next.prev = head;
-                    size--;
-                }
-            }
-        }
-
         class DLinkedNode {
             int key;
             int value;
             DLinkedNode prev;
             DLinkedNode next;
 
-            public DLinkedNode(int key, int value, DLinkedNode prev, DLinkedNode next) {
+            public DLinkedNode(int key, int value) {
                 this.key = key;
                 this.value = value;
-                this.prev = prev;
-                this.next = next;
+            }
+
+            public DLinkedNode() {}
+        }
+
+        public LRUCache(int capacity) {
+            this.size = 0;
+            this.capacity = capacity;
+            this.map = new HashMap<Integer, DLinkedNode>(capacity);
+            this.head = new DLinkedNode();
+            this.tail = new DLinkedNode();
+            this.head.next = tail;
+            this.tail.prev = head;
+        }
+
+        public int get(int key) {
+            DLinkedNode node = map.get(key);
+            if (node==null) {
+                return -1;
+            }
+
+            moveToHead(node);
+            return node.value;
+        }
+
+        private void addToHead(DLinkedNode node) {
+            node.prev = head;
+            node.next = head.next;
+            head.next.prev = node;
+            head.next = node;
+        }
+
+        private void removeNode(DLinkedNode node) {
+            node.prev.next = node.next;
+            node.next.prev = node.prev;
+        }
+
+        private void moveToHead(DLinkedNode node) {
+            removeNode(node);
+            addToHead(node);
+        }
+
+        private DLinkedNode removeTail() {
+            DLinkedNode res = tail.prev;
+            removeNode(res);
+            return res;
+        }
+
+        public void put(int key, int value) {
+            DLinkedNode node = map.get(key);
+            if (node == null) {
+                // 新增
+                DLinkedNode newNode = new DLinkedNode(key, value);
+                map.put(key, newNode);
+                addToHead(newNode);
+                ++size;
+                if (size > capacity) {
+                    DLinkedNode tail = removeTail();
+                    map.remove(tail.key);
+                    --size;
+                }
+            } else {
+                node.value = value;
+                moveToHead(node);
             }
         }
     }
