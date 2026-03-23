@@ -29,75 +29,44 @@ public class L143重排链表 {
     }
 
 
-    /**
-     * 寻找链表中点+链表逆序+合并链表
-     * @param head
-     */
     public void reorderList(ListNode head) {
-        if (head==null){
+        if (head == null) {
             return;
         }
-        //寻找链表中点
-        ListNode mid = middleNode(head);
-        ListNode l1 = head;
-        ListNode l2 = mid.next;
-        mid.next = null; //将一个链表分为两个单链表
-        //翻转l2链表
-        l2 = reverseList(l2);
-        //合并此时的l1和l2 交替
-        mergeList(l1,l2);
-    }
-
-    /**
-     * 交替合并链表
-     * @param l1
-     * @param l2
-     */
-    private void mergeList(ListNode l1, ListNode l2) {
-        ListNode l1_tmp;
-        ListNode l2_tmp;
-        while (l1!=null&&l2!=null){
-            l1_tmp = l1.next;
-            l2_tmp = l2.next;
-            //交替连接
-            l1.next = l2;
-            l1 = l1_tmp;
-            //l1 -> l2.next -> l1.next 循环
-            l2.next = l1;
-            l2 = l2_tmp;
-        }
-    }
-
-    /**
-     * 翻转链表
-     * @param l2
-     * @return
-     */
-    private ListNode reverseList(ListNode l2) {
-        //尾插法
-        ListNode prev = null;
-        ListNode curr = l2;
-        while (curr!=null){
-            ListNode nextTemp = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = nextTemp;
-        }
-        return prev;
-    }
-
-    /**
-     * 快慢指针寻找中间结点
-     * @param head
-     * @return
-     */
-    private ListNode middleNode(ListNode head) {
         ListNode slow = head;
         ListNode fast = head;
-        while (fast.next!=null&&fast.next.next!=null){
-            slow = slow.next;
+        while (fast != null && fast.next != null) {
             fast = fast.next.next;
+            slow = slow.next;
         }
-        return slow;
+
+        ListNode l1 = head;
+        ListNode l2 = slow.next;
+
+        slow.next = null;
+        l2 = reverseList(l2);
+
+        while (l1!=null && l2 != null) {
+            ListNode l1_temp = l1.next;
+            ListNode l2_temp = l2.next;
+
+            l1.next = l2;
+            l2.next = l1_temp;
+
+            l1 = l1_temp;
+            l2 = l2_temp;
+        }
+
+    }
+
+    public ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        while (head!=null) {
+            ListNode next = head.next;
+            head.next = prev;
+            prev = head;
+            head = next;
+        }
+        return prev;
     }
 }
