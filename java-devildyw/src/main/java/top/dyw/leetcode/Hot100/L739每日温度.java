@@ -3,16 +3,18 @@ package top.dyw.leetcode.Hot100;
 import java.util.*;
 public class L739每日温度 {
     public int[] dailyTemperatures(int[] temperatures) {
-        int[] result = new int[temperatures.length];
-        // 单调栈 这里记录的是下标
-        Deque<Integer> stack = new LinkedList<>();
-        for (int i = 0; i<temperatures.length; i++) {
-            while (!stack.isEmpty() && temperatures[i] > temperatures[stack.peek()]) {
-                int preIndex = stack.pop();
-                result[preIndex] = i-preIndex;
+        Deque<Integer> stack = new ArrayDeque();
+        int n = temperatures.length;
+        int[] result = new int[n];
+
+        for (int i=0; i<n; i++) {
+            while (!stack.isEmpty() && temperatures[stack.peek()] < temperatures[i]) {
+                int index = stack.pop();
+                result[index] = i-index;
             }
             stack.push(i);
         }
+
         return result;
     }
 }
