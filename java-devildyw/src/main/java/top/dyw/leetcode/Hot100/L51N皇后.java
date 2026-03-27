@@ -1,5 +1,7 @@
 package top.dyw.leetcode.Hot100;
 
+import java.util.*;
+
 public class L51N皇后 {
     HashSet<Integer> cols = new HashSet<>();
     HashSet<Integer> d1 = new HashSet<>();

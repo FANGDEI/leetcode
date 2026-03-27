@@ -1,4 +1,9 @@
-class Solution {
+package top.dyw.leetcode.Hot100;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class L560和为K的子数组 {
     public int subarraySum(int[] nums, int k) {
         Map<Integer, Integer> map = new HashMap();
 

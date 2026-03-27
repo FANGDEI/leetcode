@@ -13,28 +13,23 @@ public class L82删除排序链表中的重复元素II {
     }
 
     public ListNode deleteDuplicates(ListNode head) {
-        if (head == null){
-            return head;
+        if (head==null) {
+            return null;
         }
 
-        //防止原来的head重复而发生改变 这里使用一个头结点来优化
-        ListNode dummy = new ListNode(0, head);
-        ListNode cur = dummy; //初始化为头结点
-        //cur是作为一次遍历的节点  需要判断后续是否有重复的节点 所以这里判断cur.next 和它相邻的cur.next.next
-        while (cur.next!=null&&cur.next.next!=null){
-            //如果恰好这两个相邻的节点的值相等 继续寻找后续是否还有重复的节点 因为是排序过的 按这个顺序找到没有重复的为止就行了
-            if (cur.next.val==cur.next.next.val){
+        ListNode dummyNode = new ListNode(-1, head);
+
+        ListNode cur = dummyNode.next;
+        while (cur.next!=null && cur.next.next!=null) {
+            if (cur.next.val == cur.next.next.val) {
                 int x = cur.next.val;
-                while (cur.next!=null&&cur.next.val==x){
-                    //不断更新cur.next;
+                while (cur.next!=null && cur.next.val==x) {
                     cur.next = cur.next.next;
                 }
-            }else {
-                //如果不重复 移动指针
+            } else {
                 cur = cur.next;
             }
         }
-        //返回结果
-        return dummy.next;
+        return dummyNode.next;
     }
 }

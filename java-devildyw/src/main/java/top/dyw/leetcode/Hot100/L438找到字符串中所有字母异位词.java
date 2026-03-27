@@ -1,4 +1,9 @@
-class Solution {
+package top.dyw.leetcode.Hot100;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class L438找到字符串中所有字母异位词 {
     public List<Integer> findAnagrams(String s, String p) {
         // 我理解在p的长度 就是我们滑动窗口的长度 在这个窗口内不断用字母异位词来判断就行
         if (p.length() == 0) {

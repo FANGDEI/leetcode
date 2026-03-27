@@ -10,7 +10,7 @@ public class L146LRU缓存 {
     DlinkedNode head;
     DlinkedNode tail;
 
-    public LRUCache(int capacity) {
+    public L146LRU缓存(int capacity) {
         this.size = 0;
         this.capacity = capacity;
         cache = new HashMap<Integer, DlinkedNode>(capacity);

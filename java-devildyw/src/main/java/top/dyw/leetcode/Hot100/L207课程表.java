@@ -1,5 +1,7 @@
 package top.dyw.leetcode.Hot100;
 
+import java.util.*;
+
 public class L207课程表 {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         // 1. 核心优化：使用数组代替 HashMap

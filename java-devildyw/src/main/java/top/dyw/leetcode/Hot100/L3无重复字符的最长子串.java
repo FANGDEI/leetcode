@@ -1,4 +1,8 @@
-class Solution {
+package top.dyw.leetcode.Hot100;
+
+import java.util.HashMap;
+
+public class L3无重复字符的最长子串 {
     public int lengthOfLongestSubstring(String s) {
         HashMap<Character, Integer> map = new HashMap();
 
