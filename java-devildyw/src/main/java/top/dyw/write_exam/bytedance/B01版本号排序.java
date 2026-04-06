@@ -32,7 +32,7 @@ public class B01版本号排序 {
             int num1 = i < v1.length ? Integer.parseInt(v1[i]) : 0;
             int num2 = i < v2.length ? Integer.parseInt(v2[i]) : 0;
 
-            if (num1 != num2) {
+            if (num1!=num2) {
                 return Integer.compare(num1, num2);
             }
         }
