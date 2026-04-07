@@ -17,9 +17,16 @@ public class B01版本号排序 {
     }
 
     private static void  sortVersions(String[] versions) {
-        Arrays.sort(versions, (a, b) -> {
-            return compareToVersion(a,b);
-        });
+        int n = versions.length;
+        for (int i=0; i<n-1; i++) {
+            for (int j=0; j<n-i-1; j++) {
+                if (compareToVersion(versions[j], versions[j+1]) > 0) {
+                    String temp = versions[j];
+                    versions[j] = versions[j+1];
+                    versions[j+1] = temp;
+                }
+            }
+        }
     }
 
     private static int compareToVersion(String version1, String version2) {
