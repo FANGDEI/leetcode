@@ -64,7 +64,7 @@ public class 快速排序 {
         int i = left;
         int j = right;
 
-        while (i < j) {
+        while (i<j) {
             while (i<j && nums[j] >= pivot) {
                 j--;
             }
