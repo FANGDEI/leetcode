@@ -13,7 +13,7 @@ public class L208实现Trie {
 
     private TrieNode root;
 
-    public Trie() {
+    public L208实现Trie() {
         root = new TrieNode();
     }
 

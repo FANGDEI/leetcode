@@ -1,3 +1,5 @@
+package top.dyw.leetcode.Hot100;
+
 /*
  * @lc app=leetcode.cn id=11 lang=java
  *
@@ -5,7 +7,7 @@
  */
 
 // @lc code=start
-class Solution {
+public class L11盛最多水的容器 {
     public int maxArea(int[] height) {
         int result = 0;
         int left = 0, right = height.length - 1;
@@ -29,4 +31,3 @@ class Solution {
     }
 }
 // @lc code=end
-

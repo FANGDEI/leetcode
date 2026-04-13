@@ -1,3 +1,5 @@
+package top.dyw.leetcode.Hot100;
+
 /*
  * @lc app=leetcode.cn id=283 lang=java
  *
@@ -5,7 +7,7 @@
  */
 
 // @lc code=start
-class Solution {
+public class L283移动零 {
     public void moveZeroes(int[] nums) {
         // 把非0的元素移到前面 再把后面的元素全部改为0就行
         int index = 0;
@@ -21,4 +23,3 @@ class Solution {
     }
 }
 // @lc code=end
-

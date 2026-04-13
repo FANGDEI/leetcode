@@ -1,3 +1,5 @@
+package top.dyw.leetcode.Hot100;
+
 /*
  * @lc app=leetcode.cn id=25 lang=java
  *
@@ -15,7 +17,7 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution {
+public class L25K个一组翻转链表 {
     public ListNode reverseKGroup(ListNode head, int k) {
         ListNode dummyNode = new ListNode(-1, head);
         ListNode pre = dummyNode, cur = dummyNode;
@@ -57,4 +59,3 @@ class Solution {
     }
 }
 // @lc code=end
-

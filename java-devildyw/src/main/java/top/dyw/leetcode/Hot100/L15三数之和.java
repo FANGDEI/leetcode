@@ -1,3 +1,9 @@
+package top.dyw.leetcode.Hot100;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /*
  * @lc app=leetcode.cn id=15 lang=java
  *
@@ -5,7 +11,7 @@
  */
 
 // @lc code=start
-class Solution {
+public class L15三数之和 {
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> result = new ArrayList();
         Arrays.sort(nums);
@@ -43,4 +49,3 @@ class Solution {
     }
 }
 // @lc code=end
-

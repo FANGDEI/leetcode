@@ -1,3 +1,5 @@
+package top.dyw.leetcode.Hot100;
+
 /*
  * @lc app=leetcode.cn id=238 lang=java
  *
@@ -5,7 +7,7 @@
  */
 
 // @lc code=start
-class Solution {
+public class L238除了自身以外数组的乘积 {
     public int[] productExceptSelf(int[] nums) {
         int n = nums.length;
         // fontMulti[i] 表示下标i位置左边的乘积
@@ -32,4 +34,3 @@ class Solution {
     }
 }
 // @lc code=end
-

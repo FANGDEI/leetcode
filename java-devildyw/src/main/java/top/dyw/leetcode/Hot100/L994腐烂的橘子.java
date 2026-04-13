@@ -1,5 +1,7 @@
 package top.dyw.leetcode.Hot100;
 
+import java.util.*;
+
 public class L994腐烂的橘子 {
     public int orangesRotting(int[][] grid) {
         if (grid.length == 0 || grid[0].length == 0) {

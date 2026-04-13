@@ -1,5 +1,7 @@
 package top.dyw.leetcode.Hot100;
 
+import java.util.*;
+
 public class L46全排列 {
     List<List<Integer>> rseult = new ArrayList<>();
     List<Integer> path = new ArrayList<>();

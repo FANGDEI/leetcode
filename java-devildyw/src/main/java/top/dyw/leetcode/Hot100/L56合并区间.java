@@ -1,3 +1,9 @@
+package top.dyw.leetcode.Hot100;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /*
  * @lc app=leetcode.cn id=56 lang=java
  *
@@ -5,7 +11,7 @@
  */
 
 // @lc code=start
-class Solution {
+public class L56合并区间 {
     public int[][] merge(int[][] intervals) {
         Arrays.sort(intervals, (a,b) ->{
             return a[0] - b[0];
@@ -31,4 +37,3 @@ class Solution {
     }
 }
 // @lc code=end
-

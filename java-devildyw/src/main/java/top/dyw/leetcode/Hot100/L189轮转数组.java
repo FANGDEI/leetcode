@@ -1,3 +1,5 @@
+package top.dyw.leetcode.Hot100;
+
 /*
  * @lc app=leetcode.cn id=189 lang=java
  *
@@ -5,7 +7,7 @@
  */
 
 // @lc code=start
-class Solution {
+public class L189轮转数组 {
     // 旋转其实就是翻转
     public void rotate(int[] nums, int k) {
         int n = nums.length;
@@ -26,4 +28,3 @@ class Solution {
     }
 }
 // @lc code=end
-

@@ -1,3 +1,5 @@
+package top.dyw.leetcode.Hot100;
+
 /*
  * @lc app=leetcode.cn id=21 lang=java
  *
@@ -15,7 +17,7 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution {
+public class L21合并两个有序链表 {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         ListNode newHead = new ListNode();
         ListNode p = newHead;
@@ -45,4 +47,3 @@ class Solution {
     }
 }
 // @lc code=end
-

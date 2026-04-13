@@ -1,3 +1,5 @@
+package top.dyw.leetcode.Hot100;
+
 /*
  * @lc app=leetcode.cn id=53 lang=java
  *
@@ -5,7 +7,7 @@
  */
 
 // @lc code=start
-class Solution {
+public class L53最大子数组和 {
     public int maxSubArray(int[] nums) {
         // 顺序遍历 一旦小于0了 就重新更新
         int sumMax = nums[0];
@@ -27,4 +29,3 @@ class Solution {
     }
 }
 // @lc code=end
-

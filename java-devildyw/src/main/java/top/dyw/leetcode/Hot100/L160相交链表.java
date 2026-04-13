@@ -1,3 +1,5 @@
+package top.dyw.leetcode.Hot100;
+
 /*
  * @lc app=leetcode.cn id=160 lang=java
  *
@@ -16,7 +18,7 @@
  *     }
  * }
  */
-public class Solution {
+public class L160相交链表 {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         // 走完自己的再走对方的
         ListNode p1 = headA, p2 = headB;
@@ -29,4 +31,3 @@ public class Solution {
     }
 }
 // @lc code=end
-

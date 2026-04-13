@@ -1,3 +1,5 @@
+package top.dyw.leetcode.Hot100;
+
 /*
  * @lc app=leetcode.cn id=206 lang=java
  *
@@ -15,7 +17,7 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution {
+public class L206反转链表 {
     public ListNode reverseList(ListNode head) {
         if (head==null){
             return null;
@@ -32,4 +34,3 @@ class Solution {
     }
 }
 // @lc code=end
-

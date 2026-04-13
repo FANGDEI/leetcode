@@ -1,3 +1,5 @@
+package top.dyw.leetcode.Hot100;
+
 /*
  * @lc app=leetcode.cn id=141 lang=java
  *
@@ -16,7 +18,7 @@
  *     }
  * }
  */
-public class Solution {
+public class L141环形链表 {
     public boolean hasCycle(ListNode head) {
         if (head==null || head.next == null) {
             return false;
@@ -34,4 +36,3 @@ public class Solution {
     }
 }
 // @lc code=end
-

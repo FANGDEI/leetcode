@@ -1,3 +1,5 @@
+package top.dyw.leetcode.Hot100;
+
 /*
  * @lc app=leetcode.cn id=234 lang=java
  *
@@ -15,7 +17,7 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution {
+public class L234回文链表LeetCode {
     public boolean isPalindrome(ListNode head) {
         if (head==null || head.next==null) {
             return true;
@@ -32,4 +34,3 @@ class Solution {
     }
 }
 // @lc code=end
-

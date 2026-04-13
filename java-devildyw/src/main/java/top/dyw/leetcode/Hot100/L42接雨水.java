@@ -1,3 +1,5 @@
+package top.dyw.leetcode.Hot100;
+
 /*
  * @lc app=leetcode.cn id=42 lang=java
  *
@@ -5,7 +7,7 @@
  */
 
 // @lc code=start
-class Solution {
+public class L42接雨水 {
     public int trap(int[] height) {
         // 双指针 算出总面积 再减去柱子面积得到最终结果
         int preHeight = 0;
@@ -37,4 +39,3 @@ class Solution {
     }
 }
 // @lc code=end
-
