@@ -41,22 +41,14 @@ public class D1删除排序链表中的重复元素 {
             return null;
         }
 
-        ListNode dummyNode = new ListNode(-1, head);
-        ListNode prev = dummyNode;
-
-        while (prev.next!=null && prev.next.next!=null) {
-            if (prev.next.val == prev.next.next.val) {
-                int x = prev.next.val;
-                ListNode cur = prev.next;
-                while (cur!=null && cur.val == x) {
-                    cur = cur.next;
-                }
-                prev.next = cur;
+        ListNode cur = head;
+        while (cur != null && cur.next != null) {
+            if (cur.val == cur.next.val) {
+                cur.next = cur.next.next;
             } else {
-                prev = prev.next;
+                cur = cur.next;
             }
         }
-
-        return dummyNode.next;
+        return head;
     }
 }

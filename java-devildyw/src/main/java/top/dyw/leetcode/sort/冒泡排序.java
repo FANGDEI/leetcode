@@ -16,16 +16,16 @@ public class 冒泡排序 {
 
         int n = nums.length;
         for (int i=0; i<n-1; i++) {
-            boolean swapped = false;
+            boolean isSwap = false;
             for (int j=0; j<n-i-1; j++) {
                 if (nums[j] > nums[j+1]) {
-                    swapped = true;
                     int temp = nums[j];
                     nums[j] = nums[j+1];
                     nums[j+1] = temp;
+                    isSwap = true;
                 }
             }
-            if (!swapped) {
+            if (!isSwap) {
                 break;
             }
         }

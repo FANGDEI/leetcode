@@ -6,19 +6,16 @@ public class K2阿拉伯数字转人民币中文 {
         System.out.println(numberToChinese(90000009));
     }
 
-    // 中文数字
-    private static final String[] NUMS = {
-            "零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"
+    private static final String[] NUMS = new String[]{
+        "零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"
     };
 
-    // 小单位
-    private static final String[] UNITS = {
-            "", "拾", "佰", "仟"
+    private static final String[] UNITS = new String[]{
+        "", "拾", "佰", "仟"
     };
 
-    //大单位
-    private static final String[] GROUP_UNITS = {
-            "", "万", "亿"
+    private static final String[] GROUP_UNITS = new String[]{
+        "元", "万", "亿"
     };
 
     public static String numberToChinese(int num) {
@@ -27,14 +24,13 @@ public class K2阿拉伯数字转人民币中文 {
         }
 
         StringBuilder sb = new StringBuilder();
-        boolean needZero = false;
         int groupIndex = 0;
+        boolean needZero = false;
 
         while (num > 0) {
             int part = num % 10000;
-            if (part!=0) {
+            if (part != 0) {
                 String partStr = convertPart(part);
-
                 if (needZero) {
                     sb.insert(0, "零");
                 }
@@ -45,18 +41,20 @@ public class K2阿拉伯数字转人民币中文 {
             } else {
                 needZero = false;
             }
+
             num /= 10000;
             groupIndex++;
         }
 
-        sb.append("元");
+//        sb.append("元");
         return sb.toString();
     }
 
-    public static String convertPart(int part) {
+    private static String convertPart(int part) {
+        StringBuilder sb = new StringBuilder();
         int unitIndex = 0;
         boolean zeroFlag = false;
-        StringBuilder sb = new StringBuilder();
+
         while (part > 0) {
             int digit = part % 10;
             if (digit == 0) {
@@ -69,8 +67,9 @@ public class K2阿拉伯数字转人民币中文 {
                 sb.insert(0, NUMS[digit] + UNITS[unitIndex]);
                 zeroFlag = false;
             }
+
+            part /= 10;
             unitIndex++;
-            part/=10;
         }
         return sb.toString();
     }

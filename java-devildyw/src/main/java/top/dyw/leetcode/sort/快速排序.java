@@ -5,7 +5,7 @@ public class 快速排序 {
     public static void main(String[] args) {
         int[] nums = {5, 1, 6, 2, 4, 3};
 
-        quickSortLite(nums, 0, nums.length-1);
+        quickSort(nums, 0, nums.length-1);
 
         for (int num : nums) {
             System.out.print(num + " ");
@@ -24,11 +24,11 @@ public class 快速排序 {
         if (left >= right) {
             return;
         }
-
         int pivot = nums[left];
         int i = left;
         int j = right;
-        while (i<j) {
+
+        while (i < j) {
             while (i<j && nums[j] >= pivot) {
                 j--;
             }
@@ -37,9 +37,7 @@ public class 快速排序 {
                 i++;
             }
 
-            if (i<j) {
-                swap(nums, i, j);
-            }
+            swap(nums, i, j);
         }
 
         nums[left] = nums[i];
