@@ -3,30 +3,23 @@ package top.dyw.leetcode.Hot100;
 import java.util.*;
 public class L84柱状图中最大的矩形 {
     public int largestRectangleArea(int[] heights) {
-        int maxArea = 0;
-        Deque<Integer> stack = new LinkedList<>();
         int n = heights.length;
-        //添加哨兵节点
-        int[] newHeights = new int[heights.length + 2];
+        Deque<Integer> stack = new ArrayDeque<>();
+        int[] newHeights = new int[n+2];
         System.arraycopy(heights, 0, newHeights, 1, n);
-
+        int result = 0;
         for (int i=0; i<newHeights.length; i++) {
-            while (!stack.isEmpty() && newHeights[i] < newHeights[stack.peek()]) {
-                // 出栈
-                int curIndex = stack.pop();
-
-                int height = newHeights[curIndex];
-
-                int rightIndex = i;
+            while (!stack.isEmpty() && newHeights[stack.peek()] > newHeights[i]) {
+                int preIndex = stack.pop();
+                int height = newHeights[preIndex];
 
                 int leftIndex = stack.peek();
+                int width = i - leftIndex - 1;
 
-                int width = rightIndex - leftIndex - 1;
-
-                maxArea = Math.max(width * height, maxArea);
+                result = Math.max(result, height * width);
             }
             stack.push(i);
         }
-        return maxArea;
+        return result;
     }
 }
