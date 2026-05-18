@@ -2,22 +2,20 @@ package top.dyw.leetcode.Hot100;
 
 public class L45跳跃游戏II {
     public int jump(int[] nums) {
-        if (nums.length==1) {
-            return 0;
-        }
-        int count = 1;
-        int curEnd = nums[0]; // 当前这一步能走到的尽头
-        int maxReach = nums[0]; // 全局能走到的最大尽头
+        int n = nums.length;
+        int maxReach = 0;
+        int curEnd = 0;
+        int count = 0;
 
-        for (int i=0; i<nums.length-1; i++) {
-            maxReach = Math.max(i+nums[i], maxReach);
+        for (int i=0; i<n-1; i++) {
+            maxReach = Math.max(maxReach, i+nums[i]);
             if (i==curEnd) {
                 count++;
                 curEnd = maxReach;
+            }
 
-                if (curEnd >= nums.length-1) {
-                    break;
-                }
+            if (curEnd >= n-1) {
+                break;
             }
         }
         return count;
