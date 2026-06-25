@@ -34,6 +34,7 @@ func isPalindrome(head *ListNode) bool {
 		slow = slow.Next
 	}
 
+	// 向前遍历
 	for pre != nil && slow != nil {
 		if pre.Val != slow.Val {
 			return false
